@@ -1,0 +1,26 @@
+{
+  "name": "invsys-server",
+  "version": "1.0.0",
+  "description": "Inventory System Project",
+  "main": "index.js",
+  "engines": {
+    "node": "12.16.1",
+    "npm": "6.14.3"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/knztnt/InvSys-Server.git"
+  },
+  "author": "knztnt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/knztnt/InvSys-Server/issues"
+  },
+  "homepage": "https://github.com/knztnt/InvSys-Server#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
