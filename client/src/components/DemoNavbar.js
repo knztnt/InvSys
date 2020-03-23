@@ -1,61 +1,67 @@
-import React from "react";
-// import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem,
+    NavbarText
+} from 'reactstrap';
 
 
 
 
-class DemoNavbar extends React.Component {
-    componentDidMount() {
-        // let headroom = new Headroom(document.getElementById("navbar-main"));
-        // // initialise
-        // headroom.init();
-    }
-    state = {
-        collapseClasses: "",
-        collapseOpen: false
-    };
+const DemoNavbar = (props) => {
+    const [isOpen, setIsOpen] = useState(false);
 
-    onExiting = () => {
-        this.setState({
-            collapseClasses: "collapsing-out"
-        });
-    };
+    const toggle = () => setIsOpen(!isOpen);
 
-    onExited = () => {
-        this.setState({
-            collapseClasses: ""
-        });
-    };
 
-    render() {
-        return (
-            <>
-                <header className="header-global">
-                    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-                        <a class="navbar-brand" href="/">InvSys</a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
+    return (
+        <>
+            <div>
+                <Navbar className="navbar navbar-expand-lg navbar-dark bg-primary" expand="md">
+                    <NavbarBrand href="/">reactstrap</NavbarBrand>
+                    <NavbarToggler onClick={toggle} />
+                    <Collapse isOpen={isOpen} navbar>
+                        <Nav className="mr-auto" navbar>
+                            <NavItem>
+                                <NavLink href="/components/">Components</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                            </NavItem>
+                            <UncontrolledDropdown nav inNavbar>
+                                <DropdownToggle nav caret>
+                                    Options
+                    </DropdownToggle>
+                                <DropdownMenu right>
+                                    <DropdownItem>
+                                        Option 1
+                </DropdownItem>
+                                    <DropdownItem>
+                                        Option 2
+                </DropdownItem>
+                                    <DropdownItem divider />
+                                    <DropdownItem>
+                                        Reset
+                </DropdownItem>
+                                </DropdownMenu>
+                            </UncontrolledDropdown>
+                        </Nav>
+                        <NavbarText>Simple Text</NavbarText>
+                    </Collapse>
+                </Navbar>
+            </div>
+        </>
+    );
 
-                        <div class="collapse navbar-collapse" id="navbarColor01">
-                            <ul class="navbar-nav mr-auto">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">About</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Contact us</a>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </nav>
-                </header>
-            </>
-        );
-    }
 }
 
 export default DemoNavbar;
