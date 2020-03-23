@@ -1,6 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import 'bootswatch/dist/lux/bootstrap.min.css';
 
 import App from './components/App';
+import Login from './views/Login';
 
-ReactDOM.render(<App />, document.querySelector('#root'));
+ReactDOM.render(
+    <BrowserRouter>
+        <Switch>
+            <Route path="/" exact render={props => <App {...props} />} />
+            {/* <Route
+          path="/landing-page"
+          exact
+          render={props => <Landing {...props} />}
+        /> */}
+            <Route path="/auth/login" exact render={props => <Login {...props} />} />
+
+            <Redirect to="/" />
+        </Switch>
+    </BrowserRouter>,
+    document.getElementById("root")
+);
