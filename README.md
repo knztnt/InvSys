@@ -11,8 +11,8 @@ InvSys is the web application for inventory management system Department Invento
  ## Running Locally
  
 
-    $	cd InvSys-Server
-    $	npm run dev
+    $ cd InvSys-Server
+    $ npm run dev
 
 ## Powered by
 
