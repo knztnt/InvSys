@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import 'bootswatch/dist/lux/bootstrap.min.css';
+import 'bootswatch/dist/flatly/bootstrap.min.css';
 
 import App from './components/App';
 // import Login from './views/Login';

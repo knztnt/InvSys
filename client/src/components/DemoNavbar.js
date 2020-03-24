@@ -6,12 +6,7 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    NavbarText
+    NavLink
 } from 'reactstrap';
 
 
@@ -27,35 +22,35 @@ const DemoNavbar = (props) => {
         <>
             <div>
                 <Navbar className="navbar navbar-expand-lg navbar-dark bg-primary" expand="md">
-                    <NavbarBrand href="/">reactstrap</NavbarBrand>
+                    <NavbarBrand className="navbar-brand" href="/">InvSys</NavbarBrand>
                     <NavbarToggler onClick={toggle} />
                     <Collapse isOpen={isOpen} navbar>
-                        <Nav className="mr-auto" navbar>
-                            <NavItem>
-                                <NavLink href="/components/">Components</NavLink>
+                        <Nav className="mr-auto navbar" navbar>
+                            <NavItem className="">
+                                <NavLink href="/contact/">Contact Us</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                                <NavLink href="/about/">About</NavLink>
                             </NavItem>
-                            <UncontrolledDropdown nav inNavbar>
+                            {/* <UncontrolledDropdown nav inNavbar>
                                 <DropdownToggle nav caret>
-                                    Options
-                    </DropdownToggle>
+                                    Useful Links
+                                </DropdownToggle>
                                 <DropdownMenu right>
                                     <DropdownItem>
                                         Option 1
-                </DropdownItem>
+                                    </DropdownItem>
                                     <DropdownItem>
                                         Option 2
-                </DropdownItem>
-                                    <DropdownItem divider />
-                                    <DropdownItem>
-                                        Reset
-                </DropdownItem>
+                                    </DropdownItem>
                                 </DropdownMenu>
-                            </UncontrolledDropdown>
+                            </UncontrolledDropdown> */}
                         </Nav>
-                        <NavbarText>Simple Text</NavbarText>
+                        {/* <Nav className="ml-auto" navbar>
+                            <NavItem>
+                                <NavLink href="/about/">About</NavLink>
+                            </NavItem>
+                        </Nav> */}
                     </Collapse>
                 </Navbar>
             </div>
