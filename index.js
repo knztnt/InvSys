@@ -24,7 +24,7 @@ connection.connect(function (err) {
 
 // passport-local strategy
 // passport.use(new LocalStrategy());
-// app.post('/auth/login/', (req, res) => res.send('Hello User!'));
+app.post('/auth/login/', (req, res) => res.send('Hello User!'));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}.`))
