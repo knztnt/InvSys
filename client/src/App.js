@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import 'bootswatch/dist/lux/bootstrap.min.css';
+import 'bootswatch/dist/flatly/bootstrap.min.css';
 
 import Navbar from './components/Navbar';
 import Landing from './components/Landing';

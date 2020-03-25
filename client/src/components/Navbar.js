@@ -61,7 +61,7 @@ class Landing extends Component {
             <li className="nav-item active">
               <Link to="/" className="nav-link">
                 Home
-                <span class="sr-only">(current)</span>
+                <span className="sr-only">(current)</span>
               </Link>
             </li>
             <li className="nav-item">
