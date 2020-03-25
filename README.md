@@ -1,4 +1,5 @@
 
+
 # Inventory Management System
 
 > InvSys is the web application for inventory management system
@@ -27,29 +28,26 @@
  
 ## Dependencies
 
-### Server side
- - bcrypt
- - body-parser
- - cors
- - express
- - jsonwebtoken
- - mysql
- - mysql2
- - sequelize
- 
- ### Client side
- - axios
- - bootswatch
- - jwt-decode
- - react
- - react-dom
- - react-router-dom
- - react-scripts
- 
- ### Developer dependencies
-
- - nodemon
- - concurrently
+> ### Server side
+>  - bcrypt
+>  - body-parser
+>  - cors
+>  - express
+>  - jsonwebtoken
+>  - mysql
+>  - mysql2
+>  - sequelize
+>  ### Client side
+>  - axios
+>  - bootswatch
+>  - jwt-decode
+>  - react
+>  - react-dom
+>  - react-router-dom
+>  - react-scripts
+>  ### Developer dependencies
+>  - nodemon
+>  - concurrently
 
  
 
