@@ -29,7 +29,7 @@ class Login extends React.Component {
                                         <button type="submit" className="btn btn-primary btn-block">Login</button>
                                     </form>
                                     <p className="lead mt-4">
-                                        No Account? <a className="text-info" href="/auth/register">Register</a>
+                                        No Account? <a className="text-info" href="/auth/register">Contact us</a>
                                     </p>
                                 </div>
                             </div>

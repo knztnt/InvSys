@@ -1,25 +1,24 @@
 import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 
-import DemoNavbar from './DemoNavbar';
-import Login from '../views/Login';
+import Navbar from './DemoNavbar';
+import Landing from './Landing';
+const Dashboard = () => <h2>Dashboard</h2>
+const SurveyNew = () => <h2>SurveyNew</h2>
 
-class App extends React.Component {
-    componentDidMount() {
-        document.documentElement.scrollTop = 0;
-        document.scrollingElement.scrollTop = 0;
-        this.refs.main.scrollTop = 0;
-    }
-    render() {
-        return (
-            <>
-                <main ref="main">
-                    <DemoNavbar />
-                    <Login />
 
-                </main>
-            </>
-        );
-    }
-}
+const App = () => {
+    return (
+        <div>
+            <BrowserRouter>
+                <div>
+                    <Navbar />
+                    <Route exact path="/" component={Landing} />
+                    <Route path="/dashboard" component={Dashboard} />
+                </div>
+            </BrowserRouter>
+        </div>
+    );
+};
 
 export default App;
