@@ -9,17 +9,51 @@
 
 ## Quick Start
 
- - Clone the repo: `$	git clone https://github.com/knztnt/InvSys.git`
+ - Clone the repo: `$ git clone https://github.com/knztnt/InvSys.git`
  
 	 **or**
  
  - [Download from Github](https://github.com/knztnt/InvSys/archive/master.zip)
  
+ 
  ### Running Locally
-    $ cd InvSys
+ Navigate to root directory of the project.
+ ```
     $ npm install
+    $ cd client
+    $ npm install
+    $ cd ..
     $ npm run dev
+```
+### Database Connection Configuration
+Run following script.
+[InvSys.sql](https://gist.github.com/chamin96/4b507153b0ebee2f1b4d0a8d8f8a58de)
+```sql
+CREATE DATABASE invsys;
+USE invsys;
+CREATE TABLE users (
+	username VARCHAR(10),
+	password TEXT,
+	PRIMARY KEY(username)
+);
+DESCRIBE users;
+```
 
+In InvSys/database/db.js (Line 3),
+set your MySQL database username and password as follows.
+Default values are, username: 'root' and password: ''.
+```js
+const  sequelize = new Sequelize('invsys', 'username', 'password', {
+    host: 'localhost',
+    dialect: 'mysql',
+	    pool: {
+		    max: 5,
+		    min: 0,
+		    acquire: 30000,
+		    idle: 10000
+	    }
+    });
+```
 ## Powered by
 
  - nodejs
