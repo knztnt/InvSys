@@ -5,9 +5,9 @@ InvSys is the web application for inventory management system Department Invento
 
 ## Quick Start
 
- - Clone the repo: `$	git clone https://github.com/knztnt/InvSys-Server.git`
+ - Clone the repo: `$	git clone https://github.com/knztnt/InvSys.git`
  or
- - [Download from Github](https://codeload.github.com/knztnt/InvSys-Server/zip/master)
+ - [Download from Github](https://github.com/knztnt/InvSys/archive/master.zip)
  ### Running Locally
  
 
