@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-
+import logo from '../logo.png';
 class Navbar extends Component {
   logOut(e) {
     e.preventDefault();
@@ -42,21 +42,22 @@ class Navbar extends Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <a className="navbar-brand" href="#/">
+          <img src={logo} height="30" width="30" className="d-inline-block align-top mr-2" alt="Logo" />
           InvSys
         </a>
         <button
           className="navbar-toggler"
           type="button"
           data-toggle="collapse"
-          data-target="#navbarsExample10"
-          aria-controls="navbarsExample10"
+          data-target="#navbarColor03"
+          aria-controls="navbarColor03"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon" />
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarsExample10">
+        <div className="collapse navbar-collapse" id="navbarColor03">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
               <Link to="/" className="nav-link">
