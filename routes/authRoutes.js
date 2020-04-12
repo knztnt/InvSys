@@ -9,6 +9,7 @@ const User = require('../models/User');
 users.use(cors());
 
 // hash key
+// ToDo: hide secret key in a different file
 process.env.SECRET_KEY = 'secret';
 
 
