@@ -109,7 +109,6 @@ class Navbar extends Component {
 
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-        {localStorage.usertoken ? userBrandLink : loginBrandLink}
         <button
           className="navbar-toggler"
           type="button"
@@ -121,6 +120,8 @@ class Navbar extends Component {
         >
           <span className="navbar-toggler-icon" />
         </button>
+        {localStorage.usertoken ? userBrandLink : loginBrandLink}
+
 
         <div className="collapse navbar-collapse" id="navbarColor03">
           {localStorage.usertoken ? userMainLink : loginMainLink}
