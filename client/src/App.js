@@ -9,6 +9,7 @@ import Register from "./components/Register";
 import Profile from "./components/Profile";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import Home from "./components/Home";
 
 class App extends Component {
   render() {
@@ -23,6 +24,7 @@ class App extends Component {
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/about" component={About} />
             <Route exact path="/contact" component={Contact} />
+            <Route exact path="/home" component={Home} />
           </div>
         </div>
       </Router>
