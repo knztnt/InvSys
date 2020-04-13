@@ -9,6 +9,7 @@ class Navbar extends Component {
   }
 
   render() {
+    // if user not logged in
     const loginRegLink = (
       <ul className="navbar-nav">
         <li className="nav-item">
@@ -24,6 +25,7 @@ class Navbar extends Component {
       </ul>
     );
 
+    // if user logged in
     const userLink = (
       <ul className="navbar-nav">
         <li className="nav-item">
@@ -39,18 +41,75 @@ class Navbar extends Component {
       </ul>
     );
 
+    // if user not logged in
+    const loginBrandLink = (
+      <a className="navbar-brand" href="/">
+        <img
+          src={logo}
+          height="30"
+          width="30"
+          className="d-inline-block align-top mr-2"
+          alt="Logo"
+        />
+          InvSys
+      </a>
+    );
+
+    // if user logged in
+    const userBrandLink = (
+      <a className="navbar-brand" href="/home">
+        <img
+          src={logo}
+          height="30"
+          width="30"
+          className="d-inline-block align-top mr-2"
+          alt="Logo"
+        />
+          InvSys
+      </a>
+    );
+
+    // if user not logged in
+    const loginMainLink = (
+      <ul className="navbar-nav mr-auto">
+        <li className="nav-item">
+          <Link to="/about" className="nav-link">
+            About
+              </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/contact" className="nav-link">
+            Contact
+              </Link>
+        </li>
+      </ul>
+    );
+
+    // if user logged in
+    const userMainLink = (
+      <ul className="navbar-nav mr-auto">
+        <li className="nav-item">
+          <Link to="/home" className="nav-link">
+            Home
+                <span className="sr-only">(current)</span>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/about" className="nav-link">
+            About
+              </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/contact" className="nav-link">
+            Contact
+              </Link>
+        </li>
+      </ul>
+    );
+
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a className="navbar-brand" href="/">
-          <img
-            src={logo}
-            height="30"
-            width="30"
-            className="d-inline-block align-top mr-2"
-            alt="Logo"
-          />
-          InvSys
-        </a>
+        {localStorage.usertoken ? userBrandLink : loginBrandLink}
         <button
           className="navbar-toggler"
           type="button"
@@ -64,24 +123,7 @@ class Navbar extends Component {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarColor03">
-          <ul className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <Link to="/home" className="nav-link">
-                Home
-                <span className="sr-only">(current)</span>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/about" className="nav-link">
-                About
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/contact" className="nav-link">
-                Contact
-              </Link>
-            </li>
-          </ul>
+          {localStorage.usertoken ? userMainLink : loginMainLink}
           {localStorage.usertoken ? userLink : loginRegLink}
         </div>
       </nav>
