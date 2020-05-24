@@ -21,20 +21,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const db = require("./app/models");
 const Role = db.role;
 db.sequelize.sync();
-/*
-db.sequelize.sync({ force: true }).then(() => {
-    console.log('Drop and Resync Db');
-    initial();
-});
-*/
+
+// db.sequelize.sync({ force: true }).then(() => {
+//     console.log('Drop and Resync Db');
+//     initial();
+// });
+
 
 // test route
 app.get("/", (req, res) => {
     res.json({ message: "InvSys Server Running..." });
 });
 
-// const Users = require("./routes/authRoutes");
-// app.use("/users", Users);
+// routes
+require('./app/routes/auth.routes')(app);
+require('./app/routes/user.routes')(app);
 
 // port 5000 for the server
 const PORT = process.env.PORT || 5000;
