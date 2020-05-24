@@ -45,21 +45,21 @@ app.listen(PORT, () => console.log(`Server listening on port ${PORT}.`));
 function initial() {
     Role.create({
         id: 1,
-        name: "Admin"
+        name: "admin"
     });
 
     Role.create({
         id: 2,
-        name: "Non-Academic"
+        name: "non-academic"
     });
 
     Role.create({
         id: 3,
-        name: "Academic"
+        name: "academic"
     });
 
     Role.create({
         id: 4,
-        name: "Student"
+        name: "student"
     });
 }
