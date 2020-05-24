@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
+// middleware port
 var corsOptions = {
     origin: "http://localhost:8081"
 };
