@@ -25,7 +25,7 @@ module.exports = function (app) {
     );
 
     app.get(
-        "/api/test/nonacademic",
+        "/api/test/non-academic",
         [authJwt.verifyToken, authJwt.isNonAc],
         controller.nonacademicBoard
     );
