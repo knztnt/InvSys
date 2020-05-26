@@ -10,6 +10,7 @@ var bcrypt = require("bcryptjs");
 
 // sign-up function
 exports.signup = (req, res) => {
+    // console.log(req.body);
     // Save User to Database
     User.create({
         username: req.body.username,
@@ -28,7 +29,8 @@ exports.signup = (req, res) => {
                         res.send({ message: "User was registered successfully!" });
                     });
                 });
-            } else {
+            }
+            else {
                 // user role = 1
                 user.setRoles([1]).then(() => {
                     res.send({ message: "User was registered successfully!" });
