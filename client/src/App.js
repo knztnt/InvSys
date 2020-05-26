@@ -1,30 +1,38 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "bootswatch/dist/flatly/bootstrap.min.css";
+// import "./App.css";
 
-import Navbar from "./components/Navbar";
-import Landing from "./components/Landing";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Profile from "./components/Profile";
-import About from "./components/About";
-import Contact from "./components/Contact";
-import Home from "./components/Home";
+import Navbar from "./components/navbar.component";
+
+import Login from "./components/login.component";
+import Register from "./components/register.component";
+import Home from "./components/home.component";
+import Profile from "./components/profile.component";
+import BoardStudent from "./components/board-student.component";
+import BoardAcademic from "./components/board-academic.component";
+import BoardNonac from "./components/board-nonacademic.component";
+import BoardAdmin from "./components/board-admin.component";
 
 class App extends Component {
+
   render() {
+
     return (
       <Router>
         <div className="App">
           <Navbar />
-          <Route exact path="/" component={Landing} />
-          <div className="container">
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/profile" component={Profile} />
-            <Route exact path="/about" component={About} />
-            <Route exact path="/contact" component={Contact} />
-            <Route exact path="/home" component={Home} />
+          <div className="container mt-3">
+            <Switch>
+              <Route exact path={["/", "/home"]} component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/profile" component={Profile} />
+              <Route path="/student" component={BoardStudent} />
+              <Route path="/academic" component={BoardAcademic} />
+              <Route path="/non-academic" component={BoardNonac} />
+              <Route path="/admin" component={BoardAdmin} />
+            </Switch>
           </div>
         </div>
       </Router>
