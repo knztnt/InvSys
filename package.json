@@ -2,10 +2,10 @@
   "name": "invsys",
   "version": "1.0.0",
   "description": "Inventory Management System Server",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "node index.js",
-    "server": "nodemon index.js",
+    "test": "node server.js",
+    "server": "nodemon server.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
@@ -20,13 +20,12 @@
   },
   "homepage": "https://github.com/knztnt/InvSys#readme",
   "dependencies": {
-    "bcrypt": "^4.0.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "concurrently": "^5.1.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mysql": "^2.18.1",
     "mysql2": "^2.1.0",
     "nodemon": "^2.0.2",
     "sequelize": "^5.21.5"
