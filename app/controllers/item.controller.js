@@ -136,7 +136,7 @@ exports.deleteAll = (req, res) => {
 
 // find all available Tutorial
 exports.findAllAvailable = (req, res) => {
-    Tutorial.findAll({ where: { availability: true } })
+    Item.findAll({ where: { availability: true } })
         .then(data => {
             res.send(data);
         })
