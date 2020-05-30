@@ -12,11 +12,11 @@ class ItemService {
     }
 
     getItem(item_no) {
-        return axios.get(API_URL + ${ item_no });
+        return axios.get(API_URL + item_no);
     }
 
     update(item_no, data) {
-        return axios.put(API_URL + "update" + ${ item_no }, { data });
+        return axios.put(API_URL + "update" + item_no, { data });
     }
 }
 
