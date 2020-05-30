@@ -86,6 +86,9 @@ class Navbar extends Component {
                             <li className="nav-item">
                                 <Link to={"/non-academic"} className="nav-link">Non-Academic Board</Link>
                             </li>
+                        )}
+
+                        {showNonacBoard && (
                             <li className="nav-item">
                                 <Link to={"/add-item"} className="nav-link">Add Items</Link>
                             </li>
