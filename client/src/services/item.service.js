@@ -24,6 +24,10 @@ class ItemService {
     update(item_no, data) {
         return axios.put(API_URL + "update" + item_no, { data });
     }
+
+    findByName(item_name) {
+        return axios.get(API_URL + "?item=" + { item_name });
+    }
 }
 
 export default new ItemService();
