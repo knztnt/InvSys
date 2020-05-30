@@ -14,6 +14,7 @@ import BoardAcademic from "./components/board-academic.component";
 import BoardNonac from "./components/board-nonacademic.component";
 import BoardAdmin from "./components/board-admin.component";
 import AddItem from "./components/item/add-item.component";
+import ViewItems from "./components/item/list-item.component";
 
 class App extends Component {
 
@@ -34,6 +35,7 @@ class App extends Component {
               <Route path="/non-academic" component={BoardNonac} />
               <Route path="/admin" component={BoardAdmin} />
               <Route path="/add-item" component={AddItem} />
+              <Route path="/view-items" component={ViewItems} />
             </Switch>
           </div>
         </div>
