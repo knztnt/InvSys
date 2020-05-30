@@ -94,6 +94,12 @@ class Navbar extends Component {
                             </li>
                         )}
 
+                        {showNonacBoard && (
+                            <li className="nav-item">
+                                <Link to={"/view-items"} className="nav-link">View Items</Link>
+                            </li>
+                        )}
+
                         {showAdminBoard && (
                             <li className="nav-item">
                                 <Link to={"/admin"} className="nav-link">Admin Board</Link>
