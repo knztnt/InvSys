@@ -1,10 +1,16 @@
-import axios from 'axios';
+import axios from "axios";
 
 const API_URL = 'http://localhost:5000/api/item/';
 
 class ItemService {
-    create(data) {
-        return axios.post(API_URL + "create", { data });
+    create(item_no, item_name, quantity, description, availability) {
+        return axios.post(API_URL + "create", {
+            item_no,
+            item_name,
+            quantity,
+            description,
+            availability
+        });
     }
 
     getall() {
