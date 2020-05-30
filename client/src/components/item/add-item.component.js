@@ -14,7 +14,7 @@ export default class AddItem extends Component {
         this.newItem = this.newItem.bind(this);
 
         this.state = {
-            item_no: null,
+            item_no: "",
             item_name: "",
             quantity: 0,
             description: "",
