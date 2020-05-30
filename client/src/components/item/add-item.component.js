@@ -18,7 +18,7 @@ export default class AddItem extends Component {
             item_name: "",
             quantity: 0,
             description: "",
-            availability: false,
+            availability: true,
 
             submitted: false
         };
@@ -55,15 +55,13 @@ export default class AddItem extends Component {
     }
 
     saveItem() {
-        var data = {
-            item_no: this.state.item_no,
-            item_name: this.state.item_name,
-            quantity: this.state.quantity,
-            description: this.state.description,
-            availability: this.state.availability
-        };
-
-        ItemDataService.create(data)
+        ItemDataService.create(
+            this.state.item_no,
+            this.state.item_name,
+            this.state.quantity,
+            this.state.description,
+            this.state.availability
+        )
             .then(response => {
                 this.setState({
                     item_no: response.data.item_no,
@@ -83,11 +81,11 @@ export default class AddItem extends Component {
 
     newItem() {
         this.setState({
-            item_no: null,
+            item_no: "",
             item_name: "",
             quantity: 0,
             description: "",
-            availability: false,
+            availability: true,
 
             submitted: false
         });
@@ -95,86 +93,92 @@ export default class AddItem extends Component {
 
     render() {
         return (
-            <div className="submit-form">
-                {this.state.submitted ? (
-                    <div>
-                        <h4>You submitted successfully!</h4>
-                        <button className="btn btn-success" onClick={this.newItem}>
-                            Add
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-6 mt-5 mx-auto">
+                        <div className="submit-form">
+                            {this.state.submitted ? (
+                                <div>
+                                    <h4>You submitted successfully!</h4>
+                                    <button className="btn btn-success" onClick={this.newItem}>
+                                        Add
                         </button>
-                    </div>
-                ) : (
-                        <div>
-                            <div className="form-group">
-                                <label htmlFor="item_name">Item Number</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="item_no"
-                                    required
-                                    value={this.state.item_no}
-                                    onChange={this.onChangeNumber}
-                                    name="item_no"
-                                />
-                            </div>
+                                </div>
+                            ) : (
+                                    <div>
+                                        <div className="form-group">
+                                            <label htmlFor="item_name">Item Number</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                id="item_no"
+                                                required
+                                                value={this.state.item_no}
+                                                onChange={this.onChangeNumber}
+                                                name="item_no"
+                                            />
+                                        </div>
 
-                            <div className="form-group">
-                                <label htmlFor="item_name">Name</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="item_name"
-                                    required
-                                    value={this.state.item_name}
-                                    onChange={this.onChangeName}
-                                    name="item_name"
-                                />
-                            </div>
+                                        <div className="form-group">
+                                            <label htmlFor="item_name">Name</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                id="item_name"
+                                                required
+                                                value={this.state.item_name}
+                                                onChange={this.onChangeName}
+                                                name="item_name"
+                                            />
+                                        </div>
 
-                            <div className="form-group">
-                                <label htmlFor="item_name">Quantity</label>
-                                <input
-                                    type="number"
-                                    className="form-control"
-                                    item_no="quantity"
-                                    required
-                                    value={this.state.quantity}
-                                    onChange={this.onChangeQuantity}
-                                    name="quantity"
-                                />
-                            </div>
+                                        <div className="form-group">
+                                            <label htmlFor="item_name">Quantity</label>
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                item_no="quantity"
+                                                required
+                                                value={this.state.quantity}
+                                                onChange={this.onChangeQuantity}
+                                                name="quantity"
+                                            />
+                                        </div>
 
-                            <div className="form-group">
-                                <label htmlFor="description">Description</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="description"
-                                    required
-                                    value={this.state.description}
-                                    onChange={this.onChangeDescription}
-                                    name="description"
-                                />
-                            </div>
+                                        <div className="form-group">
+                                            <label htmlFor="description">Description</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                id="description"
+                                                required
+                                                value={this.state.description}
+                                                onChange={this.onChangeDescription}
+                                                name="description"
+                                            />
+                                        </div>
 
-                            <div className="form-group">
-                                <label htmlFor="description">Availability</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="availability"
-                                    required
-                                    value={this.state.availability}
-                                    onChange={this.onChangeAvailability}
-                                    name="availability"
-                                />
-                            </div>
+                                        <div className="form-group">
+                                            <label htmlFor="description">Availability</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                id="availability"
+                                                required
+                                                value={this.state.availability}
+                                                onChange={this.onChangeAvailability}
+                                                name="availability"
+                                            />
+                                        </div>
 
-                            <button onClick={this.saveItem} className="btn btn-success">
-                                Submit
+                                        <button onClick={this.saveItem} className="btn btn-success">
+                                            Submit
                             </button>
+                                    </div>
+                                )}
                         </div>
-                    )}
+                    </div>
+                </div>
             </div>
         );
     }
