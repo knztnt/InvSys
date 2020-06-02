@@ -26,7 +26,7 @@ class ItemService {
     }
 
     findByName(item_name) {
-        return axios.get(API_URL + "?item=" + { item_name });
+        return axios.get(API_URL + "getall?item_name=" + item_name);
     }
 }
 
