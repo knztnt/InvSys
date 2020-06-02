@@ -40,7 +40,7 @@ class Navbar extends Component {
         const { currentUser, showStudentBoard, showAcademicBoard, showNonacBoard, showAdminBoard } = this.state;
 
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+            <nav className="navbar navbar-expand-lg">
                 <button
                     className="navbar-toggler"
                     type="button"
