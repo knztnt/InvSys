@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-import logo from "../logo.png";
+import logo from "../logo-2.png";
 
 import AuthService from "../services/auth.service";
 
@@ -40,7 +40,7 @@ class Navbar extends Component {
         const { currentUser, showStudentBoard, showAcademicBoard, showNonacBoard, showAdminBoard } = this.state;
 
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -56,11 +56,10 @@ class Navbar extends Component {
                     <img
                         src={logo}
                         height="30"
-                        width="30"
+                        width="120"
                         className="d-inline-block align-top mr-2"
                         alt="Logo"
                     />
-                    InvSys
                 </a>
                 <div className="collapse navbar-collapse" id="navbarColor03">
                     <div className="navbar-nav mr-auto">
@@ -85,6 +84,18 @@ class Navbar extends Component {
                         {showNonacBoard && (
                             <li className="nav-item">
                                 <Link to={"/non-academic"} className="nav-link">Non-Academic Board</Link>
+                            </li>
+                        )}
+
+                        {showNonacBoard && (
+                            <li className="nav-item">
+                                <Link to={"/add-item"} className="nav-link">Add Items</Link>
+                            </li>
+                        )}
+
+                        {showNonacBoard && (
+                            <li className="nav-item">
+                                <Link to={"/view-items"} className="nav-link">View Items</Link>
                             </li>
                         )}
 
