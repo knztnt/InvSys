@@ -95,14 +95,14 @@ export default class ItemsList extends Component {
                         <div className="input-group mb-3">
                             <input
                                 type="text"
-                                className="form-control"
+                                className="form-control mr-sm-2"
                                 placeholder="Search by item name"
                                 value={searchName}
                                 onChange={this.onChangeSearchName}
                             />
                             <div className="input-group-append">
                                 <button
-                                    className="btn btn-outline-secondary"
+                                    className="btn btn-outline-success my-2 my-sm-0"
                                     type="button"
                                     onClick={this.searchName}
                                 >
