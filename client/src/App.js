@@ -22,9 +22,10 @@ class App extends Component {
       <Router>
         <div className="App">
           <Navbar />
+          <Route exact path={["/", "/home"]} component={Home} />
           <div className="container mt-3">
             <Switch>
-              <Route exact path={["/", "/home"]} component={Home} />
+              
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/profile" component={Profile} />
