@@ -52,7 +52,7 @@ class Navbar extends Component {
                 >
                     <span className="navbar-toggler-icon" />
                 </button>
-                <a className="navbar-brand" href="/">
+                <a className="navbar-brand" href="/" style={{color:'#094b62'}}>
                     <img
                         src={logo}
                         height="30"

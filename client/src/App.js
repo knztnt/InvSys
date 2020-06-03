@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import "bootswatch/dist/flatly/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 // import "./App.css";
 
 import Navbar from "./components/navbar.component";
