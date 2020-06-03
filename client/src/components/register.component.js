@@ -267,9 +267,10 @@ export default class Register extends Component {
                                             disabled={this.state.loading}
                                         >
                                             {this.state.loading && (
-                                                <span className="spinner-border spinner-border-sm"></span>
+                                                <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                                             )}
-                                            <span>Sign Up</span>
+
+                                            Sign Up
                                         </button>
                                     </div>
                                 </div>
