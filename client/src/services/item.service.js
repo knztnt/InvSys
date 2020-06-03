@@ -9,7 +9,6 @@ class ItemService {
             item_name,
             quantity,
             description,
-            availability
         });
     }
 
