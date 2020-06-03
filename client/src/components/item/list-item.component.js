@@ -90,19 +90,19 @@ export default class ItemsList extends Component {
 
         return (
             <div className="container">
-                <div className="list row">
+                <div className="row justify-content-center">
                     <div className="col-md-8">
                         <div className="input-group mb-3">
                             <input
                                 type="text"
-                                className="form-control mr-sm-2"
+                                className="form-control"
                                 placeholder="Search by item name"
                                 value={searchName}
                                 onChange={this.onChangeSearchName}
                             />
                             <div className="input-group-append">
                                 <button
-                                    className="btn btn-outline-success my-2 my-sm-0"
+                                    className="btn btn-outline-success"
                                     type="button"
                                     onClick={this.searchName}
                                 >
@@ -114,21 +114,22 @@ export default class ItemsList extends Component {
                     <div className="col-md-6">
                         <h4>Items List</h4>
 
-                        <ul className="list-group">
+                        <div className="list-group">
                             {items &&
                                 items.map((item, index) => (
-                                    <li
+                                    <button
                                         className={
-                                            "list-group-item " +
+                                            "list-group-item d-flex justify-content-between align-items-center list-group-item-action " +
                                             (index === currentIndex ? "active" : "")
                                         }
                                         onClick={() => this.setActiveItem(item, index)}
                                         key={index}
                                     >
                                         {item.item_name}
-                                    </li>
+                                        <span className={"badge badge-pill " + (item.quantity === 0 ? "badge-warning" : "badge-info")}>{item.quantity}</span>
+                                    </button>
                                 ))}
-                        </ul>
+                        </div>
                     </div>
                     <div className="col-md-6">
                         {currentItem ? (
@@ -162,7 +163,7 @@ export default class ItemsList extends Component {
                                     <label>
                                         <strong>Status:</strong>
                                     </label>{" "}
-                                    {currentItem.availability ? "Available" : "Not available"}
+                                    {currentItem.quantity === 0 ? "Not available" : "Available"}
                                 </div>
 
                                 <Link
