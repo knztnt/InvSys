@@ -68,7 +68,7 @@ class Sidebar extends Component {
                             )}
 
                             {showNonacBoard && (
-                                <Link to={"/view-items"} className="nav-link">View Items</Link>
+                                <Link to={"/view-items"} className="nav-link">Manage Items</Link>
                             )}
 
                             {/* admin boards */}
