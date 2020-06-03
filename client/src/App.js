@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AuthService from "./services/auth.service";
 // import "bootswatch/dist/yeti/bootstrap.min.css";
-// import "./App.css";
+import "./App.css";
 
 import Navbar from "./components/navbar.component";
 import Sidebar from "./components/sidebar.component";
