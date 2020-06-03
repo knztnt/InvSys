@@ -68,9 +68,8 @@ exports.findOne = (req, res) => {
 
 // Update a Item by the item_no in the request
 exports.update = (req, res) => {
-    const item_no = req.params.item_no;
-
-    Item.update(req.body, {
+    const item_no = req.params.item_no;;
+    Item.update(req.body.data, {
         where: { item_no: item_no }
     })
         .then(num => {
