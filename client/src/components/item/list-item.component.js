@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ItemDataService from '../../services/item.service';
-
-import { Link } from "react-router-dom";
+import AuthService from "../../services/auth.service";
 
 export default class ItemsList extends Component {
     constructor(props) {
@@ -17,12 +16,23 @@ export default class ItemsList extends Component {
             items: [],
             currentItem: null,
             currentIndex: -1,
-            searchName: ""
+            searchName: "",
+            showNonacBoard: false,
+            showAdminBoard: false,
         };
     }
 
     componentDidMount() {
         this.retrieveItems();
+
+        const user = AuthService.getCurrentUser();
+
+        if (user) {
+            this.setState({
+                showNonacBoard: user.roles.includes("ROLE_NON-ACADEMIC"),
+                showAdminBoard: user.roles.includes("ROLE_ADMIN")
+            });
+        }
     }
 
     onChangeSearchName(e) {
@@ -86,7 +96,7 @@ export default class ItemsList extends Component {
     }
 
     render() {
-        const { searchName, items, currentItem, currentIndex } = this.state;
+        const { searchName, items, currentItem, currentIndex, showNonacBoard, showAdminBoard } = this.state;
 
         return (
             <div className="container">
@@ -112,7 +122,7 @@ export default class ItemsList extends Component {
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <h4>Items List</h4>
+                        <h4>Components</h4>
 
                         <div className="list-group">
                             {items &&
@@ -134,7 +144,7 @@ export default class ItemsList extends Component {
                     <div className="col-md-6">
                         {currentItem ? (
                             <div>
-                                <h4>Item</h4>
+                                <h4>Description</h4>
                                 <div>
                                     <label>
                                         <strong>Item number:</strong>
@@ -166,12 +176,25 @@ export default class ItemsList extends Component {
                                     {currentItem.quantity === 0 ? "Not available" : "Available"}
                                 </div>
 
-                                <Link
-                                    to={"/item/edit" + currentItem.id}
-                                    className="badge badge-warning"
-                                >
-                                    Edit
-                                </Link>
+                                {showAdminBoard || showNonacBoard ? (
+                                    <button
+                                        to={"/item/edit" + currentItem.id}
+                                        type="button"
+                                        className="btn btn-warning"
+                                    >
+                                        Update Item
+                                    </button>
+                                ) : (
+                                        <button
+                                            to={"/item/request" + currentItem.id}
+                                            type="button"
+                                            className="btn btn-success"
+                                            disabled={(currentItem.quantity === 0 ? true : false)}
+                                        >
+                                            Request Item
+                                        </button>
+                                    )}
+
                             </div>
                         ) : (
                                 <div>
