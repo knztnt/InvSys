@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import ItemDataService from '../../services/item.service';
 import AuthService from "../../services/auth.service";
 
+import { Link } from "react-router-dom";
+
 export default class ItemsList extends Component {
     constructor(props) {
         super(props);
@@ -177,22 +179,25 @@ export default class ItemsList extends Component {
                                 </div>
 
                                 {showAdminBoard || showNonacBoard ? (
-                                    <button
-                                        to={"/item/edit" + currentItem.id}
-                                        type="button"
-                                        className="btn btn-warning"
-                                    >
-                                        Update Item
-                                    </button>
-                                ) : (
+                                    <Link to={"/update-items/" + currentItem.item_no}>
                                         <button
-                                            to={"/item/request" + currentItem.id}
+
                                             type="button"
-                                            className="btn btn-success"
-                                            disabled={(currentItem.quantity === 0 ? true : false)}
+                                            className="btn btn-warning"
                                         >
-                                            Request Item
+                                            Update Item
+                                    </button>
+                                    </Link>
+                                ) : (
+                                        <Link to={"/item/request/" + currentItem.item_no}>
+                                            <button
+                                                type="button"
+                                                className="btn btn-success"
+                                                disabled={(currentItem.quantity === 0 ? true : false)}
+                                            >
+                                                Request Item
                                         </button>
+                                        </Link>
                                     )}
 
                             </div>
