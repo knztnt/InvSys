@@ -70,7 +70,13 @@ class Sidebar extends Component {
 
                         {showAdminBoard && (
                             <li className="nav-item">
-                                <Link to={"/admin"} className="nav-link">Dashboard</Link>
+                                <Link to={"/admin"} className="nav-link">Admin Dashboard</Link>
+                            </li>
+                        )}
+
+                        {showAdminBoard && (
+                            <li className="nav-item">
+                                <Link to={"/register"} className="nav-link">Register Users</Link>
                             </li>
                         )}
 
