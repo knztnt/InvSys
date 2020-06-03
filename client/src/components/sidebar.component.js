@@ -28,6 +28,7 @@ class Sidebar extends Component {
             });
         }
     }
+
     render() {
         const { currentUser, showStudentBoard, showAcademicBoard, showNonacBoard, showAdminBoard } = this.state;
 
@@ -37,58 +38,52 @@ class Sidebar extends Component {
 
                 <div className="sidebar-sticky pt-3">
                     <ul className="nav flex-column">
+                        <li className="nav-item">
+                            {/* student boards */}
+                            {showStudentBoard && (
+                                <Link to={"/Student"} className="nav-link">Dashboard<span className="sr-only">(current)</span></Link>
+                            )}
+                            {showStudentBoard && (
+                                <Link to={"/view-items"} className="nav-link">View Items<span className="sr-only">(current)</span></Link>
+                            )}
 
-                        {showStudentBoard && (
-                            <li className="nav-item">
-                                <Link to={"/Student"} className="nav-link active">Dashboard<span className="sr-only">(current)</span></Link>
-                            </li>
-                        )}
-
-                        {showAcademicBoard && (
-                            <li className="nav-item">
+                            {/* academic boards */}
+                            {showAcademicBoard && (
                                 <Link to={"/academic"} className="nav-link">Dashboard</Link>
-                            </li>
-                        )}
+                            )}
 
-                        {showNonacBoard && (
-                            <li className="nav-item">
+
+                            {/* non-academic boards */}
+                            {showNonacBoard && (
                                 <Link to={"/non-academic"} className="nav-link">Dashboard</Link>
-                            </li>
-                        )}
+                            )}
 
-                        {showNonacBoard && (
-                            <li className="nav-item">
+                            {showNonacBoard && (
                                 <Link to={"/add-item"} className="nav-link">Add Items</Link>
-                            </li>
-                        )}
+                            )}
 
-                        {showNonacBoard && (
-                            <li className="nav-item">
+                            {showNonacBoard && (
                                 <Link to={"/view-items"} className="nav-link">View Items</Link>
-                            </li>
-                        )}
+                            )}
 
-                        {showAdminBoard && (
-                            <li className="nav-item">
+                            {/* admin boards */}
+                            {showAdminBoard && (
                                 <Link to={"/admin"} className="nav-link">Admin Dashboard</Link>
-                            </li>
-                        )}
+                            )}
 
-                        {showAdminBoard && (
-                            <li className="nav-item">
+                            {showAdminBoard && (
                                 <Link to={"/register"} className="nav-link">Register Users</Link>
-                            </li>
-                        )}
+                            )}
 
-                        {currentUser && (
-                            <li className="nav-item">
+                            {/* profile board */}
+                            {currentUser && (
                                 <Link to={"/profile"} className="nav-link">{currentUser.username}</Link>
-                            </li>
-                        )}
+                            )}
 
-
+                        </li>
                     </ul>
                 </div>
+
             </nav >
         );
 
