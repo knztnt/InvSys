@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import AuthService from "./services/auth.service";
 // import "bootswatch/dist/yeti/bootstrap.min.css";
 // import "./App.css";
 
 import Navbar from "./components/navbar.component";
+import Sidebar from "./components/sidebar.component";
 
 import Login from "./components/login.component";
 import Register from "./components/register.component";
@@ -17,29 +19,71 @@ import AddItem from "./components/item/add-item.component";
 import ViewItems from "./components/item/list-item.component";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentUser: undefined
+    };
+  }
+  componentDidMount() {
+    const user = AuthService.getCurrentUser();
+
+    if (user) {
+      this.setState({
+        currentUser: user
+      });
+    }
+  }
 
   render() {
-
+    const { currentUser } = this.state;
     return (
       <Router>
         <div className="App">
           <Navbar />
-          <div className="container mt-3">
-            <Switch>
-              <Route exact path={["/", "/home"]} component={Home} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/profile" component={Profile} />
-              <Route path="/student" component={BoardStudent} />
-              <Route path="/academic" component={BoardAcademic} />
-              <Route path="/non-academic" component={BoardNonac} />
-              <Route path="/admin" component={BoardAdmin} />
-              <Route path="/add-item" component={AddItem} />
-              <Route path="/view-items" component={ViewItems} />
-            </Switch>
+          <div className="container-fluid">
+
+            {currentUser ? (
+              <div className="row">
+                <Sidebar />
+                <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                  <div className="container d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 mt-3 border-bottom">
+                    <Switch>
+                      <Route exact path={["/", "/home"]} component={Home} />
+                      <Route exact path="/login" component={Login} />
+                      <Route exact path="/register" component={Register} />
+                      <Route exact path="/profile" component={Profile} />
+                      <Route path="/student" component={BoardStudent} />
+                      <Route path="/academic" component={BoardAcademic} />
+                      <Route path="/non-academic" component={BoardNonac} />
+                      <Route path="/admin" component={BoardAdmin} />
+                      <Route path="/add-item" component={AddItem} />
+                      <Route path="/view-items" component={ViewItems} />
+                    </Switch>
+                  </div>
+                </main>
+              </div>) : (
+                <div className="container mt-3">
+                  <Switch>
+                    <Route exact path={["/", "/home"]} component={Home} />
+                    <Route exact path="/login" component={Login} />
+                    <Route exact path="/register" component={Register} />
+                    <Route exact path="/profile" component={Profile} />
+                    <Route path="/student" component={BoardStudent} />
+                    <Route path="/academic" component={BoardAcademic} />
+                    <Route path="/non-academic" component={BoardNonac} />
+                    <Route path="/admin" component={BoardAdmin} />
+                    <Route path="/add-item" component={AddItem} />
+                    <Route path="/view-items" component={ViewItems} />
+                  </Switch>
+                </div>
+              )}
+
+
           </div>
         </div>
-      </Router>
+      </Router >
     );
   }
 }
