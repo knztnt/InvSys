@@ -136,7 +136,7 @@ export default class ItemsList extends Component {
                                         key={index}
                                     >
                                         {item.item_name}
-                                        <span className={"badge badge-pill " + (item.quantity === 0 ? "badge-warning" : "badge-info")}>{item.quantity}</span>
+                                        <span className={"badge badge-pill " + (item.quantity === 0 ? "badge-warning" : "badge-primary")}>{item.quantity}</span>
                                     </button>
                                 ))}
                         </div>
