@@ -17,6 +17,7 @@ import BoardNonac from "./components/board-nonacademic.component";
 import BoardAdmin from "./components/board-admin.component";
 import AddItem from "./components/item/add-item.component";
 import ViewItems from "./components/item/list-item.component";
+import UpdateItems from "./components/item/update-item.component";
 
 class App extends Component {
   constructor(props) {
@@ -60,6 +61,7 @@ class App extends Component {
                       <Route path="/admin" component={BoardAdmin} />
                       <Route path="/add-item" component={AddItem} />
                       <Route path="/view-items" component={ViewItems} />
+                      <Route path="/update-items/:item_no" component={UpdateItems} />
                     </Switch>
                   </div>
                 </main>
