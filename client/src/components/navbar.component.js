@@ -37,71 +37,55 @@ class Navbar extends Component {
     }
 
     render() {
-        const { currentUser, showStudentBoard, showAcademicBoard, showNonacBoard, showAdminBoard } = this.state;
+        const { currentUser } = this.state;
 
         return (
-            <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow">
-                <button
-                    className="navbar-toggler"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#navbarColor03"
-                    aria-controls="navbarColor03"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span className="navbar-toggler-icon" />
-                </button>
+            <nav className="navbar navbar-light bg-light sticky-top flex-md-nowrap p-0 shadow">
                 <a className="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="/">
                     <img
                         src={logo}
                         height="30"
                         width="120"
-                        className="d-inline-block align-top mr-2"
                         alt="Logo"
                     />
                 </a>
-                <div className="collapse navbar-collapse" id="navbarColor03">
-                    <div className="navbar-nav mr-auto">
-                        {/* <li className="nav-item">
-                        <Link to={"/home"} className="nav-link">
-                            Home
-                        </Link>
-                        </li> */}
-
-
-                    </div>
-
-
-                    {currentUser ? (
-                        <div className="navbar-nav ml-auto">
-                            <li className="nav-item">
-                                <Link to={"/profile"} className="nav-link">
-                                    {currentUser.username}
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <a href="/login" className="nav-link" onClick={this.logOut}>
-                                    LogOut
+                <button
+                    className="navbar-toggler position-absolute d-md-none collapsed"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#sidebarMenu"
+                    aria-controls="sidebarMenu"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span className="navbar-toggler-icon" />
+                </button>
+                {currentUser ? (
+                    <div className="navbar-nav px-3">
+                        <li className="nav-item text-nowrap">
+                            <a href="/login" className="nav-link" onClick={this.logOut}>
+                                LogOut
                             </a>
+                        </li>
+                    </div>
+                ) : (
+                        <div className="navbar-nav px-3">
+                            <li className="nav-item text-nowrap">
+                                <Link to={"/login"} className="nav-link">
+                                    Login
+                                </Link>
                             </li>
                         </div>
-                    ) : (
-                            <div className="navbar-nav ml-auto">
-                                <li className="nav-item">
-                                    <Link to={"/login"} className="nav-link">
-                                        Login
-                                </Link>
-                                </li>
 
-                                <li className="nav-item">
-                                    <Link to={"/register"} className="nav-link">
-                                        Sign Up
+                        /* <div className="navbar-nav px-3">
+                            <li className="nav-item text-nowrap">
+                                <Link to={"/register"} className="nav-link">
+                                    Sign Up
                                 </Link>
-                                </li>
-                            </div>
-                        )}
-                </div>
+                            </li>
+                        </div> */
+
+                    )}
             </nav>
         );
     }
