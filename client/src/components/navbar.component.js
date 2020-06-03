@@ -40,7 +40,7 @@ class Navbar extends Component {
         const { currentUser, showStudentBoard, showAcademicBoard, showNonacBoard, showAdminBoard } = this.state;
 
         return (
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow">
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -52,7 +52,7 @@ class Navbar extends Component {
                 >
                     <span className="navbar-toggler-icon" />
                 </button>
-                <a className="navbar-brand" href="/">
+                <a className="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="/">
                     <img
                         src={logo}
                         height="30"
@@ -66,44 +66,10 @@ class Navbar extends Component {
                         {/* <li className="nav-item">
                         <Link to={"/home"} className="nav-link">
                             Home
-                </Link>
-                    </li> */}
+                        </Link>
+                        </li> */}
 
-                        {showStudentBoard && (
-                            <li className="nav-item">
-                                <Link to={"/Student"} className="nav-link">Student Board</Link>
-                            </li>
-                        )}
 
-                        {showAcademicBoard && (
-                            <li className="nav-item">
-                                <Link to={"/academic"} className="nav-link">Academic Board</Link>
-                            </li>
-                        )}
-
-                        {showNonacBoard && (
-                            <li className="nav-item">
-                                <Link to={"/non-academic"} className="nav-link">Non-Academic Board</Link>
-                            </li>
-                        )}
-
-                        {showNonacBoard && (
-                            <li className="nav-item">
-                                <Link to={"/add-item"} className="nav-link">Add Items</Link>
-                            </li>
-                        )}
-
-                        {showNonacBoard && (
-                            <li className="nav-item">
-                                <Link to={"/view-items"} className="nav-link">View Items</Link>
-                            </li>
-                        )}
-
-                        {showAdminBoard && (
-                            <li className="nav-item">
-                                <Link to={"/admin"} className="nav-link">Admin Board</Link>
-                            </li>
-                        )}
                     </div>
 
 
