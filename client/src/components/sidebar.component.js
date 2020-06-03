@@ -43,13 +43,18 @@ class Sidebar extends Component {
                             {showStudentBoard && (
                                 <Link to={"/Student"} className="nav-link">Dashboard<span className="sr-only">(current)</span></Link>
                             )}
+
                             {showStudentBoard && (
-                                <Link to={"/view-items"} className="nav-link">View Items<span className="sr-only">(current)</span></Link>
+                                <Link to={"/view-items"} className="nav-link">View Items</Link>
                             )}
 
                             {/* academic boards */}
                             {showAcademicBoard && (
                                 <Link to={"/academic"} className="nav-link">Dashboard</Link>
+                            )}
+
+                            {showAcademicBoard && (
+                                <Link to={"/view-items"} className="nav-link">View Items</Link>
                             )}
 
 
