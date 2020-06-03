@@ -31,7 +31,7 @@ export default class Home extends Component {
 
     render() {
         return (
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <div className="jumbotron mt-5">
                     <h3 className="display-4">Inventory Management System</h3>
                     {/* dynamic content from server */}
