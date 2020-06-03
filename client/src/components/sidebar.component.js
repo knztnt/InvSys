@@ -40,7 +40,7 @@ class Sidebar extends Component {
 
                         {showStudentBoard && (
                             <li className="nav-item">
-                                <Link to={"/Student"} className="nav-link">Dashboard</Link>
+                                <Link to={"/Student"} className="nav-link active">Dashboard<span className="sr-only">(current)</span></Link>
                             </li>
                         )}
 
@@ -71,6 +71,12 @@ class Sidebar extends Component {
                         {showAdminBoard && (
                             <li className="nav-item">
                                 <Link to={"/admin"} className="nav-link">Dashboard</Link>
+                            </li>
+                        )}
+
+                        {currentUser && (
+                            <li className="nav-item">
+                                <Link to={"/profile"} className="nav-link">{currentUser.username}</Link>
                             </li>
                         )}
 
