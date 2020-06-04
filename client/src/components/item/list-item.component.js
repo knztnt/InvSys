@@ -114,7 +114,7 @@ export default class ItemsList extends Component {
                             />
                             <div className="input-group-append">
                                 <button
-                                    className="btn btn-outline-success"
+                                    className="btn btn-outline-success my-2 my-sm-0"
                                     type="button"
                                     onClick={this.searchName}
                                 >
