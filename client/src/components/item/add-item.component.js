@@ -91,7 +91,7 @@ export default class AddItem extends Component {
                                     <h4>You submitted successfully!</h4>
                                     <button className="btn btn-success" onClick={this.newItem}>
                                         Add
-                        </button>
+                                    </button>
                                 </div>
                             ) : (
                                     <div>
