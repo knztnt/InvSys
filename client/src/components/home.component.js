@@ -37,64 +37,66 @@ export default class Home extends Component {
             }
         );
     }
-    
+
 
     render() {
 
         return (
             <div className="container-fluid">
-                <div className="row" 
-                style={{backgroundImage:`url(${backImage})`, 
-                backgroundRepeat:'no-repeat', 
-                height:'70vh', 
-                width:'auto', 
-                backgroundSize: 'cover'}}>
-                    <div className="ml-5" style={{height:'100%', width:'100%'}}>
-                        <div className="row align-items-center" style={{height:'100%', width:'50%'}}>
-                            <text>
-                                <h3 className="display-4" style={{color:'#094b62'}}> 
-                                    Inventory Management <br/>
+                <div className="row"
+                    style={{
+                        backgroundImage: `url(${backImage})`,
+                        backgroundRepeat: 'no-repeat',
+                        height: '70vh',
+                        width: 'auto',
+                        backgroundSize: 'cover'
+                    }}>
+                    <div className="ml-5" style={{ height: '100%', width: '100%' }}>
+                        <div className="row align-items-center text-primary" style={{ height: '100%', width: '50%' }}>
+                            <span>
+                                <h3 className="display-4">
+                                    Inventory Management <br />
                                     System
                                 </h3>
-                                <p style={{color:'#094b62'}}> 
-                                    Department of Computer Engineering <br/> 
-                                    Faculty of Engineering, University of Peradeniya 
+                                <p>
+                                    Department of Computer Engineering <br />
+                                    Faculty of Engineering, University of Peradeniya
                                 </p>
-                            </text>
+                            </span>
                         </div>
                     </div>
                 </div>
 
-                <div className="row align-items-center" style={{height:'30vh', width:'100%',backgroundColor: 'white', justifyContent:'center'}}>
-                    <div className="col" style={{textAlign:"center"}}>
-                        <img src={image1} height="75" width="75"></img>
-                        <text><br/>Borrow Components</text>
+                <div className="row align-items-center">
+                    <div className="col-sm-3 p-3 text-center text-primary">
+                        <img src={image1} height="120" width="120" alt="home-icon"></img>
+                        <h5><br />Borrow Components</h5>
                     </div>
-                    <div className="col" style={{textAlign:"center"}}>
-                        <img src={image2} height="75" width="75"></img>
-                        <text><br/>Request Services</text>
+                    <div className="col-sm-3 p-3 text-center text-primary">
+                        <img src={image2} height="120" width="120" alt="home-icon"></img>
+                        <h5><br />Request Services</h5>
                     </div>
-                    <div className="col" style={{textAlign:"center"}}>
-                        <img src={image3} height="75" width="75"></img>
-                        <text><br/>Track Deadlines</text>
+                    <div className="col-sm-3 p-3 text-center text-primary">
+                        <img src={image3} height="120" width="120" alt="home-icon"></img>
+                        <h5><br />Track Deadlines</h5>
                     </div>
-                    <div className="col" style={{textAlign:"center"}}>
-                        <img src={image4} height="75" width="75"></img>
-                        <text><br/>Inventory Updates</text>
+                    <div className="col-sm-3 p-3 text-center text-primary">
+                        <img src={image4} height="120" width="120" alt="home-icon"></img>
+                        <h5><br />Get Latest Inventory Updates</h5>
                     </div>
                 </div>
 
                 {/*<div className="row justify-content-md-center">
                     login
                 </div>*/}
-                
-                <div className="row" style={{height:'20vh', width:'auto',backgroundColor: '#094b62'}}>
-                    <div className="ml-5" style={{height:'100%', width:'100%'}}>
-                        <div className="row align-items-center" style={{height:'100%', width:'100%'}}>
-                            <text style={{color:'white'}}>
-                                <b>Contact us:</b><br/>
-                                1234567890<br/>
-                                abc@abc.com</text>
+
+                <div className="row" style={{ height: '20vh', width: 'auto', backgroundColor: '#094b62' }}>
+                    <div className="ml-5" style={{ height: '100%', width: '100%' }}>
+                        <div className="row align-items-center" style={{ height: '100%', width: '100%' }}>
+                            <span style={{ color: 'white' }}>
+                                <b>Contact us:</b><br />
+                                1234567890<br />
+                                abc@abc.com</span>
                         </div>
                     </div>
                 </div>
@@ -140,7 +142,7 @@ export default class Home extends Component {
                         </div>
                 </div>
             </div> */
-            
+
         );
     }
 }
