@@ -261,9 +261,9 @@ export default class Register extends Component {
                                         />
                                     </div> */}
 
-                                    <div className="form-group">
+                                    <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                         <button
-                                            className="btn btn-primary btn-block"
+                                            className="btn btn-primary"
                                             disabled={this.state.loading}
                                         >
                                             {this.state.loading && (
