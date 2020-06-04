@@ -80,7 +80,7 @@ export default class Home extends Component {
                     </div>
                     <div className="col" style={{textAlign:"center"}}>
                         <img src={image4} height="75" width="75"></img>
-                        <text><br/>Get Latest Inventory Updates</text>
+                        <text><br/>Inventory Updates</text>
                     </div>
                 </div>
 
