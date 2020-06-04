@@ -19,7 +19,6 @@ exports.create = (req, res) => {
         item_name: req.body.item_name,
         quantity: req.body.quantity,
         description: req.body.description,
-        availability: req.body.availability ? req.body.availability : false
     };
 
     // Save Item in the database
@@ -69,9 +68,8 @@ exports.findOne = (req, res) => {
 
 // Update a Item by the item_no in the request
 exports.update = (req, res) => {
-    const item_no = req.params.item_no;
-
-    Item.update(req.body, {
+    const item_no = req.params.item_no;;
+    Item.update(req.body.data, {
         where: { item_no: item_no }
     })
         .then(num => {
@@ -134,16 +132,16 @@ exports.deleteAll = (req, res) => {
         });
 };
 
-// find all available Tutorial
-exports.findAllAvailable = (req, res) => {
-    Item.findAll({ where: { availability: true } })
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving items."
-            });
-        });
-};
+// // find all available Items
+// exports.findAllAvailable = (req, res) => {
+//     Item.findAll({ where: { quantity: true } })
+//         .then(data => {
+//             res.send(data);
+//         })
+//         .catch(err => {
+//             res.status(500).send({
+//                 message:
+//                     err.message || "Some error occurred while retrieving items."
+//             });
+//         });
+// };

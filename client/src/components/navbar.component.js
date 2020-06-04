@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
-import logo from "../logo-2.png";
+import { withRouter } from "react-router-dom";
+import logo from "../navbar-brand-light.png";
 
 import AuthService from "../services/auth.service";
 
@@ -37,105 +37,63 @@ class Navbar extends Component {
     }
 
     render() {
-        const { currentUser, showStudentBoard, showAcademicBoard, showNonacBoard, showAdminBoard } = this.state;
+        const { currentUser } = this.state;
 
         return (
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-light bg-light sticky-top flex-md-nowrap p-0 shadow">
+                <a className="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="/">
+                    <img
+                        src={logo}
+                        height="30"
+                        width="120"
+                        alt="Logo"
+                    />
+                </a>
                 <button
-                    className="navbar-toggler"
+                    className="navbar-toggler position-absolute d-md-none collapsed"
                     type="button"
                     data-toggle="collapse"
-                    data-target="#navbarColor03"
-                    aria-controls="navbarColor03"
+                    data-target="#sidebarMenu"
+                    aria-controls="sidebarMenu"
                     aria-expanded="false"
                     aria-label="Toggle navigation"
                 >
                     <span className="navbar-toggler-icon" />
                 </button>
-                <a className="navbar-brand" href="/" style={{color:'#094b62'}}>
-                    <img
-                        src={logo}
-                        height="30"
-                        width="120"
-                        className="d-inline-block align-top mr-2"
-                        alt="Logo"
-                    />
-                </a>
-                <div className="collapse navbar-collapse" id="navbarColor03">
-                    <div className="navbar-nav mr-auto">
-                        {/* <li className="nav-item">
-                        <Link to={"/home"} className="nav-link">
-                            Home
-                </Link>
-                    </li> */}
-
-                        {showStudentBoard && (
-                            <li className="nav-item">
-                                <Link to={"/Student"} className="nav-link">Student Board</Link>
-                            </li>
-                        )}
-
-                        {showAcademicBoard && (
-                            <li className="nav-item">
-                                <Link to={"/academic"} className="nav-link">Academic Board</Link>
-                            </li>
-                        )}
-
-                        {showNonacBoard && (
-                            <li className="nav-item">
-                                <Link to={"/non-academic"} className="nav-link">Non-Academic Board</Link>
-                            </li>
-                        )}
-
-                        {showNonacBoard && (
-                            <li className="nav-item">
-                                <Link to={"/add-item"} className="nav-link">Add Items</Link>
-                            </li>
-                        )}
-
-                        {showNonacBoard && (
-                            <li className="nav-item">
-                                <Link to={"/view-items"} className="nav-link">View Items</Link>
-                            </li>
-                        )}
-
-                        {showAdminBoard && (
-                            <li className="nav-item">
-                                <Link to={"/admin"} className="nav-link">Admin Board</Link>
-                            </li>
-                        )}
-                    </div>
-
-
-                    {currentUser ? (
-                        <div className="navbar-nav ml-auto">
-                            <li className="nav-item">
-                                <Link to={"/profile"} className="nav-link">
-                                    {currentUser.username}
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <a href="/login" className="nav-link" onClick={this.logOut}>
+                {currentUser ? (
+                    <div className="navbar-nav px-3">
+                        <li className="nav-item text-nowrap">
+                            <a href="/login" className="nav-link" onClick={this.logOut}>
+                                <button
+                                    type="button"
+                                    className="btn btn-primary btn-sm">
                                     LogOut
+                                </button>
                             </a>
+                        </li>
+                    </div>
+                ) : (
+                        <div className="navbar-nav px-3">
+                            <li className="nav-item text-nowrap">
+                                <a href={"/login"} className="nav-link">
+                                    <button
+                                        type="button"
+                                        className="btn btn-primary btn-sm">
+                                        Login
+                                    </button>
+                                </a>
                             </li>
                         </div>
-                    ) : (
-                            <div className="navbar-nav ml-auto">
-                                <li className="nav-item">
-                                    <Link to={"/login"} className="nav-link">
-                                        Login
-                                </Link>
-                                </li>
 
-                                <li className="nav-item">
-                                    <Link to={"/register"} className="nav-link">
-                                        Sign Up
+                        /* <div className="navbar-nav px-3">
+                            <li className="nav-item text-nowrap">
+                                <Link to={"/register"} className="nav-link">
+                                    Sign Up
                                 </Link>
-                                </li>
-                            </div>
-                        )}
-                </div>
+                            </li>
+                        </div> */
+
+                    )}
             </nav>
         );
     }

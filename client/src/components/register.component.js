@@ -117,6 +117,7 @@ export default class Register extends Component {
                         message: response.data.message,
                         successful: true
                     });
+                    // this.props.history.push('/register')
                 },
                 error => {
                     const resMessage =
@@ -267,9 +268,10 @@ export default class Register extends Component {
                                             disabled={this.state.loading}
                                         >
                                             {this.state.loading && (
-                                                <span className="spinner-border spinner-border-sm"></span>
+                                                <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                                             )}
-                                            <span>Sign Up</span>
+
+                                            Sign Up
                                         </button>
                                     </div>
                                 </div>

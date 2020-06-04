@@ -8,7 +8,7 @@ module.exports = function (app) {
     app.get("/api/item/getall", controller.findAll);
 
     // Retrieve all published Items
-    app.get("/api/item/available", controller.findAllAvailable);
+    // app.get("/api/item/available", controller.findAllAvailable);
 
     // Retrieve a single Item with item_no
     app.get("/api/item/:item_no", controller.findOne);

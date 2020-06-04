@@ -20,6 +20,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // database sync
 const db = require("./app/models");
 const Role = db.role;
+var bcrypt = require("bcryptjs");
+const User = db.user;
+const UserRole = db.user_roles;
 db.sequelize.sync();
 
 /* Reset database - Delete all records */
@@ -38,6 +41,7 @@ app.get("/", (req, res) => {
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
 require('./app/routes/item.routes')(app);
+require('./app/routes/service.routes')(app);
 
 // port 5000 for the server
 const PORT = process.env.PORT || 5000;
@@ -64,4 +68,15 @@ function initial() {
         id: 4,
         name: "student"
     });
+
+    User.create({
+        username: "admin",
+        password: bcrypt.hashSync('admin', 8)
+    })
+
+    UserRole.create({
+        roleId: 1,
+        username: "admin"
+
+    })
 }

@@ -9,7 +9,6 @@ class ItemService {
             item_name,
             quantity,
             description,
-            availability
         });
     }
 
@@ -17,16 +16,21 @@ class ItemService {
         return axios.get(API_URL + "getall");
     }
 
-    getItem(item_no) {
+    get(item_no) {
         return axios.get(API_URL + item_no);
     }
 
     update(item_no, data) {
-        return axios.put(API_URL + "update" + item_no, { data });
+        console.log(data);
+        return axios.put(API_URL + "update/" + item_no, { data });
     }
 
     findByName(item_name) {
         return axios.get(API_URL + "getall?item_name=" + item_name);
+    }
+
+    delete(item_no) {
+        return axios.delete(API_URL + "remove/" + item_no);
     }
 }
 

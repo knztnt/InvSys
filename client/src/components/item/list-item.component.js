@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ItemDataService from '../../services/item.service';
+import AuthService from "../../services/auth.service";
 
 import { Link } from "react-router-dom";
 
@@ -17,12 +18,23 @@ export default class ItemsList extends Component {
             items: [],
             currentItem: null,
             currentIndex: -1,
-            searchName: ""
+            searchName: "",
+            showNonacBoard: false,
+            showAdminBoard: false,
         };
     }
 
     componentDidMount() {
         this.retrieveItems();
+
+        const user = AuthService.getCurrentUser();
+
+        if (user) {
+            this.setState({
+                showNonacBoard: user.roles.includes("ROLE_NON-ACADEMIC"),
+                showAdminBoard: user.roles.includes("ROLE_ADMIN")
+            });
+        }
     }
 
     onChangeSearchName(e) {
@@ -86,16 +98,16 @@ export default class ItemsList extends Component {
     }
 
     render() {
-        const { searchName, items, currentItem, currentIndex } = this.state;
+        const { searchName, items, currentItem, currentIndex, showNonacBoard, showAdminBoard } = this.state;
 
         return (
             <div className="container">
-                <div className="list row">
+                <div className="row justify-content-center">
                     <div className="col-md-8">
                         <div className="input-group mb-3">
                             <input
                                 type="text"
-                                className="form-control mr-sm-2"
+                                className="form-control"
                                 placeholder="Search by item name"
                                 value={searchName}
                                 onChange={this.onChangeSearchName}
@@ -112,28 +124,29 @@ export default class ItemsList extends Component {
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <h4>Items List</h4>
+                        <h4>Components</h4>
 
-                        <ul className="list-group">
+                        <div className="list-group">
                             {items &&
                                 items.map((item, index) => (
-                                    <li
+                                    <button
                                         className={
-                                            "list-group-item " +
+                                            "list-group-item d-flex justify-content-between align-items-center list-group-item-action " +
                                             (index === currentIndex ? "active" : "")
                                         }
                                         onClick={() => this.setActiveItem(item, index)}
                                         key={index}
                                     >
                                         {item.item_name}
-                                    </li>
+                                        <span className={"badge badge-pill " + (item.quantity === 0 ? "badge-warning" : "badge-primary")}>{item.quantity}</span>
+                                    </button>
                                 ))}
-                        </ul>
+                        </div>
                     </div>
                     <div className="col-md-6">
                         {currentItem ? (
                             <div>
-                                <h4>Item</h4>
+                                <h4>Description</h4>
                                 <div>
                                     <label>
                                         <strong>Item number:</strong>
@@ -162,15 +175,30 @@ export default class ItemsList extends Component {
                                     <label>
                                         <strong>Status:</strong>
                                     </label>{" "}
-                                    {currentItem.availability ? "Available" : "Not available"}
+                                    {currentItem.quantity === 0 ? "Not available" : "Available"}
                                 </div>
 
-                                <Link
-                                    to={"/item/edit" + currentItem.id}
-                                    className="badge badge-warning"
-                                >
-                                    Edit
-                                </Link>
+                                {showAdminBoard || showNonacBoard ? (
+                                    <Link to={"/update-items/" + currentItem.item_no}>
+                                        <button
+                                            type="button"
+                                            className="btn btn-warning"
+                                        >
+                                            Update Item
+                                    </button>
+                                    </Link>
+                                ) : (
+                                        <Link to={"/item/request/" + currentItem.item_no}>
+                                            <button
+                                                type="button"
+                                                className="btn btn-success"
+                                                disabled={(currentItem.quantity === 0 ? true : false)}
+                                            >
+                                                Request Item
+                                        </button>
+                                        </Link>
+                                    )}
+
                             </div>
                         ) : (
                                 <div>

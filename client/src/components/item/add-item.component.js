@@ -9,7 +9,6 @@ export default class AddItem extends Component {
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangeQuantity = this.onChangeQuantity.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
-        this.onChangeAvailability = this.onChangeAvailability.bind(this);
         this.saveItem = this.saveItem.bind(this);
         this.newItem = this.newItem.bind(this);
 
@@ -18,7 +17,6 @@ export default class AddItem extends Component {
             item_name: "",
             quantity: 0,
             description: "",
-            availability: true,
 
             submitted: false
         };
@@ -48,19 +46,12 @@ export default class AddItem extends Component {
         });
     }
 
-    onChangeAvailability(e) {
-        this.setState({
-            availability: e.target.value
-        });
-    }
-
     saveItem() {
         ItemDataService.create(
             this.state.item_no,
             this.state.item_name,
             this.state.quantity,
             this.state.description,
-            this.state.availability
         )
             .then(response => {
                 this.setState({
@@ -68,7 +59,6 @@ export default class AddItem extends Component {
                     item_name: response.data.item_name,
                     quantity: response.data.quantity,
                     description: response.data.description,
-                    availability: response.data.availability,
 
                     submitted: true
                 });
@@ -85,7 +75,6 @@ export default class AddItem extends Component {
             item_name: "",
             quantity: 0,
             description: "",
-            availability: true,
 
             submitted: false
         });
@@ -102,7 +91,7 @@ export default class AddItem extends Component {
                                     <h4>You submitted successfully!</h4>
                                     <button className="btn btn-success" onClick={this.newItem}>
                                         Add
-                        </button>
+                                    </button>
                                 </div>
                             ) : (
                                     <div>
@@ -155,19 +144,6 @@ export default class AddItem extends Component {
                                                 value={this.state.description}
                                                 onChange={this.onChangeDescription}
                                                 name="description"
-                                            />
-                                        </div>
-
-                                        <div className="form-group">
-                                            <label htmlFor="description">Availability</label>
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                id="availability"
-                                                required
-                                                value={this.state.availability}
-                                                onChange={this.onChangeAvailability}
-                                                name="availability"
                                             />
                                         </div>
 
