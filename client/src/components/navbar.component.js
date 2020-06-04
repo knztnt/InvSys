@@ -66,7 +66,7 @@ class Navbar extends Component {
                             <a href="/login" className="nav-link" onClick={this.logOut}>
                                 <button
                                     type="button"
-                                    className="btn btn-primary">
+                                    className="btn btn-primary btn-sm">
                                     LogOut
                                 </button>
                             </a>
@@ -78,7 +78,7 @@ class Navbar extends Component {
                                 <a href={"/login"} className="nav-link">
                                     <button
                                         type="button"
-                                        className="btn btn-primary">
+                                        className="btn btn-primary btn-sm">
                                         Login
                                     </button>
                                 </a>
