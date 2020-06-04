@@ -113,7 +113,7 @@ export default class ServicesList extends Component {
             <div className="input-group mb-3">
               <input
                 type="text"
-                className="form-control mr-sm-2"
+                className="form-control"
                 placeholder="Search by Service name"
                 value={searchName}
                 onChange={this.onChangeSearchName}
