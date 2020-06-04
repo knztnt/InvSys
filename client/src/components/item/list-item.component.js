@@ -181,7 +181,6 @@ export default class ItemsList extends Component {
                                 {showAdminBoard || showNonacBoard ? (
                                     <Link to={"/update-items/" + currentItem.item_no}>
                                         <button
-
                                             type="button"
                                             className="btn btn-warning"
                                         >
