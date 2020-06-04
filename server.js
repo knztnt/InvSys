@@ -20,6 +20,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // database sync
 const db = require("./app/models");
 const Role = db.role;
+var bcrypt = require("bcryptjs");
+const User = db.user;
+const UserRole = db.user_roles;
 db.sequelize.sync();
 
 /* Reset database - Delete all records */
@@ -64,4 +67,15 @@ function initial() {
         id: 4,
         name: "student"
     });
+
+    User.create({
+        username: "admin",
+        password: bcrypt.hashSync('admin', 8)
+    })
+
+    UserRole.create({
+        roleId: 1,
+        username: "admin"
+
+    })
 }
