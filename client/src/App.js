@@ -47,7 +47,6 @@ class App extends Component {
         <div className="App">
           <Navbar />
           <div className="container-fluid">
-
             {currentUser ? (
               <div className="row">
                 <Sidebar />
@@ -80,8 +79,6 @@ class App extends Component {
                   </Switch>
                 </div>
               )}
-
-
           </div>
         </div>
       </Router >

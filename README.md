@@ -30,29 +30,25 @@ Run following script.
 [InvSys.sql](https://gist.github.com/chamin96/4b507153b0ebee2f1b4d0a8d8f8a58de)
 ```sql
 CREATE DATABASE invsys;
-USE invsys;
-CREATE TABLE users (
-	username VARCHAR(10),
-	password TEXT,
-	PRIMARY KEY(username)
-);
-DESCRIBE users;
 ```
 
-In InvSys/database/db.js (Line 3),
+In InvSys/app/config/db.config.js (Line 3 and 4),
 set your MySQL database username and password as follows.
 Default values are, username: 'root' and password: ''.
 ```js
-const  sequelize = new Sequelize('invsys', 'username', 'password', {
-    host: 'localhost',
-    dialect: 'mysql',
-	    pool: {
-		    max: 5,
-		    min: 0,
-		    acquire: 30000,
-		    idle: 10000
-	    }
-    });
+module.exports = {
+    HOST: "localhost",
+    USER: "root",
+    PASSWORD: "",
+    DB: "invsys",
+    dialect: "mysql",
+    pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
+    }
+};
 ```
 ## Powered by
 
@@ -63,12 +59,11 @@ const  sequelize = new Sequelize('invsys', 'username', 'password', {
 ## Dependencies
 
 > ### Server side
->  - bcrypt
+>  - bcryptjs
 >  - body-parser
 >  - cors
 >  - express
 >  - jsonwebtoken
->  - mysql
 >  - mysql2
 >  - sequelize
 >  ### Client side
