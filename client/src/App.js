@@ -46,14 +46,15 @@ class App extends Component {
       <Router>
         <div className="App">
           <Navbar />
-          <div className="container-fluid">
-            {currentUser ? (
+
+          {currentUser ? (
+            <div className="container-fluid">
               <div className="row">
                 <Sidebar />
                 <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
                   <div className="container d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 mt-3 border-bottom">
                     <Switch>
-                      <Route exact path={["/", "/home"]} component={Home} />
+                      <Route exact path={["/", "/home"]} component={Profile} />
                       <Route exact path="/login" component={Login} />
                       <Route exact path="/register" component={Register} />
                       <Route exact path="/profile" component={Profile} />
@@ -70,16 +71,18 @@ class App extends Component {
                     </Switch>
                   </div>
                 </main>
-              </div>) : (
-                <div className="container mt-3">
-                  <Switch>
-                    <Route exact path={["/", "/home"]} component={Home} />
+              </div>
+            </div>) : (
+              <div>
+                <Switch>
+                  <Route exact path={["/", "/home"]} component={Home} />
+                  <div className="container d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 mt-3 border-bottom">
                     <Route exact path="/login" component={Login} />
                     {/* <Route exact path="/register" component={Register} /> */}
-                  </Switch>
-                </div>
-              )}
-          </div>
+                  </div>
+                </Switch>
+              </div>
+            )}
         </div>
       </Router >
     );
