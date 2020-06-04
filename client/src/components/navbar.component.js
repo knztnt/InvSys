@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-import logo from "../logo-2.png";
+import logo from "../navbar-brand-light.png";
 
 import AuthService from "../services/auth.service";
 
