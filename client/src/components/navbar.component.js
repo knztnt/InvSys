@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import logo from "../navbar-brand-light.png";
 
 import AuthService from "../services/auth.service";
@@ -64,16 +64,24 @@ class Navbar extends Component {
                     <div className="navbar-nav px-3">
                         <li className="nav-item text-nowrap">
                             <a href="/login" className="nav-link" onClick={this.logOut}>
-                                LogOut
+                                <button
+                                    type="button"
+                                    className="btn btn-primary">
+                                    LogOut
+                                </button>
                             </a>
                         </li>
                     </div>
                 ) : (
                         <div className="navbar-nav px-3">
                             <li className="nav-item text-nowrap">
-                                <Link to={"/login"} className="nav-link">
-                                    Login
-                                </Link>
+                                <a href={"/login"} className="nav-link">
+                                    <button
+                                        type="button"
+                                        className="btn btn-primary">
+                                        Login
+                                    </button>
+                                </a>
                             </li>
                         </div>
 
