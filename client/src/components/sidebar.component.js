@@ -48,6 +48,10 @@ class Sidebar extends Component {
                                 <Link to={"/view-items"} className="nav-link">View Items</Link>
                             )}
 
+                            {showStudentBoard && (
+                                <Link to={"/view-services"} className="nav-link">View Services</Link>
+                            )}
+
                             {/* academic boards */}
                             {showAcademicBoard && (
                                 <Link to={"/academic"} className="nav-link">Dashboard</Link>
@@ -69,6 +73,14 @@ class Sidebar extends Component {
 
                             {showNonacBoard && (
                                 <Link to={"/view-items"} className="nav-link">Manage Items</Link>
+                            )}
+
+                            {showNonacBoard && (
+                                <Link to={"/add-service"} className="nav-link">Add Services</Link>
+                            )}
+
+                            {showNonacBoard && (
+                                <Link to={"/view-services"} className="nav-link">Manage Services</Link>
                             )}
 
                             {/* admin boards */}
