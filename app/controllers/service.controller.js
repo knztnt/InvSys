@@ -72,7 +72,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const service_no = req.params.service_no;
 
-  Service.update(req.body, {
+  Service.update(req.body.data, {
     where: { service_no: service_no },
   })
     .then((num) => {

@@ -20,6 +20,7 @@ import ViewItems from "./components/item/list-item.component";
 import UpdateItems from "./components/item/update-item.component";
 import AddService from "./components/item/add-service.component";
 import ViewService from "./components/item/view-services.component";
+import UpdateService from './components/item/update-service.component';
 
 class App extends Component {
   constructor(props) {
@@ -66,6 +67,7 @@ class App extends Component {
                       <Route path="/update-items/:item_no" component={UpdateItems} />
                       <Route path="/add-service" component={AddService} />
                       <Route path="/view-services" component={ViewService} />
+                      <Route path="/update-services/:service_no" component={UpdateService} />
                     </Switch>
                   </div>
                 </main>
