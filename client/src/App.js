@@ -18,6 +18,8 @@ import BoardAdmin from "./components/board-admin.component";
 import AddItem from "./components/item/add-item.component";
 import ViewItems from "./components/item/list-item.component";
 import UpdateItems from "./components/item/update-item.component";
+import AddService from "./components/item/add-service.component";
+import ViewService from "./components/item/view-services.component";
 
 class App extends Component {
   constructor(props) {
@@ -62,6 +64,8 @@ class App extends Component {
                       <Route path="/add-item" component={AddItem} />
                       <Route path="/view-items" component={ViewItems} />
                       <Route path="/update-items/:item_no" component={UpdateItems} />
+                      <Route path="/add-service" component={AddService} />
+                      <Route path="/view-services" component={ViewService} />
                     </Switch>
                   </div>
                 </main>
