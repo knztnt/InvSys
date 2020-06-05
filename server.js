@@ -6,7 +6,7 @@ const app = express();
 
 // middleware port
 var corsOptions = {
-    origin: "http://localhost:3000"
+  origin: "http://localhost:3000",
 };
 
 app.use(cors(corsOptions));
@@ -23,25 +23,24 @@ const Role = db.role;
 var bcrypt = require("bcryptjs");
 const User = db.user;
 const UserRole = db.user_roles;
-db.sequelize.sync();
+// db.sequelize.sync();
 
 /* Reset database - Delete all records */
-// db.sequelize.sync({ force: true }).then(() => {
-//     console.log('Drop and Resync Db');
-//     initial();
-// });
-
+db.sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and Resync Db");
+  initial();
+});
 
 // test route
 app.get("/", (req, res) => {
-    res.json({ message: "InvSys Server Running..." });
+  res.json({ message: "InvSys Server Running..." });
 });
 
 // routes
-require('./app/routes/auth.routes')(app);
-require('./app/routes/user.routes')(app);
-require('./app/routes/item.routes')(app);
-require('./app/routes/service.routes')(app);
+require("./app/routes/auth.routes")(app);
+require("./app/routes/user.routes")(app);
+require("./app/routes/item.routes")(app);
+require("./app/routes/service.routes")(app);
 
 // port 5000 for the server
 const PORT = process.env.PORT || 5000;
@@ -49,34 +48,33 @@ app.listen(PORT, () => console.log(`Server listening on port ${PORT}.`));
 
 // create roles in database
 function initial() {
-    Role.create({
-        id: 1,
-        name: "admin"
-    });
+  Role.create({
+    id: 1,
+    name: "admin",
+  });
 
-    Role.create({
-        id: 2,
-        name: "non-academic"
-    });
+  Role.create({
+    id: 2,
+    name: "non-academic",
+  });
 
-    Role.create({
-        id: 3,
-        name: "academic"
-    });
+  Role.create({
+    id: 3,
+    name: "academic",
+  });
 
-    Role.create({
-        id: 4,
-        name: "student"
-    });
+  Role.create({
+    id: 4,
+    name: "student",
+  });
 
-    User.create({
-        username: "admin",
-        password: bcrypt.hashSync('admin', 8)
-    })
+  User.create({
+    username: "admin",
+    password: bcrypt.hashSync("admin", 8),
+  });
 
-    UserRole.create({
-        roleId: 1,
-        username: "admin"
-
-    })
+  UserRole.create({
+    roleId: 1,
+    username: "admin",
+  });
 }
