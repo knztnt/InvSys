@@ -23,13 +23,13 @@ const Role = db.role;
 var bcrypt = require("bcryptjs");
 const User = db.user;
 const UserRole = db.user_roles;
-// db.sequelize.sync();
+db.sequelize.sync();
 
 /* Reset database - Delete all records */
-db.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and Resync Db");
-  initial();
-});
+// db.sequelize.sync({ force: true }).then(() => {
+//   console.log("Drop and Resync Db");
+//   initial();
+// });
 
 // test route
 app.get("/", (req, res) => {
