@@ -22,6 +22,7 @@ import AddService from "./components/item/add-service.component";
 import ViewService from "./components/item/view-services.component";
 import UpdateService from "./components/item/update-service.component";
 import RequestItem from "./components/item/request-item.component";
+import RequestService from "./components/item/request-service.component";
 
 class App extends Component {
   constructor(props) {
@@ -81,6 +82,10 @@ class App extends Component {
                       <Route
                         path="/item-request/:item_no"
                         component={RequestItem}
+                      />
+                      <Route
+                        path="/service/request/:service_no"
+                        component={RequestService}
                       />
                     </Switch>
                   </div>

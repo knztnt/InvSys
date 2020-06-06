@@ -1,23 +1,21 @@
 import React, { Component } from "react";
-import ItemDataService from "../../services/item.service";
+import ServiceDataService from "../../services/service.service";
 import { Link } from "react-router-dom";
 
-export default class RequestItem extends Component {
+export default class RequestService extends Component {
   constructor(props) {
     super(props);
     // this.onChangeNumber = this.onChangeNumber.bind(this);
     // this.onChangeName = this.onChangeName.bind(this);
-    this.onChangeQuantity = this.onChangeQuantity.bind(this);
     this.onChangeReason = this.onChangeReason.bind(this);
-    this.getItem = this.getItem.bind(this);
-    // this.updateItem = this.updateItem.bind(this);
-    // this.deleteItem = this.deleteItem.bind(this);
+    this.getService = this.getService.bind(this);
+    // this.updateService = this.updateService.bind(this);
+    // this.deleteService = this.deleteService.bind(this);
 
     this.state = {
-      currentItem: {
-        item_no: "",
-        item_name: "",
-        quantity: 0,
+      currentService: {
+        service_no: "",
+        service_name: "",
         description: "",
         staffMember: "",
         reason: "",
@@ -27,15 +25,16 @@ export default class RequestItem extends Component {
   }
 
   componentDidMount() {
-    this.getItem(this.props.match.params.item_no);
-    console.log(this.props.match.params.item_no);
+    this.getService(this.props.match.params.service_no);
+    console.log(this.props.match.params.service_no);
   }
 
-  getItem(item_no) {
-    ItemDataService.get(item_no)
+  getService(service_no) {
+    console.log(service_no);
+    ServiceDataService.get(service_no)
       .then((response) => {
         this.setState({
-          currentItem: response.data,
+          currentService: response.data,
         });
         console.log(response.data);
       })
@@ -44,55 +43,55 @@ export default class RequestItem extends Component {
       });
   }
 
-  onChangeQuantity(e) {
-    const quantity = e.target.value;
+  //   onChangeAvailability(e) {
+  //     const availability = e.target.value;
 
-    this.setState(function (prevState) {
-      return {
-        currentItem: {
-          ...prevState.currentItem,
-          quantity: quantity,
-        },
-      };
-    });
-  }
+  //     this.setState(function (prevState) {
+  //       return {
+  //         currentService: {
+  //           ...prevState.currentService,
+  //           availability: availability,
+  //         },
+  //       };
+  //     });
+  //   }
 
   onChangeReason(e) {
     const reason = e.target.value;
 
     this.setState(function (prevState) {
       return {
-        currentItem: {
-          ...prevState.currentItem,
+        currentService: {
+          ...prevState.currentService,
           reason: reason,
         },
       };
     });
   }
 
-  //   updateItem() {
-  //     console.log(this.state.currentItem);
-  //     ItemDataService.update(
-  //       this.state.currentItem.item_no,
-  //       this.state.currentItem
+  //   updateService() {
+  //     console.log(this.state.currentService);
+  //     ServiceDataService.update(
+  //       this.state.currentService.service_no,
+  //       this.state.currentService
   //     )
   //       .then((response) => {
   //         console.log(response.data);
   //         this.setState({
-  //           message: "The Item was updated successfully!",
+  //           message: "The Service was updated successfully!",
   //         });
-  //         this.props.history.push("/view-items");
+  //         this.props.history.push("/view-services");
   //       })
   //       .catch((e) => {
   //         console.log(e);
   //       });
   //   }
 
-  //   deleteItem() {
-  //     ItemDataService.delete(this.state.currentItem.item_no)
+  //   deleteService() {
+  //     ServiceDataService.delete(this.state.currentService.service_no)
   //       .then((response) => {
   //         console.log(response.data);
-  //         this.props.history.push("/view-items");
+  //         this.props.history.push("/view-services");
   //       })
   //       .catch((e) => {
   //         console.log(e);
@@ -100,54 +99,43 @@ export default class RequestItem extends Component {
   //   }
 
   render() {
-    const { currentItem } = this.state;
+    const { currentService } = this.state;
 
     return (
       <div className="container">
         <div className="row">
           <div className="col-md-6 mt-5 mx-auto">
             <div className="edit-form">
-              <h4>Request Item</h4>
+              <h4>Request Service</h4>
               <hr />
               <form>
                 <div className="form-group">
-                  <label htmlFor="item_no">Item Number</label>
+                  <label htmlFor="service_no">Service Number</label>
                   <input
                     type="text"
                     className="form-control"
-                    id="item_no"
-                    value={currentItem.item_no}
+                    id="service_no"
+                    value={currentService.service_no}
                     disabled
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="item_name">Item Name</label>
+                  <label htmlFor="service_name">Service Name</label>
                   <input
                     type="text"
                     className="form-control"
-                    id="item_name"
-                    value={currentItem.item_name}
+                    id="service_name"
+                    value={currentService.service_name}
                     disabled
                   />
                 </div>
-                <div className="form-group">
-                  <label htmlFor="quantity">Quantity</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    id="quantity"
-                    value={currentItem.quantity}
-                    onChange={this.onChangeQuantity}
-                  />
-                </div>
-
                 <div className="form-group">
                   <label htmlFor="description">Description</label>
                   <input
                     type="text"
                     className="form-control"
                     id="description"
-                    value={currentItem.description}
+                    value={currentService.description}
                     disabled
                   />
                 </div>
@@ -167,12 +155,13 @@ export default class RequestItem extends Component {
                     type="text"
                     class="form-control"
                     id="reason"
-                    value={currentItem.reason}
+                    value={currentService.reason}
                     onChange={this.onChangeReason}
                   />
                 </div>
               </form>
-              <Link to={"/view-items"}>
+
+              <Link to={"/view-services"}>
                 <button className="btn btn-warning mr-2">Cancel</button>
               </Link>
               <button
