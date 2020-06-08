@@ -9,8 +9,6 @@ import image3 from './images/track.jpg';
 import image4 from './images/updates.jpg';
 
 
-
-
 export default class Home extends Component {
     constructor(props) {
         super(props);
@@ -47,7 +45,7 @@ export default class Home extends Component {
                     style={{
                         backgroundImage: `url(${backImage})`,
                         backgroundRepeat: 'no-repeat',
-                        height: '70vh',
+                        height: '60vh',
                         width: 'auto',
                         backgroundSize: 'cover'
                     }}>
@@ -86,11 +84,7 @@ export default class Home extends Component {
                     </div>
                 </div>
 
-                {/*<div className="row justify-content-md-center">
-                    login
-                </div>*/}
-
-                <div className="row" style={{ height: '20vh', width: 'auto', backgroundColor: '#094b62' }}>
+                <div className="row home-footer" style={{ height: '20vh', width: 'auto', backgroundColor: '#094b62' }}>
                     <div className="ml-5" style={{ height: '100%', width: '100%' }}>
                         <div className="row align-items-center" style={{ height: '100%', width: '100%' }}>
                             <span style={{ color: 'white' }}>
