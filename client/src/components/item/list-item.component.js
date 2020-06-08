@@ -194,7 +194,7 @@ export default class ItemsList extends Component {
                         disabled={(currentItem.quantity === 0 ? true : false)}
                       >
                         Request Item
-                                        </button>
+                      </button>
                     </Link>
                   )}
 

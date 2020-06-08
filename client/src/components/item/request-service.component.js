@@ -140,22 +140,22 @@ export default class RequestService extends Component {
                   />
                 </div>
                 <label htmlFor="description">Relevent Staff Member</label>
-                <div class="input-group mb-3">
-                  <select class="custom-select" id="inputGroupSelect02">
-                    <option selected>Choose...</option>
+                <div className="input-group mb-3">
+                  <select className="custom-select" id="inputGroupSelect02">
+                    <option defaultValue>Choose...</option>
                     <option value="1">Dhammika Alkaduwa</option>
                     <option value="2">Janaka Alawathugoda </option>
                     <option value="3">Sampath Deegalla</option>
                   </select>
                 </div>
                 <label htmlFor="description">Reason for the Request</label>
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend"></div>
+                <div className="input-group mb-3">
+                  <div className="input-group-prepend"></div>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="reason"
-                    value={currentService.reason}
+                    value={currentService.reason || ""}
                     onChange={this.onChangeReason}
                   />
                 </div>
@@ -167,7 +167,7 @@ export default class RequestService extends Component {
               <button
                 type="submit"
                 className="btn btn-success"
-                // onClick={this.updateItem}
+              // onClick={this.updateItem}
               >
                 Confirm Request
               </button>

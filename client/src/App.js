@@ -69,24 +69,12 @@ class App extends Component {
                       <Route path="/admin" component={BoardAdmin} />
                       <Route path="/add-item" component={AddItem} />
                       <Route path="/view-items" component={ViewItems} />
-                      <Route
-                        path="/update-items/:item_no"
-                        component={UpdateItems}
-                      />
+                      <Route path="/update-items/:item_no" component={UpdateItems} />
                       <Route path="/add-service" component={AddService} />
                       <Route path="/view-services" component={ViewService} />
-                      <Route
-                        path="/update-services/:service_no"
-                        component={UpdateService}
-                      />
-                      <Route
-                        path="/item-request/:item_no"
-                        component={RequestItem}
-                      />
-                      <Route
-                        path="/service/request/:service_no"
-                        component={RequestService}
-                      />
+                      <Route path="/update-services/:service_no" component={UpdateService} />
+                      <Route path="/item/request/:item_no" component={RequestItem} />
+                      <Route path="/service/request/:service_no" component={RequestService} />
                     </Switch>
                   </div>
                 </main>
