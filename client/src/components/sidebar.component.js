@@ -6,12 +6,15 @@ class Sidebar extends Component {
     constructor(props) {
         super(props);
 
+        this.setActiveItem = this.setActiveItem.bind(this);
+
         this.state = {
             showStudentBoard: false,
             showAcademicBoard: false,
             showNonacBoard: false,
             showAdminBoard: false,
-            currentUser: undefined
+            currentUser: undefined,
+            currentIndex: 14,
         };
     }
 
@@ -29,6 +32,12 @@ class Sidebar extends Component {
         }
     }
 
+    setActiveItem(index) {
+        this.setState({
+            currentIndex: index
+        });
+    }
+
     render() {
         const { currentUser, showStudentBoard, showAcademicBoard, showNonacBoard, showAdminBoard } = this.state;
 
@@ -41,64 +50,78 @@ class Sidebar extends Component {
                         <li className="nav-item">
                             {/* student boards */}
                             {showStudentBoard && (
-                                <Link to={"/Student"} className="nav-link">Dashboard<span className="sr-only">(current)</span></Link>
+                                <Link to={"/student"} className={"nav-link " +
+                                    (1 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(1)}>Dashboard</Link>
                             )}
 
                             {showStudentBoard && (
-                                <Link to={"/view-items"} className="nav-link">View Items</Link>
+                                <Link to={"/view-items"} className={"nav-link " +
+                                    (2 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(2)}>View Items</Link>
                             )}
 
                             {showStudentBoard && (
-                                <Link to={"/view-services"} className="nav-link">View Services</Link>
+                                <Link to={"/view-services"} className={"nav-link " +
+                                    (3 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(3)}>View Services</Link>
                             )}
 
                             {/* academic boards */}
                             {showAcademicBoard && (
-                                <Link to={"/academic"} className="nav-link">Dashboard</Link>
+                                <Link to={"/academic"} className={"nav-link " +
+                                    (4 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(4)}>Dashboard</Link>
                             )}
 
                             {showAcademicBoard && (
-                                <Link to={"/view-items"} className="nav-link">View Items</Link>
+                                <Link to={"/view-items"} className={"nav-link " +
+                                    (5 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(5)}>View Items</Link>
                             )}
 
                             {showAcademicBoard && (
-                                <Link to={"/view-services"} className="nav-link">View Services</Link>
+                                <Link to={"/view-services"} className={"nav-link " +
+                                    (6 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(6)}>View Services</Link>
                             )}
 
 
                             {/* non-academic boards */}
                             {showNonacBoard && (
-                                <Link to={"/non-academic"} className="nav-link">Dashboard</Link>
+                                <Link to={"/non-academic"} className={"nav-link " +
+                                    (7 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(7)}>Dashboard</Link>
                             )}
 
                             {showNonacBoard && (
-                                <Link to={"/add-item"} className="nav-link">Add Items</Link>
+                                <Link to={"/add-item"} className={"nav-link " +
+                                    (8 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(8)}>Add Items</Link>
                             )}
 
                             {showNonacBoard && (
-                                <Link to={"/view-items"} className="nav-link">Manage Items</Link>
+                                <Link to={"/view-items"} className={"nav-link " +
+                                    (9 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(9)}>Manage Items</Link>
                             )}
 
                             {showNonacBoard && (
-                                <Link to={"/add-service"} className="nav-link">Add Services</Link>
+                                <Link to={"/add-service"} className={"nav-link " +
+                                    (10 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(10)}>Add Services</Link>
                             )}
 
                             {showNonacBoard && (
-                                <Link to={"/view-services"} className="nav-link">Manage Services</Link>
+                                <Link to={"/view-services"} className={"nav-link " +
+                                    (11 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(11)}>Manage Services</Link>
                             )}
 
                             {/* admin boards */}
                             {showAdminBoard && (
-                                <Link to={"/admin"} className="nav-link">Admin Dashboard</Link>
+                                <Link to={"/admin"} className={"nav-link " +
+                                    (12 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(12)}>Admin Dashboard</Link>
                             )}
 
                             {showAdminBoard && (
-                                <Link to={"/register"} className="nav-link">Register Users</Link>
+                                <Link to={"/register"} className={"nav-link " +
+                                    (13 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(13)}>Register Users</Link>
                             )}
 
                             {/* profile board */}
                             {currentUser && (
-                                <Link to={"/profile"} className="nav-link">{currentUser.username}</Link>
+                                <Link to={"/profile"} className={"nav-link " +
+                                    (14 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(14)}>{currentUser.username}</Link>
                             )}
 
                         </li>

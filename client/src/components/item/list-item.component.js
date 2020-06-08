@@ -131,7 +131,7 @@ export default class ItemsList extends Component {
                                 items.map((item, index) => (
                                     <button
                                         className={
-                                            "list-group-item d-flex justify-content-between align-items-center list-group-item-action " +
+                                            "item-component list-group-item d-flex justify-content-between align-items-center list-group-item-action " +
                                             (index === currentIndex ? "active" : "")
                                         }
                                         onClick={() => this.setActiveItem(item, index)}
