@@ -76,10 +76,11 @@ class App extends Component {
               <div>
                 <Switch>
                   <Route exact path={["/", "/home"]} component={Home} />
-                  <div className="container d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 mt-3 border-bottom">
-                    <Route exact path="/login" component={Login} />
-                    {/* <Route exact path="/register" component={Register} /> */}
-                  </div>
+                  <Route exact path="/login" component={Login} />
+                  {/* <div className="container d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 mt-3 border-bottom">
+                    
+                    <Route exact path="/register" component={Register} />
+                  </div> */}
                 </Switch>
               </div>
             )}
