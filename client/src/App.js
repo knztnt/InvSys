@@ -20,14 +20,16 @@ import ViewItems from "./components/item/list-item.component";
 import UpdateItems from "./components/item/update-item.component";
 import AddService from "./components/item/add-service.component";
 import ViewService from "./components/item/view-services.component";
-import UpdateService from './components/item/update-service.component';
+import UpdateService from "./components/item/update-service.component";
+import RequestItem from "./components/item/request-item.component";
+import RequestService from "./components/item/request-service.component";
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentUser: undefined
+      currentUser: undefined,
     };
   }
   componentDidMount() {
@@ -35,7 +37,7 @@ class App extends Component {
 
     if (user) {
       this.setState({
-        currentUser: user
+        currentUser: user,
       });
     }
   }
@@ -51,7 +53,10 @@ class App extends Component {
             <div className="container-fluid">
               <div className="row">
                 <Sidebar />
-                <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                <main
+                  role="main"
+                  className="col-md-9 ml-sm-auto col-lg-10 px-md-4"
+                >
                   <div className="container d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 mt-3 border-bottom">
                     <Switch>
                       <Route exact path={["/", "/home"]} component={Profile} />
@@ -64,10 +69,24 @@ class App extends Component {
                       <Route path="/admin" component={BoardAdmin} />
                       <Route path="/add-item" component={AddItem} />
                       <Route path="/view-items" component={ViewItems} />
-                      <Route path="/update-items/:item_no" component={UpdateItems} />
+                      <Route
+                        path="/update-items/:item_no"
+                        component={UpdateItems}
+                      />
                       <Route path="/add-service" component={AddService} />
                       <Route path="/view-services" component={ViewService} />
-                      <Route path="/update-services/:service_no" component={UpdateService} />
+                      <Route
+                        path="/update-services/:service_no"
+                        component={UpdateService}
+                      />
+                      <Route
+                        path="/item-request/:item_no"
+                        component={RequestItem}
+                      />
+                      <Route
+                        path="/service/request/:service_no"
+                        component={RequestService}
+                      />
                     </Switch>
                   </div>
                 </main>
@@ -85,7 +104,7 @@ class App extends Component {
               </div>
             )}
         </div>
-      </Router >
+      </Router>
     );
   }
 }
