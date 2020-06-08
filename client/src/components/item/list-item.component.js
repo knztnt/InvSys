@@ -90,44 +90,143 @@ export default class ItemsList extends Component {
         this.setState({
           items: response.data,
         });
-        console.log(response.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }
+    }
 
-  render() {
-    const {
-      searchName,
-      items,
-      currentItem,
-      currentIndex,
-      showNonacBoard,
-      showAdminBoard,
-    } = this.state;
+    // removeAllItems() {
+    //     ItemDataService.deleteAll()
+    //         .then(response => {
+    //             console.log(response.data);
+    //             this.refreshList();
+    //         })
+    //         .catch(e => {
+    //             console.log(e);
+    //         });
+    // }
 
-    return (
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-md-8">
-            <div className="input-group mb-3">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Search by item name"
-                value={searchName}
-                onChange={this.onChangeSearchName}
-              />
-              <div className="input-group-append">
-                <button
-                  className="btn btn-outline-success my-2 my-sm-0"
-                  type="button"
-                  onClick={this.searchName}
-                >
-                  Search
-                </button>
-              </div>
+    searchName() {
+        ItemDataService.findByName(this.state.searchName)
+            .then(response => {
+                this.setState({
+                    items: response.data
+                });
+                console.log(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    }
+
+    render() {
+        const { searchName, items, currentItem, currentIndex, showNonacBoard, showAdminBoard } = this.state;
+
+        return (
+            <div className="container">
+                <div className="row justify-content-center">
+                    <div className="col-md-8">
+                        <div className="input-group mb-3">
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Search by item name"
+                                value={searchName}
+                                onChange={this.onChangeSearchName}
+                            />
+                            <div className="input-group-append">
+                                <button
+                                    className="btn btn-outline-success my-2 my-sm-0"
+                                    type="button"
+                                    onClick={this.searchName}
+                                >
+                                    Search
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-6">
+                        <h4>Components</h4>
+
+                        <div className="list-group">
+                            {items &&
+                                items.map((item, index) => (
+                                    <button
+                                        className={
+                                            "item-component list-group-item d-flex justify-content-between align-items-center list-group-item-action " +
+                                            (index === currentIndex ? "active" : "")
+                                        }
+                                        onClick={() => this.setActiveItem(item, index)}
+                                        key={index}
+                                    >
+                                        {item.item_name}
+                                        <span className={"badge badge-pill " + (item.quantity === 0 ? "badge-warning" : "badge-primary")}>{item.quantity}</span>
+                                    </button>
+                                ))}
+                        </div>
+                    </div>
+                    <div className="col-md-6">
+                        {currentItem ? (
+                            <div>
+                                <h4>Description</h4>
+                                <div>
+                                    <label>
+                                        <strong>Item number:</strong>
+                                    </label>{" "}
+                                    {currentItem.item_no}
+                                </div>
+                                <div>
+                                    <label>
+                                        <strong>Item name:</strong>
+                                    </label>{" "}
+                                    {currentItem.item_name}
+                                </div>
+                                <div>
+                                    <label>
+                                        <strong>Description:</strong>
+                                    </label>{" "}
+                                    {currentItem.description}
+                                </div>
+                                <div>
+                                    <label>
+                                        <strong>Quantity:</strong>
+                                    </label>{" "}
+                                    {currentItem.quantity}
+                                </div>
+                                <div>
+                                    <label>
+                                        <strong>Status:</strong>
+                                    </label>{" "}
+                                    {currentItem.quantity === 0 ? "Not available" : "Available"}
+                                </div>
+
+                                {showAdminBoard || showNonacBoard ? (
+                                    <Link to={"/update-items/" + currentItem.item_no}>
+                                        <button
+                                            type="button"
+                                            className="btn btn-warning"
+                                        >
+                                            Update Item
+                                    </button>
+                                    </Link>
+                                ) : (
+                                        <Link to={"/item/request/" + currentItem.item_no}>
+                                            <button
+                                                type="button"
+                                                className="btn btn-success"
+                                                disabled={(currentItem.quantity === 0 ? true : false)}
+                                            >
+                                                Request Item
+                                        </button>
+                                        </Link>
+                                    )}
+
+                            </div>
+                        ) : (
+                                <div>
+                                    <br />
+                                    <p>Please click on a Item...</p>
+                                </div>
+                            )}
+                    </div>
+                </div>
             </div>
           </div>
           <div className="col-md-6">

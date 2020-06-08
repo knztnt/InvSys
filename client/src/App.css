@@ -9607,6 +9607,7 @@ html {
   overflow-x: hidden;
   overflow-y: auto;
   /* Scrollable contents if viewport is shorter than content. */
+  background-image: linear-gradient(to top, #c9c9c93b 0%, white 100%);
 }
 
 @supports ((position: -webkit-sticky) or (position: sticky)) {
@@ -9618,21 +9619,18 @@ html {
 
 .sidebar .nav-link {
   font-weight: 500;
-  color: #333;
-}
-
-.sidebar .nav-link .feather {
-  margin-right: 4px;
-  color: #999;
+  font-size: 1.125em;
+  color: #455a64;
 }
 
 .sidebar .nav-link.active {
-  color: #007bff;
+  color: #094b62;
+  font-size: 1.325em;
 }
 
-.sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
-  color: inherit;
+.sidebar .nav-link:hover {
+  color: #263238;
+  font-size: 1.35em;
 }
 
 .sidebar-heading {
@@ -9644,11 +9642,14 @@ html {
  * Navbar
  */
 
+.navbar {
+  background-image: linear-gradient(to right, #094a62f1 0%, #3c4449e1 100%);
+}
+
 .navbar-brand {
   padding-top: .75rem;
   padding-bottom: .75rem;
   font-size: 1rem;
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
 }
 
 .navbar .navbar-toggler {
@@ -9656,19 +9657,39 @@ html {
   right: 1rem;
 }
 
-.navbar .form-control {
-  padding: .75rem 1rem;
-  border-width: 0;
-  border-radius: 0;
+/* login component */
+.login-background {
+  position: absolute;
+  width: 100%;
+  height: calc(100vh - 48px);
+  background-color: #b8c6db;
+  background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%);
 }
 
-.form-control-dark {
-  color: #fff;
-  background-color: rgba(255, 255, 255, .1);
-  border-color: rgba(255, 255, 255, .1);
+.login-card {
+  background-color: #ffffff;
+  background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
 }
 
-.form-control-dark:focus {
-  border-color: transparent;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+/* home footer */
+.home-footer {
+  background-image: linear-gradient(-225deg, #3c4449f5 0%, #243949 51%, #304352 100%);
+}
+
+/* center in the middle */
+.item-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+/* item/services styles */
+.item-component.active {
+  font-size: 1.325em;
+}
+
+.item-component:hover {
+  font-size: 1.35em;
 }
