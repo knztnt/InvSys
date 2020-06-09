@@ -68,6 +68,7 @@ class Navbar extends Component {
                                     type="button"
                                     className="btn btn-primary btn-sm">
                                     LogOut
+                                    <i className="fas fa-sign-out-alt fa-fw"></i>
                                 </button>
                             </a>
                         </li>
@@ -80,6 +81,7 @@ class Navbar extends Component {
                                         type="button"
                                         className="btn btn-primary btn-sm">
                                         Login
+                                        <i className="fas fa-sign-in-alt fa-fw"></i>
                                     </button>
                                 </a>
                             </li>
@@ -93,7 +95,8 @@ class Navbar extends Component {
                             </li>
                         </div> */
 
-                    )}
+                    )
+                }
             </nav>
         );
     }
