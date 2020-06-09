@@ -67,8 +67,8 @@ class Navbar extends Component {
                                 <button
                                     type="button"
                                     className="btn btn-primary btn-sm">
-                                    LogOut
                                     <i className="fas fa-sign-out-alt fa-fw"></i>
+                                     LogOut
                                 </button>
                             </a>
                         </li>
