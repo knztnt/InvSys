@@ -84,6 +84,8 @@ export default class AddService extends Component {
       <div className="container">
         <div className="row">
           <div className="col-md-6 mt-5 mx-auto">
+            <h4>Add New Service</h4>
+            <hr />
             <div className="submit-form">
               {this.state.submitted ? (
                 <div>
