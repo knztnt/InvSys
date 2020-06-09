@@ -118,7 +118,7 @@ class Sidebar extends Component {
                             {showNonacBoard && (
                                 <Link to={"/add-service"} className={"nav-link " +
                                     (10 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(10)}>
-                                    <i className="fas fa-plus-circle fa-fw"></i>Add Services
+                                    <i className="fas fa-plus-circle fa-fw"></i> Add Services
                                 </Link>
                             )}
 
@@ -148,7 +148,7 @@ class Sidebar extends Component {
                             {currentUser && (
                                 <Link to={"/profile"} className={"nav-link " +
                                     (14 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(14)}>
-                                    <i className="fas fa-user-circle fa-fw"></i> {currentUser.username}
+                                    <i className="fas fa-user-alt fa-fw"></i> {currentUser.username}
                                 </Link>
                             )}
 
