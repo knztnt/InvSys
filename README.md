@@ -8,7 +8,7 @@
 
 - Clone the repo: `$ git clone https://github.com/knztnt/InvSys.git`
 
-      	 **or**
+     **or**
 
 - [Download from Github](https://github.com/knztnt/InvSys/archive/master.zip)
 
