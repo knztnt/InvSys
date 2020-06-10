@@ -9,6 +9,10 @@ const sequelize = new Sequelize(
         host: config.HOST,
         dialect: config.dialect,
         operatorsAliases: false,
+        dialectOptions: {
+            useUTC: false, // for reading from database
+        },
+        timezone: '+05:30', // for writing to database
 
         pool: {
             max: config.pool.max,
