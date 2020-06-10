@@ -37,8 +37,12 @@ db.sequelize = sequelize;
 db.user = require("../models/user.model.js")(sequelize, Sequelize);
 db.role = require("../models/role.model.js")(sequelize, Sequelize);
 db.item = require("../models/item.model.js")(sequelize, Sequelize);
-db.user_roles = require("../models/user-roles.model")(sequelize, Sequelize);
+db.user_roles = require("../models/user-roles.model.js")(sequelize, Sequelize);
 db.service = require("../models/service.model.js")(sequelize, Sequelize);
+db.student_item_request = require("../models/student-item-request.model.js")(sequelize, Sequelize);
+db.student_service_request = require("../models/student-service-request.model.js")(sequelize, Sequelize);
+db.academic_item_request = require("../models/academic-item-request.model.js")(sequelize, Sequelize);
+db.academic_service_request = require("../models/academic-service-request.model.js")(sequelize, Sequelize);
 
 // One User can have several Roles
 db.role.belongsToMany(db.user, {
