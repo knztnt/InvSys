@@ -8,7 +8,7 @@ exports.create = (req, res) => {
     // Validate request
     if (!req.body.studentId) {
         res.status(400).send({
-            message: "Content can not be empty!"
+            message: "Content cannot be empty!"
         });
         return;
     }
@@ -24,7 +24,7 @@ exports.create = (req, res) => {
         reason: req.body.reason
     };
 
-    // Save Item in the database
+    // Save Request in the database
     StudItemReq.create(request)
         .then(data => {
             res.send(data);
@@ -32,7 +32,7 @@ exports.create = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while creating the Item."
+                    err.message || "Some error occurred while creating the Request."
             });
         });
 };
