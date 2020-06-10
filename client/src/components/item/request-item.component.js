@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import ItemDataService from "../../services/item.service";
 import UserService from "../../services/user-role.service";
+import ItemReqService from "../../services/student-item-req.service";
+import AuthService from "../../services/auth.service";
 import { Link } from "react-router-dom";
 
 export default class RequestItem extends Component {
@@ -11,6 +13,8 @@ export default class RequestItem extends Component {
     this.getItem = this.getItem.bind(this);
     this.getAcademicUsers = this.getAcademicUsers.bind(this);
     this.setSelectedMember = this.setSelectedMember.bind(this);
+    this.onChangeStaffMember = this.onChangeStaffMember.bind(this);
+    this.saveRequest = this.saveRequest.bind(this);
 
     this.state = {
       currentItem: {
@@ -18,10 +22,12 @@ export default class RequestItem extends Component {
         item_name: "",
         quantity: 0,
         description: "",
+        staffId: "",
         reason: "",
       },
+      studentId: "",
       academicStaff: [],
-      currentMember: null,
+      staffMember: null,
       currentIndex: -1,
       message: "",
     };
@@ -31,6 +37,9 @@ export default class RequestItem extends Component {
     this.getItem(this.props.match.params.item_no);
     this.getAcademicUsers();
     console.log(this.props.match.params.item_no);
+    this.setState({
+      studentId: AuthService.getCurrentUser().username
+    });
   }
 
   getItem(item_no) {
@@ -72,6 +81,20 @@ export default class RequestItem extends Component {
     });
   }
 
+  onChangeStaffMember(e) {
+    const staffId = e.target.value;
+
+    this.setState(function (prevState) {
+      return {
+        currentItem: {
+          ...prevState.currentItem,
+          staffId: staffId,
+        },
+      };
+    });
+    console.log(this.state.currentItem);
+  }
+
   getAcademicUsers() {
     UserService.getallAcademic()
       .then((response) => {
@@ -87,9 +110,33 @@ export default class RequestItem extends Component {
 
   setSelectedMember(member, index) {
     this.setState({
-      currentMember: member,
+      staffMember: member,
       currentIndex: index,
     });
+  }
+
+  saveRequest() {
+    console.log(this.state.studentId);
+    ItemReqService.create(
+      this.state.studentId,
+      this.state.currentItem.item_no,
+      this.state.currentItem.item_name,
+      this.state.currentItem.quantity,
+      this.state.currentItem.description,
+      this.state.currentItem.staffId,
+      this.state.currentItem.reason
+    )
+      .then(response => {
+        this.setState({
+          currentItem: response.data,
+
+          submitted: true
+        });
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
   }
 
   render() {
@@ -146,12 +193,15 @@ export default class RequestItem extends Component {
                 </div>
                 <label htmlFor="description">Relevent Staff Member</label>
                 <div className="input-group mb-3">
-                  <select className="custom-select" id="inputGroupSelect02">
+                  <select
+                    className="custom-select"
+                    id="inputGroupSelect02"
+                    onChange={this.onChangeStaffMember}>
                     <option defaultValue>Choose...</option>
                     {academicStaff &&
                       academicStaff.map((member, index) => (
                         <option
-                          onClick={() => this.setSelectedMember(member, index)}
+                          onClick={() => { this.setSelectedMember(member, index); }}
                           key={index}
                           value={member.username}
                         >
@@ -178,7 +228,7 @@ export default class RequestItem extends Component {
               <button
                 type="submit"
                 className="btn btn-success"
-              // onClick={this.updateItem}
+                onClick={this.saveRequest}
               >
                 Confirm Request
               </button>
