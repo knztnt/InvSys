@@ -42,6 +42,7 @@ require("./app/routes/user.routes")(app);
 require("./app/routes/item.routes")(app);
 require("./app/routes/service.routes")(app);
 require("./app/routes/user-role.routes")(app);
+require("./app/routes/student-item-req.routes")(app);
 
 // port 5000 for the server
 const PORT = process.env.PORT || 5000;
