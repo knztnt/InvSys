@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import ServiceDataService from "../../services/service.service";
+import UserService from "../../services/user-role.service";
 import { Link } from "react-router-dom";
 
 export default class RequestService extends Component {
   constructor(props) {
     super(props);
-    // this.onChangeNumber = this.onChangeNumber.bind(this);
-    // this.onChangeName = this.onChangeName.bind(this);
     this.onChangeReason = this.onChangeReason.bind(this);
     this.getService = this.getService.bind(this);
-    // this.updateService = this.updateService.bind(this);
-    // this.deleteService = this.deleteService.bind(this);
+    this.getAcademicUsers = this.getAcademicUsers.bind(this);
+    this.setSelectedMember = this.setSelectedMember.bind(this);
 
     this.state = {
       currentService: {
@@ -20,12 +19,16 @@ export default class RequestService extends Component {
         staffMember: "",
         reason: "",
       },
+      academicStaff: [],
+      currentMember: null,
+      currentIndex: -1,
       message: "",
     };
   }
 
   componentDidMount() {
     this.getService(this.props.match.params.service_no);
+    this.getAcademicUsers();
     console.log(this.props.match.params.service_no);
   }
 
@@ -43,19 +46,6 @@ export default class RequestService extends Component {
       });
   }
 
-  //   onChangeAvailability(e) {
-  //     const availability = e.target.value;
-
-  //     this.setState(function (prevState) {
-  //       return {
-  //         currentService: {
-  //           ...prevState.currentService,
-  //           availability: availability,
-  //         },
-  //       };
-  //     });
-  //   }
-
   onChangeReason(e) {
     const reason = e.target.value;
 
@@ -69,37 +59,28 @@ export default class RequestService extends Component {
     });
   }
 
-  //   updateService() {
-  //     console.log(this.state.currentService);
-  //     ServiceDataService.update(
-  //       this.state.currentService.service_no,
-  //       this.state.currentService
-  //     )
-  //       .then((response) => {
-  //         console.log(response.data);
-  //         this.setState({
-  //           message: "The Service was updated successfully!",
-  //         });
-  //         this.props.history.push("/view-services");
-  //       })
-  //       .catch((e) => {
-  //         console.log(e);
-  //       });
-  //   }
+  getAcademicUsers() {
+    UserService.getallAcademic()
+      .then((response) => {
+        this.setState({
+          academicStaff: response.data,
+        });
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
 
-  //   deleteService() {
-  //     ServiceDataService.delete(this.state.currentService.service_no)
-  //       .then((response) => {
-  //         console.log(response.data);
-  //         this.props.history.push("/view-services");
-  //       })
-  //       .catch((e) => {
-  //         console.log(e);
-  //       });
-  //   }
+  setSelectedMember(member, index) {
+    this.setState({
+      currentMember: member,
+      currentIndex: index,
+    });
+  }
 
   render() {
-    const { currentService } = this.state;
+    const { currentService, academicStaff } = this.state;
 
     return (
       <div className="container">
@@ -143,9 +124,16 @@ export default class RequestService extends Component {
                 <div className="input-group mb-3">
                   <select className="custom-select" id="inputGroupSelect02">
                     <option defaultValue>Choose...</option>
-                    <option value="1">Dhammika Alkaduwa</option>
-                    <option value="2">Janaka Alawathugoda </option>
-                    <option value="3">Sampath Deegalla</option>
+                    {academicStaff &&
+                      academicStaff.map((member, index) => (
+                        <option
+                          onClick={() => this.setSelectedMember(member, index)}
+                          key={index}
+                          value={member.username}
+                        >
+                          {member.username}
+                        </option>
+                      ))}
                   </select>
                 </div>
                 <label htmlFor="description">Reason for the Request</label>

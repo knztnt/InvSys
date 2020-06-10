@@ -1,17 +1,16 @@
 import React, { Component } from "react";
 import ItemDataService from "../../services/item.service";
+import UserService from "../../services/user-role.service";
 import { Link } from "react-router-dom";
 
 export default class RequestItem extends Component {
   constructor(props) {
     super(props);
-    // this.onChangeNumber = this.onChangeNumber.bind(this);
-    // this.onChangeName = this.onChangeName.bind(this);
     this.onChangeQuantity = this.onChangeQuantity.bind(this);
     this.onChangeReason = this.onChangeReason.bind(this);
     this.getItem = this.getItem.bind(this);
-    // this.updateItem = this.updateItem.bind(this);
-    // this.deleteItem = this.deleteItem.bind(this);
+    this.getAcademicUsers = this.getAcademicUsers.bind(this);
+    this.setSelectedMember = this.setSelectedMember.bind(this);
 
     this.state = {
       currentItem: {
@@ -19,15 +18,18 @@ export default class RequestItem extends Component {
         item_name: "",
         quantity: 0,
         description: "",
-        staffMember: "",
         reason: "",
       },
+      academicStaff: [],
+      currentMember: null,
+      currentIndex: -1,
       message: "",
     };
   }
 
   componentDidMount() {
     this.getItem(this.props.match.params.item_no);
+    this.getAcademicUsers();
     console.log(this.props.match.params.item_no);
   }
 
@@ -70,37 +72,28 @@ export default class RequestItem extends Component {
     });
   }
 
-  //   updateItem() {
-  //     console.log(this.state.currentItem);
-  //     ItemDataService.update(
-  //       this.state.currentItem.item_no,
-  //       this.state.currentItem
-  //     )
-  //       .then((response) => {
-  //         console.log(response.data);
-  //         this.setState({
-  //           message: "The Item was updated successfully!",
-  //         });
-  //         this.props.history.push("/view-items");
-  //       })
-  //       .catch((e) => {
-  //         console.log(e);
-  //       });
-  //   }
+  getAcademicUsers() {
+    UserService.getallAcademic()
+      .then((response) => {
+        this.setState({
+          academicStaff: response.data,
+        });
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
 
-  //   deleteItem() {
-  //     ItemDataService.delete(this.state.currentItem.item_no)
-  //       .then((response) => {
-  //         console.log(response.data);
-  //         this.props.history.push("/view-items");
-  //       })
-  //       .catch((e) => {
-  //         console.log(e);
-  //       });
-  //   }
+  setSelectedMember(member, index) {
+    this.setState({
+      currentMember: member,
+      currentIndex: index,
+    });
+  }
 
   render() {
-    const { currentItem } = this.state;
+    const { currentItem, academicStaff } = this.state;
 
     return (
       <div className="container">
@@ -155,9 +148,16 @@ export default class RequestItem extends Component {
                 <div className="input-group mb-3">
                   <select className="custom-select" id="inputGroupSelect02">
                     <option defaultValue>Choose...</option>
-                    <option value="1">Dhammika Alkaduwa</option>
-                    <option value="2">Janaka Alawathugoda </option>
-                    <option value="3">Sampath Deegalla</option>
+                    {academicStaff &&
+                      academicStaff.map((member, index) => (
+                        <option
+                          onClick={() => this.setSelectedMember(member, index)}
+                          key={index}
+                          value={member.username}
+                        >
+                          {member.username}
+                        </option>
+                      ))}
                   </select>
                 </div>
                 <label htmlFor="description">Reason for the Request</label>
