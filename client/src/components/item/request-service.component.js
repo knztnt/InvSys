@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import ServiceDataService from "../../services/service.service";
 import UserService from "../../services/user-role.service";
+import ServReqService from "../../services/student-service-req.service";
+import AuthService from "../../services/auth.service";
 import { Link } from "react-router-dom";
 
 export default class RequestService extends Component {
@@ -10,6 +12,10 @@ export default class RequestService extends Component {
     this.getService = this.getService.bind(this);
     this.getAcademicUsers = this.getAcademicUsers.bind(this);
     this.setSelectedMember = this.setSelectedMember.bind(this);
+    this.setSelectedMember = this.setSelectedMember.bind(this);
+    this.onChangeStaffMember = this.onChangeStaffMember.bind(this);
+    this.saveRequest = this.saveRequest.bind(this);
+    this.pushBack = this.pushBack.bind(this);
 
     this.state = {
       currentService: {
@@ -19,6 +25,7 @@ export default class RequestService extends Component {
         staffMember: "",
         reason: "",
       },
+      studentId: "",
       academicStaff: [],
       currentMember: null,
       currentIndex: -1,
@@ -30,6 +37,9 @@ export default class RequestService extends Component {
     this.getService(this.props.match.params.service_no);
     this.getAcademicUsers();
     console.log(this.props.match.params.service_no);
+    this.setState({
+      studentId: AuthService.getCurrentUser().username
+    });
   }
 
   getService(service_no) {
@@ -59,6 +69,20 @@ export default class RequestService extends Component {
     });
   }
 
+  onChangeStaffMember(e) {
+    const staffId = e.target.value;
+
+    this.setState(function (prevState) {
+      return {
+        currentService: {
+          ...prevState.currentService,
+          staffId: staffId,
+        },
+      };
+    });
+    console.log(this.state.currentService);
+  }
+
   getAcademicUsers() {
     UserService.getallAcademic()
       .then((response) => {
@@ -77,6 +101,38 @@ export default class RequestService extends Component {
       currentMember: member,
       currentIndex: index,
     });
+  }
+
+  saveRequest() {
+    console.log(this.state.studentId);
+    ServReqService.create(
+      this.state.studentId,
+      this.state.currentService.service_no,
+      this.state.currentService.service_name,
+      this.state.currentService.description,
+      this.state.currentService.staffId,
+      this.state.currentService.reason
+    )
+      .then(response => {
+        this.setState({
+          currentService: response.data,
+          message: "The Request was submitted successfully!",
+          submitted: true
+        });
+        console.log(response.data);
+      })
+      .catch(e => {
+        this.setState({
+          message: "The Request cannot be submitted!",
+          submitted: false
+        });
+        console.log(e);
+      });
+    // this.pushBack();
+  }
+
+  pushBack() {
+    this.props.history.push('/view-items');
   }
 
   render() {
@@ -122,7 +178,10 @@ export default class RequestService extends Component {
                 </div>
                 <label htmlFor="description">Relevent Staff Member</label>
                 <div className="input-group mb-3">
-                  <select className="custom-select" id="inputGroupSelect02">
+                  <select
+                    className="custom-select"
+                    id="inputGroupSelect02"
+                    onChange={this.onChangeStaffMember}>
                     <option defaultValue>Choose...</option>
                     {academicStaff &&
                       academicStaff.map((member, index) => (
@@ -150,16 +209,32 @@ export default class RequestService extends Component {
               </form>
 
               <Link to={"/view-services"}>
-                <button className="btn btn-warning mr-2">Cancel</button>
+                <button className="btn btn-warning mr-2">Back</button>
               </Link>
               <button
                 type="submit"
                 className="btn btn-success"
-              // onClick={this.updateItem}
+                disabled={(this.state.message ? true : false)}
+                onClick={this.saveRequest}
               >
                 Confirm Request
               </button>
-              <p>{this.state.message}</p>
+
+              {this.state.message && (
+                <div className="form-group">
+                  <div
+                    className={
+                      this.state.submitted
+                        ? "alert alert-success"
+                        : "alert alert-danger"
+                    }
+                    role="alert"
+                  >
+                    <p>{this.state.message}</p>
+                  </div>
+                </div>
+              )}
+
             </div>
           </div>
         </div>
