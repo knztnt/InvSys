@@ -18,7 +18,7 @@ module.exports = (sequelize, Sequelize) => {
             reason: {
                 type: Sequelize.STRING(1000)
             },
-            proceededAt: {
+            proceededTime: {
                 type: Sequelize.DATE
             }
         },

@@ -24,7 +24,7 @@ module.exports = (sequelize, Sequelize) => {
             isApproved: {
                 type: Sequelize.BOOLEAN,
             },
-            proceededAt: {
+            proceededTime: {
                 type: Sequelize.DATE
             },
             reviewedTime: {
