@@ -16,10 +16,10 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.INTEGER
             },
             description: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING(1000)
             },
             reason: {
-                type: Sequelize.STRING(1234)
+                type: Sequelize.STRING(1000)
             },
             proceededAt: {
                 type: Sequelize.DATE

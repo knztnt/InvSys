@@ -13,17 +13,16 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.STRING
             },
             description: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING(1000)
             },
             staffId: {
                 type: Sequelize.STRING
             },
             reason: {
-                type: Sequelize.STRING(1234)
+                type: Sequelize.STRING(1000)
             },
             isApproved: {
                 type: Sequelize.BOOLEAN,
-                defaultValue: false
             },
             proceededAt: {
                 type: Sequelize.DATE
