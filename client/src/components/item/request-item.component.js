@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ItemDataService from "../../services/item.service";
 import UserService from "../../services/user-role.service";
 import ItemReqService from "../../services/student-item-req.service";
+import AcaItemReqService from "../../services/academic-item-req.service";
 import AuthService from "../../services/auth.service";
 import { Link } from "react-router-dom";
 
@@ -15,6 +16,7 @@ export default class RequestItem extends Component {
     this.setSelectedMember = this.setSelectedMember.bind(this);
     this.onChangeStaffMember = this.onChangeStaffMember.bind(this);
     this.saveRequest = this.saveRequest.bind(this);
+    this.saveAcademicRequest = this.saveAcademicRequest.bind(this);
     this.pushBack = this.pushBack.bind(this);
 
     this.state = {
@@ -26,11 +28,12 @@ export default class RequestItem extends Component {
         staffId: "",
         reason: "",
       },
-      studentId: "",
+      userId: "",
       academicStaff: [],
       staffMember: null,
       currentIndex: -1,
       message: "",
+      isStudent: false
     };
   }
 
@@ -39,7 +42,8 @@ export default class RequestItem extends Component {
     this.getAcademicUsers();
     console.log(this.props.match.params.item_no);
     this.setState({
-      studentId: AuthService.getCurrentUser().username
+      userId: AuthService.getCurrentUser().username,
+      isStudent: AuthService.getCurrentUser().roles.includes("ROLE_STUDENT")
     });
   }
 
@@ -117,14 +121,42 @@ export default class RequestItem extends Component {
   }
 
   saveRequest() {
-    console.log(this.state.studentId);
+    console.log(this.state.userId);
     ItemReqService.create(
-      this.state.studentId,
+      this.state.userId,
       this.state.currentItem.item_no,
       this.state.currentItem.item_name,
       this.state.currentItem.quantity,
       this.state.currentItem.description,
       this.state.currentItem.staffId,
+      this.state.currentItem.reason
+    )
+      .then(response => {
+        this.setState({
+          currentService: response.data,
+          message: "The Request was submitted successfully!",
+          submitted: true
+        });
+        console.log(response.data);
+      })
+      .catch(e => {
+        this.setState({
+          message: "The Request cannot be submitted!",
+          submitted: false
+        });
+        console.log(e);
+      });
+    // this.pushBack();
+  }
+
+  saveAcademicRequest() {
+    console.log(this.state.userId);
+    AcaItemReqService.create(
+      this.state.userId,
+      this.state.currentItem.item_no,
+      this.state.currentItem.item_name,
+      this.state.currentItem.quantity,
+      this.state.currentItem.description,
       this.state.currentItem.reason
     )
       .then(response => {
@@ -201,25 +233,28 @@ export default class RequestItem extends Component {
                     disabled
                   />
                 </div>
-                <label htmlFor="description">Relevent Staff Member</label>
-                <div className="input-group mb-3">
-                  <select
-                    className="custom-select"
-                    id="inputGroupSelect02"
-                    onChange={this.onChangeStaffMember}>
-                    <option defaultValue>Choose...</option>
-                    {academicStaff &&
-                      academicStaff.map((member, index) => (
-                        <option
-                          onClick={() => { this.setSelectedMember(member, index); }}
-                          key={index}
-                          value={member.username}
-                        >
-                          {member.username}
-                        </option>
-                      ))}
-                  </select>
-                </div>
+                {this.state.isStudent && (
+                  <div>
+                    <label htmlFor="description">Relevent Staff Member</label>
+                    <div className="input-group mb-3">
+                      <select
+                        className="custom-select"
+                        id="inputGroupSelect02"
+                        onChange={this.onChangeStaffMember}>
+                        <option defaultValue>Choose...</option>
+                        {academicStaff &&
+                          academicStaff.map((member, index) => (
+                            <option
+                              onClick={() => { this.setSelectedMember(member, index); }}
+                              key={index}
+                              value={member.username}
+                            >
+                              {member.username}
+                            </option>
+                          ))}
+                      </select>
+                    </div>
+                  </div>)}
                 <label htmlFor="description">Reason for the Request</label>
                 <div className="input-group mb-3">
                   <div className="input-group-prepend"></div>
@@ -239,7 +274,7 @@ export default class RequestItem extends Component {
                 type="submit"
                 className="btn btn-success"
                 disabled={(this.state.message ? true : false)}
-                onClick={this.saveRequest}
+                onClick={this.state.isStudent ? this.saveRequest : this.saveAcademicRequest}
               >
                 Confirm Request
               </button>
