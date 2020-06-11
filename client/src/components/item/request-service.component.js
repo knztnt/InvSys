@@ -41,7 +41,8 @@ export default class RequestService extends Component {
     this.getAcademicUsers();
     console.log(this.props.match.params.service_no);
     this.setState({
-      userId: AuthService.getCurrentUser().username
+      userId: AuthService.getCurrentUser().username,
+      isStudent: AuthService.getCurrentUser().roles.includes("ROLE_STUDENT")
     });
   }
 
