@@ -15,6 +15,7 @@ export default class RequestItem extends Component {
     this.setSelectedMember = this.setSelectedMember.bind(this);
     this.onChangeStaffMember = this.onChangeStaffMember.bind(this);
     this.saveRequest = this.saveRequest.bind(this);
+    this.pushBack = this.pushBack.bind(this);
 
     this.state = {
       currentItem: {
@@ -128,15 +129,24 @@ export default class RequestItem extends Component {
     )
       .then(response => {
         this.setState({
-          currentItem: response.data,
-
+          currentService: response.data,
+          message: "The Request was submitted successfully!",
           submitted: true
         });
         console.log(response.data);
       })
       .catch(e => {
+        this.setState({
+          message: "The Request cannot be submitted!",
+          submitted: false
+        });
         console.log(e);
       });
+    // this.pushBack();
+  }
+
+  pushBack() {
+    this.props.history.push('/view-items');
   }
 
   render() {
@@ -223,20 +233,36 @@ export default class RequestItem extends Component {
                 </div>
               </form>
               <Link to={"/view-items"}>
-                <button className="btn btn-warning mr-2">Cancel</button>
+                <button className="btn btn-secondary mr-2">Back</button>
               </Link>
               <button
                 type="submit"
                 className="btn btn-success"
+                disabled={(this.state.message ? true : false)}
                 onClick={this.saveRequest}
               >
                 Confirm Request
               </button>
-              <p>{this.state.message}</p>
+
+              {this.state.submitted && (
+                <div className="form-group">
+                  <div
+                    className={
+                      this.state.submitted
+                        ? "alert alert-success"
+                        : "alert alert-danger"
+                    }
+                    role="alert"
+                  >
+                    <p>{this.state.message}</p>
+                  </div>
+                </div>
+              )}
+
             </div>
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }
