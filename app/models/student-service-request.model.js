@@ -26,12 +26,15 @@ module.exports = (sequelize, Sequelize) => {
             },
             proceededAt: {
                 type: Sequelize.DATE
+            },
+            reviewedTime: {
+                type: Sequelize.DATE
             }
         },
         {
             timestamps: true,
             createdAt: 'requestedTime',
-            updatedAt: 'reviewedTime'
+            updatedAt: false
         }
     );
 
