@@ -209,7 +209,7 @@ export default class RequestService extends Component {
               </form>
 
               <Link to={"/view-services"}>
-                <button className="btn btn-warning mr-2">Back</button>
+                <button className="btn btn-secondary mr-2">Back</button>
               </Link>
               <button
                 type="submit"
