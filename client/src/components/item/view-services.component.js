@@ -130,7 +130,7 @@ export default class ServicesList extends Component {
             </div>
           </div>
           <div className="col-md-6">
-            <h4>Services List</h4>
+            <h4>Services</h4>
 
             <ul className="list-group">
               {service &&

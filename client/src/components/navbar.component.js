@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import logo from "../navbar-brand-dark.png";
+import logo from "../navbar-brand-light.png";
 
 import AuthService from "../services/auth.service";
 
@@ -40,7 +40,7 @@ class Navbar extends Component {
         const { currentUser } = this.state;
 
         return (
-            <nav className="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow">
+            <nav className="navbar navbar-light bg-light sticky-top flex-md-nowrap p-0 shadow">
                 <a className="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="/">
                     <img
                         src={logo}

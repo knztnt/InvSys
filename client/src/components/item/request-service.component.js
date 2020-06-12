@@ -1,16 +1,23 @@
 import React, { Component } from "react";
 import ServiceDataService from "../../services/service.service";
+import UserService from "../../services/user-role.service";
+import ServReqService from "../../services/student-service-req.service";
+import AcaServReqService from "../../services/academic-service-req.service";
+import AuthService from "../../services/auth.service";
 import { Link } from "react-router-dom";
 
 export default class RequestService extends Component {
   constructor(props) {
     super(props);
-    // this.onChangeNumber = this.onChangeNumber.bind(this);
-    // this.onChangeName = this.onChangeName.bind(this);
     this.onChangeReason = this.onChangeReason.bind(this);
     this.getService = this.getService.bind(this);
-    // this.updateService = this.updateService.bind(this);
-    // this.deleteService = this.deleteService.bind(this);
+    this.getAcademicUsers = this.getAcademicUsers.bind(this);
+    this.setSelectedMember = this.setSelectedMember.bind(this);
+    this.setSelectedMember = this.setSelectedMember.bind(this);
+    this.onChangeStaffMember = this.onChangeStaffMember.bind(this);
+    this.saveRequest = this.saveRequest.bind(this);
+    this.saveAcademicRequest = this.saveAcademicRequest.bind(this);
+    this.pushBack = this.pushBack.bind(this);
 
     this.state = {
       currentService: {
@@ -20,13 +27,23 @@ export default class RequestService extends Component {
         staffMember: "",
         reason: "",
       },
+      userId: "",
+      academicStaff: [],
+      currentMember: null,
+      currentIndex: -1,
       message: "",
+      isStudent: false
     };
   }
 
   componentDidMount() {
     this.getService(this.props.match.params.service_no);
+    this.getAcademicUsers();
     console.log(this.props.match.params.service_no);
+    this.setState({
+      userId: AuthService.getCurrentUser().username,
+      isStudent: AuthService.getCurrentUser().roles.includes("ROLE_STUDENT")
+    });
   }
 
   getService(service_no) {
@@ -43,19 +60,6 @@ export default class RequestService extends Component {
       });
   }
 
-  //   onChangeAvailability(e) {
-  //     const availability = e.target.value;
-
-  //     this.setState(function (prevState) {
-  //       return {
-  //         currentService: {
-  //           ...prevState.currentService,
-  //           availability: availability,
-  //         },
-  //       };
-  //     });
-  //   }
-
   onChangeReason(e) {
     const reason = e.target.value;
 
@@ -69,37 +73,101 @@ export default class RequestService extends Component {
     });
   }
 
-  //   updateService() {
-  //     console.log(this.state.currentService);
-  //     ServiceDataService.update(
-  //       this.state.currentService.service_no,
-  //       this.state.currentService
-  //     )
-  //       .then((response) => {
-  //         console.log(response.data);
-  //         this.setState({
-  //           message: "The Service was updated successfully!",
-  //         });
-  //         this.props.history.push("/view-services");
-  //       })
-  //       .catch((e) => {
-  //         console.log(e);
-  //       });
-  //   }
+  onChangeStaffMember(e) {
+    const staffId = e.target.value;
 
-  //   deleteService() {
-  //     ServiceDataService.delete(this.state.currentService.service_no)
-  //       .then((response) => {
-  //         console.log(response.data);
-  //         this.props.history.push("/view-services");
-  //       })
-  //       .catch((e) => {
-  //         console.log(e);
-  //       });
-  //   }
+    this.setState(function (prevState) {
+      return {
+        currentService: {
+          ...prevState.currentService,
+          staffId: staffId,
+        },
+      };
+    });
+    console.log(this.state.currentService);
+  }
+
+  getAcademicUsers() {
+    UserService.getallAcademic()
+      .then((response) => {
+        this.setState({
+          academicStaff: response.data,
+        });
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+
+  setSelectedMember(member, index) {
+    this.setState({
+      currentMember: member,
+      currentIndex: index,
+    });
+  }
+
+  saveRequest() {
+    console.log(this.state.userId);
+    ServReqService.create(
+      this.state.userId,
+      this.state.currentService.service_no,
+      this.state.currentService.service_name,
+      this.state.currentService.description,
+      this.state.currentService.staffId,
+      this.state.currentService.reason
+    )
+      .then(response => {
+        this.setState({
+          currentService: response.data,
+          message: "The Request was submitted successfully!",
+          submitted: true
+        });
+        console.log(response.data);
+      })
+      .catch(e => {
+        this.setState({
+          message: "The Request cannot be submitted!",
+          submitted: false
+        });
+        console.log(e);
+      });
+    // this.pushBack();
+  }
+
+  saveAcademicRequest() {
+    console.log(this.state.userId);
+    AcaServReqService.create(
+      this.state.userId,
+      this.state.currentService.service_no,
+      this.state.currentService.service_name,
+      this.state.currentService.description,
+      this.state.currentService.reason
+    )
+      .then(response => {
+        this.setState({
+          currentService: response.data,
+          message: "The Request was submitted successfully!",
+          submitted: true
+        });
+        console.log(response.data);
+      })
+      .catch(e => {
+        this.setState({
+          message: "The Request cannot be submitted!",
+          submitted: false
+        });
+        console.log(e);
+      });
+    // this.pushBack();
+  }
+
+  pushBack() {
+    this.props.history.push('/view-items');
+  }
 
   render() {
-    const { currentService } = this.state;
+    const { currentService, academicStaff } = this.state;
 
     return (
       <div className="container">
@@ -139,15 +207,28 @@ export default class RequestService extends Component {
                     disabled
                   />
                 </div>
-                <label htmlFor="description">Relevent Staff Member</label>
-                <div className="input-group mb-3">
-                  <select className="custom-select" id="inputGroupSelect02">
-                    <option defaultValue>Choose...</option>
-                    <option value="1">Dhammika Alkaduwa</option>
-                    <option value="2">Janaka Alawathugoda </option>
-                    <option value="3">Sampath Deegalla</option>
-                  </select>
-                </div>
+                {this.state.isStudent && (
+                  <div>
+                    <label htmlFor="description">Relevent Staff Member</label>
+                    <div className="input-group mb-3">
+                      <select
+                        className="custom-select"
+                        id="inputGroupSelect02"
+                        onChange={this.onChangeStaffMember}>
+                        <option defaultValue>Choose...</option>
+                        {academicStaff &&
+                          academicStaff.map((member, index) => (
+                            <option
+                              onClick={() => this.setSelectedMember(member, index)}
+                              key={index}
+                              value={member.username}
+                            >
+                              {member.username}
+                            </option>
+                          ))}
+                      </select>
+                    </div>
+                  </div>)}
                 <label htmlFor="description">Reason for the Request</label>
                 <div className="input-group mb-3">
                   <div className="input-group-prepend"></div>
@@ -162,16 +243,32 @@ export default class RequestService extends Component {
               </form>
 
               <Link to={"/view-services"}>
-                <button className="btn btn-warning mr-2">Cancel</button>
+                <button className="btn btn-secondary mr-2">Back</button>
               </Link>
               <button
                 type="submit"
                 className="btn btn-success"
-              // onClick={this.updateItem}
+                disabled={(this.state.message ? true : false)}
+                onClick={this.state.isStudent ? this.saveRequest : this.saveAcademicRequest}
               >
                 Confirm Request
               </button>
-              <p>{this.state.message}</p>
+
+              {this.state.message && (
+                <div className="form-group">
+                  <div
+                    className={
+                      this.state.submitted
+                        ? "alert alert-success"
+                        : "alert alert-danger"
+                    }
+                    role="alert"
+                  >
+                    <p>{this.state.message}</p>
+                  </div>
+                </div>
+              )}
+
             </div>
           </div>
         </div>
