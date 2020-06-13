@@ -129,6 +129,7 @@ export default class ItemRequest extends Component {
                         </label>{" "}
                         {currentRequest.item_name}
                       </div>
+
                       <div>
                         <label>
                           <strong>Description:</strong>
@@ -146,6 +147,12 @@ export default class ItemRequest extends Component {
                           <strong>Reason: </strong>
                         </label>{" "}
                         {currentRequest.reason}
+                      </div>
+                      <div>
+                        <label>
+                          <strong>Staff Member:</strong>
+                        </label>{" "}
+                        {currentRequest.staffId}
                       </div>
                     </div>
                   ) : (

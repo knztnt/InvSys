@@ -40,6 +40,10 @@ export default class ServicesList extends Component {
     });
   }
 
+  // isApproved(){
+  //   this.setState
+  // }
+
   setActiveRequest(request, index) {
     this.setState({
       currentRequest: request,
@@ -129,6 +133,12 @@ export default class ServicesList extends Component {
                           <strong>Reason: </strong>
                         </label>{" "}
                         {currentRequest.reason}
+                      </div>
+                      <div>
+                        <label>
+                          <strong>Staff Member:</strong>
+                        </label>{" "}
+                        {currentRequest.staffId}
                       </div>
                     </div>
                   ) : (

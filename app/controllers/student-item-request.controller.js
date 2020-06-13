@@ -40,11 +40,12 @@ exports.create = (req, res) => {
 
 exports.findAll = (req, res) => {
   const item_name = req.query.item_name;
-  var condition = item_name
-    ? { service_name: { [Op.like]: `%${service_name}%` } }
-    : null;
 
-  StudItemReq.findAll({ where: condition })
+  // var condition = item_name
+  //   ? { item_name: { [Op.like]: `%${item_name}%` } }
+  //   : null;
+
+  StudItemReq.findAll({ where: { isApproved: null } })
     .then((data) => {
       res.send(data);
     })

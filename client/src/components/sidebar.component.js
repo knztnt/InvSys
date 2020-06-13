@@ -143,7 +143,8 @@ class Sidebar extends Component {
                   }
                   onClick={() => this.setActiveItem(7)}
                 >
-                  <i className="fas fa-microchip fa-fw"></i> View Item Request
+                  <i className="fas fa-microchip fa-fw"></i> View Student Item
+                  Request
                 </Link>
               )}
               {showAcademicBoard && (
@@ -155,8 +156,8 @@ class Sidebar extends Component {
                   }
                   onClick={() => this.setActiveItem(8)}
                 >
-                  <i className="fas fa-microscope fa-fw"></i> View Service
-                  Request
+                  <i className="fas fa-microscope fa-fw"></i> View Student
+                  Service Request
                 </Link>
               )}
 
