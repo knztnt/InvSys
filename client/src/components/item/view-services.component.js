@@ -190,7 +190,7 @@ export default class ServicesList extends Component {
                       <button
                         type="button"
                         className="btn btn-success"
-                        disabled={(currentService.availability === 0 ? true : false)}
+                        disabled={(currentService.availability === false ? true : false)}
                       >
                         Request Service
                       </button>
