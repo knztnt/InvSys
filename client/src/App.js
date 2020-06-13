@@ -23,6 +23,7 @@ import ViewService from "./components/item/view-services.component";
 import UpdateService from "./components/item/update-service.component";
 import RequestItem from "./components/item/request-item.component";
 import RequestService from "./components/item/request-service.component";
+import ViewRequest from "./components/item/view-request.component";
 
 class App extends Component {
   constructor(props) {
@@ -87,22 +88,24 @@ class App extends Component {
                         path="/service/request/:service_no"
                         component={RequestService}
                       />
+                      <Route path="/view-requiests" component={ViewRequest} />
                     </Switch>
                   </div>
                 </main>
               </div>
-            </div>) : (
-              <div>
-                <Switch>
-                  <Route exact path={["/", "/home"]} component={Home} />
-                  <Route exact path="/login" component={Login} />
-                  {/* <div className="container d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 mt-3 border-bottom">
+            </div>
+          ) : (
+            <div>
+              <Switch>
+                <Route exact path={["/", "/home"]} component={Home} />
+                <Route exact path="/login" component={Login} />
+                {/* <div className="container d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 mt-3 border-bottom">
                     
                     <Route exact path="/register" component={Register} />
                   </div> */}
-                </Switch>
-              </div>
-            )}
+              </Switch>
+            </div>
+          )}
         </div>
       </Router>
     );
