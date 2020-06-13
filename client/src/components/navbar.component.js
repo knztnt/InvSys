@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import logo from "../navbar-brand-dark.png";
+import logo from "../navbar-brand-light.png";
 
 import AuthService from "../services/auth.service";
 
@@ -40,7 +40,7 @@ class Navbar extends Component {
         const { currentUser } = this.state;
 
         return (
-            <nav className="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow">
+            <nav className="navbar navbar-light bg-light sticky-top flex-md-nowrap p-0 shadow">
                 <a className="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="/">
                     <img
                         src={logo}
@@ -67,7 +67,8 @@ class Navbar extends Component {
                                 <button
                                     type="button"
                                     className="btn btn-primary btn-sm">
-                                    LogOut
+                                    <i className="fas fa-sign-out-alt fa-fw"></i>
+                                     LogOut
                                 </button>
                             </a>
                         </li>
@@ -80,6 +81,7 @@ class Navbar extends Component {
                                         type="button"
                                         className="btn btn-primary btn-sm">
                                         Login
+                                        <i className="fas fa-sign-in-alt fa-fw"></i>
                                     </button>
                                 </a>
                             </li>
@@ -93,7 +95,8 @@ class Navbar extends Component {
                             </li>
                         </div> */
 
-                    )}
+                    )
+                }
             </nav>
         );
     }

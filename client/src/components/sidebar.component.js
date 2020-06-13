@@ -14,7 +14,7 @@ class Sidebar extends Component {
       showNonacBoard: false,
       showAdminBoard: false,
       currentUser: undefined,
-      currentIndex: 15,
+      currentIndex: 16,
     };
   }
 
@@ -65,7 +65,7 @@ class Sidebar extends Component {
                   }
                   onClick={() => this.setActiveItem(1)}
                 >
-                  Dashboard
+                  <i className="fas fa-home fa-fw"></i> Dashboard
                 </Link>
               )}
 
@@ -78,7 +78,7 @@ class Sidebar extends Component {
                   }
                   onClick={() => this.setActiveItem(2)}
                 >
-                  View Items
+                  <i className="fas fa-microchip fa-fw"></i> View Items
                 </Link>
               )}
 
@@ -91,7 +91,7 @@ class Sidebar extends Component {
                   }
                   onClick={() => this.setActiveItem(3)}
                 >
-                  View Services
+                  <i className="fas fa-microscope fa-fw"></i> View Services
                 </Link>
               )}
 
@@ -105,7 +105,7 @@ class Sidebar extends Component {
                   }
                   onClick={() => this.setActiveItem(4)}
                 >
-                  Dashboard
+                  <i className="fas fa-home fa-fw"></i> Dashboard
                 </Link>
               )}
 
@@ -118,7 +118,7 @@ class Sidebar extends Component {
                   }
                   onClick={() => this.setActiveItem(5)}
                 >
-                  View Items
+                  <i className="fas fa-microchip fa-fw"></i> View Items
                 </Link>
               )}
 
@@ -131,19 +131,32 @@ class Sidebar extends Component {
                   }
                   onClick={() => this.setActiveItem(6)}
                 >
-                  View Services
+                  <i className="fas fa-microscope fa-fw"></i> View Services
                 </Link>
               )}
               {showAcademicBoard && (
                 <Link
-                  to={"/view-requiests"}
+                  to={"/view-item-request"}
                   className={
                     "nav-link " +
                     (7 === this.state.currentIndex ? "active" : "")
                   }
-                  onClick={() => this.setActiveItem(6)}
+                  onClick={() => this.setActiveItem(7)}
                 >
-                  View Requests
+                  <i className="fas fa-microchip fa-fw"></i> View Item Request
+                </Link>
+              )}
+              {showAcademicBoard && (
+                <Link
+                  to={"/view-services-request"}
+                  className={
+                    "nav-link " +
+                    (8 === this.state.currentIndex ? "active" : "")
+                  }
+                  onClick={() => this.setActiveItem(8)}
+                >
+                  <i className="fas fa-microscope fa-fw"></i> View Service
+                  Request
                 </Link>
               )}
 
@@ -153,11 +166,11 @@ class Sidebar extends Component {
                   to={"/non-academic"}
                   className={
                     "nav-link " +
-                    (8 === this.state.currentIndex ? "active" : "")
+                    (9 === this.state.currentIndex ? "active" : "")
                   }
-                  onClick={() => this.setActiveItem(8)}
+                  onClick={() => this.setActiveItem(9)}
                 >
-                  Dashboard
+                  <i className="fas fa-home fa-fw"></i> Dashboard
                 </Link>
               )}
 
@@ -166,11 +179,11 @@ class Sidebar extends Component {
                   to={"/add-item"}
                   className={
                     "nav-link " +
-                    (9 === this.state.currentIndex ? "active" : "")
+                    (10 === this.state.currentIndex ? "active" : "")
                   }
-                  onClick={() => this.setActiveItem(9)}
+                  onClick={() => this.setActiveItem(10)}
                 >
-                  Add Items
+                  <i className="fas fa-plus-square fa-fw"></i> Add Items
                 </Link>
               )}
 
@@ -179,11 +192,11 @@ class Sidebar extends Component {
                   to={"/view-items"}
                   className={
                     "nav-link " +
-                    (10 === this.state.currentIndex ? "active" : "")
+                    (11 === this.state.currentIndex ? "active" : "")
                   }
-                  onClick={() => this.setActiveItem(10)}
+                  onClick={() => this.setActiveItem(11)}
                 >
-                  Manage Items
+                  <i className="fas fa-edit fa-fw"></i> Manage Items
                 </Link>
               )}
 
@@ -192,11 +205,11 @@ class Sidebar extends Component {
                   to={"/add-service"}
                   className={
                     "nav-link " +
-                    (11 === this.state.currentIndex ? "active" : "")
+                    (12 === this.state.currentIndex ? "active" : "")
                   }
-                  onClick={() => this.setActiveItem(11)}
+                  onClick={() => this.setActiveItem(12)}
                 >
-                  Add Services
+                  <i className="fas fa-plus-circle fa-fw"></i> Add Services
                 </Link>
               )}
 
@@ -205,11 +218,11 @@ class Sidebar extends Component {
                   to={"/view-services"}
                   className={
                     "nav-link " +
-                    (12 === this.state.currentIndex ? "active" : "")
+                    (13 === this.state.currentIndex ? "active" : "")
                   }
-                  onClick={() => this.setActiveItem(12)}
+                  onClick={() => this.setActiveItem(13)}
                 >
-                  Manage Services
+                  <i className="fas fa-edit fa-fw"></i> Manage Services
                 </Link>
               )}
 
@@ -219,11 +232,11 @@ class Sidebar extends Component {
                   to={"/admin"}
                   className={
                     "nav-link " +
-                    (13 === this.state.currentIndex ? "active" : "")
+                    (14 === this.state.currentIndex ? "active" : "")
                   }
-                  onClick={() => this.setActiveItem(13)}
+                  onClick={() => this.setActiveItem(14)}
                 >
-                  Admin Dashboard
+                  <i className="fas fa-home fa-fw"></i> Admin Dashboard
                 </Link>
               )}
 
@@ -232,11 +245,11 @@ class Sidebar extends Component {
                   to={"/register"}
                   className={
                     "nav-link " +
-                    (14 === this.state.currentIndex ? "active" : "")
+                    (15 === this.state.currentIndex ? "active" : "")
                   }
-                  onClick={() => this.setActiveItem(14)}
+                  onClick={() => this.setActiveItem(15)}
                 >
-                  Register Users
+                  <i className="fas fa-user-plus fa-fw"></i> Register Users
                 </Link>
               )}
 
@@ -246,10 +259,11 @@ class Sidebar extends Component {
                   to={"/profile"}
                   className={
                     "nav-link " +
-                    (15 === this.state.currentIndex ? "active" : "")
+                    (16 === this.state.currentIndex ? "active" : "")
                   }
-                  onClick={() => this.setActiveItem(15)}
+                  onClick={() => this.setActiveItem(16)}
                 >
+                  <i className="fas fa-user-alt fa-fw"></i>{" "}
                   {currentUser.username}
                 </Link>
               )}

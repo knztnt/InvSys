@@ -23,7 +23,8 @@ import ViewService from "./components/item/view-services.component";
 import UpdateService from "./components/item/update-service.component";
 import RequestItem from "./components/item/request-item.component";
 import RequestService from "./components/item/request-service.component";
-import ViewRequest from "./components/item/view-request.component";
+import ViewItemRequest from "./components/item/view-item-request.component";
+import ViewServiceRequest from "./components/item/view-service-request.component";
 
 class App extends Component {
   constructor(props) {
@@ -81,14 +82,21 @@ class App extends Component {
                         component={UpdateService}
                       />
                       <Route
-                        path="/item-request/:item_no"
+                        path="/item/request/:item_no"
                         component={RequestItem}
                       />
                       <Route
                         path="/service/request/:service_no"
                         component={RequestService}
                       />
-                      <Route path="/view-requiests" component={ViewRequest} />
+                      <Route
+                        path="/view-item-request"
+                        component={ViewItemRequest}
+                      />
+                      <Route
+                        path="/view-services-request"
+                        component={ViewServiceRequest}
+                      />
                     </Switch>
                   </div>
                 </main>

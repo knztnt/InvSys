@@ -86,26 +86,19 @@ export default class ItemsList extends Component {
 
   searchName() {
     ItemDataService.findByName(this.state.searchName)
-      .then((response) => {
+      .then(response => {
         this.setState({
-          items: response.data,
+          items: response.data
         });
         console.log(response.data);
       })
-      .catch((e) => {
+      .catch(e => {
         console.log(e);
       });
   }
 
   render() {
-    const {
-      searchName,
-      items,
-      currentItem,
-      currentIndex,
-      showNonacBoard,
-      showAdminBoard,
-    } = this.state;
+    const { searchName, items, currentItem, currentIndex, showNonacBoard, showAdminBoard } = this.state;
 
     return (
       <div className="container">
@@ -144,16 +137,7 @@ export default class ItemsList extends Component {
                     key={index}
                   >
                     {item.item_name}
-                    <span
-                      className={
-                        "badge badge-pill " +
-                        (item.quantity === 0
-                          ? "badge-warning"
-                          : "badge-primary")
-                      }
-                    >
-                      {item.quantity}
-                    </span>
+                    <span className={"badge badge-pill " + (item.quantity === 0 ? "badge-warning" : "badge-primary")}>{item.quantity}</span>
                   </button>
                 ))}
             </div>
@@ -195,28 +179,32 @@ export default class ItemsList extends Component {
 
                 {showAdminBoard || showNonacBoard ? (
                   <Link to={"/update-items/" + currentItem.item_no}>
-                    <button type="button" className="btn btn-warning">
-                      Update Item
-                    </button>
-                  </Link>
-                ) : (
-                  <Link to={"/item/request/" + currentItem.item_no}>
                     <button
                       type="button"
-                      className="btn btn-success"
-                      disabled={currentItem.quantity === 0 ? true : false}
+                      className="btn btn-warning"
                     >
-                      Request Item
-                    </button>
+                      Update Item
+                                    </button>
                   </Link>
-                )}
+                ) : (
+                    <Link to={"/item/request/" + currentItem.item_no}>
+                      <button
+                        type="button"
+                        className="btn btn-success"
+                        disabled={(currentItem.quantity === 0 ? true : false)}
+                      >
+                        Request Item
+                      </button>
+                    </Link>
+                  )}
+
               </div>
             ) : (
-              <div>
-                <br />
-                <p>Please click on a Item...</p>
-              </div>
-            )}
+                <div>
+                  <br />
+                  <p>Please click on a Item...</p>
+                </div>
+              )}
           </div>
         </div>
       </div>
