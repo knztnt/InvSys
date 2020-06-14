@@ -39,6 +39,7 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.user = require("../models/user.model.js")(sequelize, Sequelize);
+db.profile = require("../models/profile.model.js")(sequelize, Sequelize);
 db.role = require("../models/role.model.js")(sequelize, Sequelize);
 db.item = require("../models/item.model.js")(sequelize, Sequelize);
 db.user_roles = require("../models/user-roles.model.js")(sequelize, Sequelize);
@@ -59,6 +60,16 @@ db.user.belongsToMany(db.role, {
     through: "user_roles",
     foreignKey: "username",
     otherKey: "roleId"
+});
+
+// One profile has one user
+db.user.hasOne(db.profile, {
+    foreignKey: 'username',
+    targetKey: 'username'
+});
+db.profile.belongsTo(db.user, {
+    foreignKey: 'username',
+    targetKey: 'username'
 });
 
 db.ROLES = ["admin", "non-academic", "academic", "student"];
