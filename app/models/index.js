@@ -72,6 +72,85 @@ db.profile.belongsTo(db.user, {
     targetKey: 'username'
 });
 
+// one item has many requests
+db.item.hasMany(db.student_item_request, {
+    foreignKey: 'item_no',
+    targetKey: 'item_no'
+});
+db.student_item_request.belongsTo(db.item, {
+    foreignKey: 'item_no',
+    targetKey: 'item_no'
+});
+
+db.item.hasMany(db.academic_item_request, {
+    foreignKey: 'item_no',
+    targetKey: 'item_no'
+});
+db.academic_item_request.belongsTo(db.item, {
+    foreignKey: 'item_no',
+    targetKey: 'item_no'
+});
+
+
+// one service has many requests
+db.service.hasMany(db.student_service_request, {
+    foreignKey: 'service_no',
+    targetKey: 'service_no'
+});
+db.student_service_request.belongsTo(db.service, {
+    foreignKey: 'service_no',
+    targetKey: 'service_no'
+});
+
+db.service.hasMany(db.academic_service_request, {
+    foreignKey: 'service_no',
+    targetKey: 'service_no'
+});
+db.academic_service_request.belongsTo(db.service, {
+    foreignKey: 'service_no',
+    targetKey: 'service_no'
+});
+
+
+// one student can have many requests
+db.user.hasMany(db.student_item_request, {
+    foreignKey: 'studentId',
+    targetKey: 'studentId'
+});
+db.student_item_request.belongsTo(db.user, {
+    foreignKey: 'studentId',
+    targetKey: 'username'
+});
+
+db.user.hasMany(db.student_service_request, {
+    foreignKey: 'studentId',
+    targetKey: 'studentId'
+});
+db.student_service_request.belongsTo(db.user, {
+    foreignKey: 'studentId',
+    targetKey: 'username'
+});
+
+
+// one staff member can have many requests
+db.user.hasMany(db.academic_item_request, {
+    foreignKey: 'academicId',
+    targetKey: 'academicId'
+});
+db.academic_item_request.belongsTo(db.user, {
+    foreignKey: 'academicId',
+    targetKey: 'username'
+});
+
+db.user.hasMany(db.academic_service_request, {
+    foreignKey: 'academicId',
+    targetKey: 'academicId'
+});
+db.academic_service_request.belongsTo(db.user, {
+    foreignKey: 'academicId',
+    targetKey: 'username'
+});
+
 db.ROLES = ["admin", "non-academic", "academic", "student"];
 
 module.exports = db;
