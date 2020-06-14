@@ -2,6 +2,7 @@ const db = require("../models");
 const config = require("../config/auth.config");
 const User = db.user;
 const Role = db.role;
+const Profile = db.profile;
 
 const Op = db.Sequelize.Op;
 
@@ -10,7 +11,7 @@ var bcrypt = require("bcryptjs");
 
 // sign-up function
 exports.signup = (req, res) => {
-    // console.log(req.body);
+    console.log(req.body);
     // Save User to Database
     User.create({
         username: req.body.username,
@@ -28,7 +29,13 @@ exports.signup = (req, res) => {
                     user.setRoles(roles).then(() => {
                         res.send({ message: "User was registered successfully!" });
                     });
-                });
+                }).then(
+                    Profile.create({
+                        username: req.body.username,
+                        first_name: req.body.first_name,
+                        last_name: req.body.last_name,
+                    })
+                );
             }
             else {
                 // user role = 1
