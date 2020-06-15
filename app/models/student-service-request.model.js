@@ -19,16 +19,10 @@ module.exports = (sequelize, Sequelize) => {
             },
             reason: {
                 type: Sequelize.STRING(1000)
+            },
+            isReviewed: {
+                type: Sequelize.BOOLEAN,
             }
-            // isApproved: {
-            //     type: Sequelize.BOOLEAN,
-            // },
-            // proceededTime: {
-            //     type: Sequelize.DATE
-            // },
-            // reviewedTime: {
-            //     type: Sequelize.DATE
-            // }
         },
         {
             timestamps: true,
