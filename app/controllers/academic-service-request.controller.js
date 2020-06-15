@@ -17,8 +17,6 @@ exports.create = (req, res) => {
     const request = {
         academicId: req.body.academicId,
         service_no: req.body.service_no,
-        service_name: req.body.service_name,
-        description: req.body.description,
         reason: req.body.reason
     };
 
