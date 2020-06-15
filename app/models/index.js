@@ -48,6 +48,8 @@ db.student_item_request = require("../models/student-item-request.model.js")(seq
 db.student_service_request = require("../models/student-service-request.model.js")(sequelize, Sequelize);
 db.academic_item_request = require("../models/academic-item-request.model.js")(sequelize, Sequelize);
 db.academic_service_request = require("../models/academic-service-request.model.js")(sequelize, Sequelize);
+db.reviewed_item_request = require("../models/reviewed-item-req.model.js")(sequelize, Sequelize);
+db.reviewed_service_request = require("../models/reviewed-service-req.model.js")(sequelize, Sequelize);
 
 // One User can have several Roles
 db.role.belongsToMany(db.user, {
@@ -150,6 +152,26 @@ db.academic_service_request.belongsTo(db.user, {
     foreignKey: 'academicId',
     targetKey: 'username'
 });
+
+// one request has one review
+db.student_item_request.hasOne(db.reviewed_item_request, {
+    foreignKey: 'requestId',
+    targetKey: 'requestId'
+});
+db.reviewed_item_request.belongsTo(db.student_item_request, {
+    foreignKey: 'requestId',
+    targetKey: 'requestId'
+});
+
+db.student_service_request.hasOne(db.reviewed_service_request, {
+    foreignKey: 'requestId',
+    targetKey: 'requestId'
+});
+db.reviewed_service_request.belongsTo(db.student_service_request, {
+    foreignKey: 'requestId',
+    targetKey: 'requestId'
+});
+
 
 db.ROLES = ["admin", "non-academic", "academic", "student"];
 
