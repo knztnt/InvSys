@@ -125,9 +125,7 @@ export default class RequestItem extends Component {
     ItemReqService.create(
       this.state.userId,
       this.state.currentItem.item_no,
-      this.state.currentItem.item_name,
       this.state.currentItem.quantity,
-      this.state.currentItem.description,
       this.state.currentItem.staffId,
       this.state.currentItem.reason
     )
@@ -154,9 +152,7 @@ export default class RequestItem extends Component {
     AcaItemReqService.create(
       this.state.userId,
       this.state.currentItem.item_no,
-      this.state.currentItem.item_name,
       this.state.currentItem.quantity,
-      this.state.currentItem.description,
       this.state.currentItem.reason
     )
       .then(response => {
@@ -225,7 +221,8 @@ export default class RequestItem extends Component {
 
                 <div className="form-group">
                   <label htmlFor="description">Description</label>
-                  <input
+                  <textarea
+                    rows="5"
                     type="text"
                     className="form-control"
                     id="description"
@@ -258,7 +255,8 @@ export default class RequestItem extends Component {
                 <label htmlFor="description">Reason for the Request</label>
                 <div className="input-group mb-3">
                   <div className="input-group-prepend"></div>
-                  <input
+                  <textarea
+                    rows="4"
                     type="text"
                     className="form-control"
                     id="reason"
