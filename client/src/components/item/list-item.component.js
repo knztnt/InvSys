@@ -104,7 +104,7 @@ export default class ItemsList extends Component {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-8">
-            <div className="input-group mb-3">
+            <div className="input-group">
               <input
                 type="text"
                 className="form-control"
@@ -114,7 +114,7 @@ export default class ItemsList extends Component {
               />
               <div className="input-group-append">
                 <button
-                  className="btn btn-outline-success my-2 my-sm-0"
+                  className="btn btn-outline-success"
                   type="button"
                   onClick={this.searchName}
                 >
@@ -161,9 +161,10 @@ export default class ItemsList extends Component {
                 <div>
                   <label>
                     <strong>Description:</strong>
-                  </label>{" "}
+                  </label><br />{" "}
                   {currentItem.description}
                 </div>
+                <br />
                 <div>
                   <label>
                     <strong>Quantity:</strong>
