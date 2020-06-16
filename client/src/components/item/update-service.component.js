@@ -44,7 +44,7 @@ export default class UpdateService extends Component {
 
     onChangeAvailability(e) {
         const availability = e.target.value;
-
+        console.log(availability);
         this.setState(function (prevState) {
             return {
                 currentService: {
@@ -131,7 +131,8 @@ export default class UpdateService extends Component {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="description">Description</label>
-                                    <input
+                                    <textarea
+                                        rows="5"
                                         type="text"
                                         className="form-control"
                                         id="description"
@@ -139,7 +140,7 @@ export default class UpdateService extends Component {
                                         onChange={this.onChangeDescription}
                                     />
                                 </div>
-                                <div className="form-group">
+                                {/* <div className="form-group">
                                     <label htmlFor="availability">Availability</label>
                                     <input
                                         type="text"
@@ -148,6 +149,22 @@ export default class UpdateService extends Component {
                                         value={currentService.availability || ""}
                                         onChange={this.onChangeAvailability}
                                     />
+                                </div> */}
+                                <div className="form-group">
+                                    <label htmlFor="description">Availability</label>
+                                    <select
+                                        type="text"
+                                        className="form-control"
+                                        id="availability"
+                                        required
+                                        value={this.state.availability}
+                                        onChange={this.onChangeAvailability}
+                                        name="availability"
+                                    >
+                                        <option defaultValue>Choose..</option>
+                                        <option value="true">Available</option>
+                                        <option value="false">Not Available</option>
+                                    </select>
                                 </div>
                             </form>
 
