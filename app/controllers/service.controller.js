@@ -68,29 +68,40 @@ exports.findOne = (req, res) => {
     });
 };
 
+const t = db.sequelize.transaction();
+
 // Update a service by the service_no in the request
 exports.update = (req, res) => {
   const service_no = req.params.service_no;
 
-  Service.update(req.body.data, {
-    where: { service_no: service_no },
-  })
-    .then((num) => {
-      if (num == 1) {
-        res.send({
-          message: "Service was updated successfully.",
+  try {
+    Service.update(req.body.data, {
+      where: { service_no: service_no },
+    }, { transaction: t })
+      .then((num) => {
+        if (num == 1) {
+          res.send({
+            message: "Service was updated successfully.",
+          });
+        } else {
+          res.send({
+            message: `Cannot update service with service_no=${service_no}. Maybe service was not found or req.body is empty!`,
+          });
+        }
+        // commit the transaction.
+        t.commit();
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: "Error updating service with service_no=" + service_no,
         });
-      } else {
-        res.send({
-          message: `Cannot update service with service_no=${service_no}. Maybe service was not found or req.body is empty!`,
-        });
-      }
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: "Error updating service with service_no=" + item_no,
       });
-    });
+  } catch (error) {
+    // If the execution reaches this line, an error was thrown.
+    // rollback the transaction.
+    t.rollback();
+
+  }
 };
 
 // Delete a service with the specified service_no in the request
