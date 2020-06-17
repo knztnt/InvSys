@@ -102,7 +102,7 @@ class Sidebar extends Component {
 
               {showAcademicBoard && (
                 <div>
-                  <Link className={"nav-link " +
+                  <Link to={""} className={"nav-link " +
                     (7 === this.state.currentIndex || 71 === this.state.currentIndex || 72 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(7)}
                     data-toggle="collapse" data-target="#collapseReq" aria-expanded="false" aria-controls="collapseReq">
                     <i className="fas fa-file-alt fa-fw"></i> Approve Requests
