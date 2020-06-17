@@ -6,17 +6,17 @@ module.exports = function (app) {
     app.get("/api/profile/getall", controller.findAll);
 
     // // Retrieve all published Items
-    // // app.get("/api/item/available", controller.findAllAvailable);
+    // // app.get("/api/profile/available", controller.findAllAvailable);
 
-    // // Retrieve a single Item with item_no
-    // app.get("/api/item/:item_no", controller.findOne);
+    // Retrieve a single Profile with username
+    app.get("/api/profile/:username", controller.findOne);
 
-    // // Update a Item with item_no
-    // app.put("/api/item/update/:item_no", controller.update);
+    // Update a Profile with username
+    app.put("/api/profile/update/:username", controller.update);
 
-    // // Delete a Item with item_no
-    // app.delete("/api/item/remove/:item_no", controller.delete);
+    // // Delete a Profile with username
+    // app.delete("/api/profile/remove/:username", controller.delete);
 
-    // // Delete all Items
-    // app.delete("/api/item/removeall", controller.deleteAll);
+    // // Delete all Profiles
+    // app.delete("/api/profile/removeall", controller.deleteAll);
 };
