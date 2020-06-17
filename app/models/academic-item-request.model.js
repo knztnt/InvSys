@@ -3,27 +3,26 @@ module.exports = (sequelize, Sequelize) => {
     const Academic_Item_Request = sequelize.define(
         "academic_item_requests",
         {
+            requestId: {
+                type: Sequelize.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
+            },
             academicId: {
                 type: Sequelize.STRING
             },
             item_no: {
                 type: Sequelize.STRING
             },
-            item_name: {
-                type: Sequelize.STRING
-            },
             quantity: {
                 type: Sequelize.INTEGER
             },
-            description: {
-                type: Sequelize.STRING(1000)
-            },
             reason: {
                 type: Sequelize.STRING(1000)
-            },
-            proceededTime: {
-                type: Sequelize.DATE
             }
+            // proceededTime: {
+            //     type: Sequelize.DATE
+            // }
         },
         {
             timestamps: true,

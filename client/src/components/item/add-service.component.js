@@ -124,7 +124,8 @@ export default class AddService extends Component {
 
                     <div className="form-group">
                       <label htmlFor="description">Description</label>
-                      <input
+                      <textarea
+                        rows="5"
                         type="text"
                         className="form-control"
                         id="description"
@@ -137,7 +138,7 @@ export default class AddService extends Component {
 
                     <div className="form-group">
                       <label htmlFor="description">Availability</label>
-                      <input
+                      <select
                         type="text"
                         className="form-control"
                         id="availability"
@@ -145,7 +146,10 @@ export default class AddService extends Component {
                         value={this.state.availability}
                         onChange={this.onChangeAvailability}
                         name="availability"
-                      />
+                      >
+                        <option value="true">Available</option>
+                        <option value="false">Not Available</option>
+                      </select>
                     </div>
 
                     <button

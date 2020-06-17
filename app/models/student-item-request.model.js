@@ -3,35 +3,28 @@ module.exports = (sequelize, Sequelize) => {
     const Student_Item_Request = sequelize.define(
         "student_item_requests",
         {
+            requestId: {
+                type: Sequelize.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
+            },
             studentId: {
                 type: Sequelize.STRING
             },
             item_no: {
                 type: Sequelize.STRING
             },
-            item_name: {
+            staffId: {
                 type: Sequelize.STRING
             },
             quantity: {
                 type: Sequelize.INTEGER
             },
-            description: {
-                type: Sequelize.STRING(1000)
-            },
-            staffId: {
-                type: Sequelize.STRING
-            },
             reason: {
                 type: Sequelize.STRING(1000)
             },
-            isApproved: {
+            isReviewed: {
                 type: Sequelize.BOOLEAN,
-            },
-            proceededTime: {
-                type: Sequelize.DATE
-            },
-            reviewedTime: {
-                type: Sequelize.DATE
             }
         },
         {

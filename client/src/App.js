@@ -11,6 +11,7 @@ import Login from "./components/login.component";
 import Register from "./components/register.component";
 import Home from "./components/home.component";
 import Profile from "./components/profile.component";
+import Dashboard from "./components/dashboard.component";
 import BoardStudent from "./components/board-student.component";
 import BoardAcademic from "./components/board-academic.component";
 import BoardNonac from "./components/board-nonacademic.component";
@@ -23,6 +24,8 @@ import ViewService from "./components/item/view-services.component";
 import UpdateService from "./components/item/update-service.component";
 import RequestItem from "./components/item/request-item.component";
 import RequestService from "./components/item/request-service.component";
+import StudItemReq from "./components/request/approve-item-req.component";
+import StudServiceReq from "./components/request/approve-service-req.component";
 
 class App extends Component {
   constructor(props) {
@@ -59,7 +62,7 @@ class App extends Component {
                 >
                   <div className="container d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 mt-3 border-bottom">
                     <Switch>
-                      <Route exact path={["/", "/home"]} component={Profile} />
+                      <Route exact path={["/", "/home", "/dashboard"]} component={Dashboard} />
                       <Route exact path="/login" component={Login} />
                       <Route exact path="/register" component={Register} />
                       <Route exact path="/profile" component={Profile} />
@@ -75,6 +78,8 @@ class App extends Component {
                       <Route path="/update-services/:service_no" component={UpdateService} />
                       <Route path="/item/request/:item_no" component={RequestItem} />
                       <Route path="/service/request/:service_no" component={RequestService} />
+                      <Route path="/approve/item-requests" component={StudItemReq} />
+                      <Route path="/approve/service-requests" component={StudServiceReq} />
                     </Switch>
                   </div>
                 </main>

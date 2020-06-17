@@ -120,7 +120,7 @@ export default class ServicesList extends Component {
               />
               <div className="input-group-append">
                 <button
-                  className="btn btn-outline-success my-2 my-sm-0"
+                  className="btn btn-outline-success"
                   type="button"
                   onClick={this.searchName}
                 >
@@ -167,9 +167,10 @@ export default class ServicesList extends Component {
                 <div>
                   <label>
                     <strong>Description:</strong>
-                  </label>{" "}
+                  </label><br />{" "}
                   {currentService.description}
                 </div>
+                <br />
                 <div>
                   <label>
                     <strong>Status:</strong>
@@ -190,7 +191,7 @@ export default class ServicesList extends Component {
                       <button
                         type="button"
                         className="btn btn-success"
-                        disabled={(currentService.availability === 0 ? true : false)}
+                        disabled={(currentService.availability === false ? true : false)}
                       >
                         Request Service
                       </button>

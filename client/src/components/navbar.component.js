@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import logo from "../navbar-brand-light.png";
 
 import AuthService from "../services/auth.service";
+import { Link } from "react-router-dom";
 
 class Navbar extends Component {
     constructor(props) {
@@ -41,14 +42,14 @@ class Navbar extends Component {
 
         return (
             <nav className="navbar navbar-light bg-light sticky-top flex-md-nowrap p-0 shadow">
-                <a className="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="/">
+                <Link className="navbar-brand col-md-3 col-lg-2 mr-0 px-3" to="/">
                     <img
                         src={logo}
                         height="30"
                         width="120"
                         alt="Logo"
                     />
-                </a>
+                </Link>
                 <button
                     className="navbar-toggler position-absolute d-md-none collapsed"
                     type="button"

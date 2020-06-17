@@ -139,7 +139,8 @@ export default class UpdateItem extends Component {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="description">Description</label>
-                                    <input
+                                    <textarea
+                                        rows="5"
                                         type="text"
                                         className="form-control"
                                         id="description"

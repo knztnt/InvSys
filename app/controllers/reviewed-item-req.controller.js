@@ -1,12 +1,12 @@
 const db = require("../models");
-const AcaServiceReq = db.academic_service_request;
+const ReviewedItemReq = db.reviewed_item_request;
 
 const Op = db.Sequelize.Op;
 
 // Create and Save a new request
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.academicId) {
+    if (!req.body.requestId) {
         res.status(400).send({
             message: "Content cannot be empty!"
         });
@@ -15,13 +15,14 @@ exports.create = (req, res) => {
 
     // Create a Request
     const request = {
-        academicId: req.body.academicId,
-        service_no: req.body.service_no,
-        reason: req.body.reason
+        requestId: req.body.requestId,
+        remarks: req.body.remarks,
+        isApproved: req.body.isApproved,
+        reviewedTime: req.body.reviewedTime
     };
 
     // Save Request in the database
-    AcaServiceReq.create(request)
+    ReviewedItemReq.create(request)
         .then(data => {
             res.send(data);
         })

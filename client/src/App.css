@@ -9619,18 +9619,28 @@ html {
 
 .sidebar .nav-link {
   font-weight: 500;
-  font-size: 1.125em;
+  font-size: 1.08em;
   color: #455a64;
 }
 
 .sidebar .nav-link.active {
   color: #094a62f1;
-  font-size: 1.325em;
+  font-size: 1.2em;
+}
+
+.sidebar .sub-menu {
+  color: #094a62f1;
+  background-image: linear-gradient(to top, #dad7d74d 5%, white 100%);
+}
+
+.sidebar .sub-menu .nav-link.active {
+  color: #094a62f1;
+  font-size: 1.15em;
 }
 
 .sidebar .nav-link:hover {
   color: #263238;
-  font-size: 1.35em;
+  font-size: 1.2em;
 }
 
 .sidebar-heading {

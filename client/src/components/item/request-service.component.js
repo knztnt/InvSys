@@ -112,8 +112,6 @@ export default class RequestService extends Component {
     ServReqService.create(
       this.state.userId,
       this.state.currentService.service_no,
-      this.state.currentService.service_name,
-      this.state.currentService.description,
       this.state.currentService.staffId,
       this.state.currentService.reason
     )
@@ -140,8 +138,6 @@ export default class RequestService extends Component {
     AcaServReqService.create(
       this.state.userId,
       this.state.currentService.service_no,
-      this.state.currentService.service_name,
-      this.state.currentService.description,
       this.state.currentService.reason
     )
       .then(response => {
@@ -199,7 +195,8 @@ export default class RequestService extends Component {
                 </div>
                 <div className="form-group">
                   <label htmlFor="description">Description</label>
-                  <input
+                  <textarea
+                    rows="5"
                     type="text"
                     className="form-control"
                     id="description"
@@ -232,7 +229,8 @@ export default class RequestService extends Component {
                 <label htmlFor="description">Reason for the Request</label>
                 <div className="input-group mb-3">
                   <div className="input-group-prepend"></div>
-                  <input
+                  <textarea
+                    rows="4"
                     type="text"
                     className="form-control"
                     id="reason"

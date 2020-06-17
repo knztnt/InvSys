@@ -25,7 +25,7 @@ const validateUsername = value => {
     }
 };
 
-const validatePassword = value => {
+const validatePassword = (value, components) => {
     if (value.length < 4 || value.length > 40) {
         return (
             <div className="alert alert-warning" role="alert">
@@ -35,6 +35,7 @@ const validatePassword = value => {
     }
 };
 
+
 export default class Register extends Component {
     constructor(props) {
         super(props);
@@ -42,12 +43,18 @@ export default class Register extends Component {
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeRoleValue = this.onChangeRoleValue.bind(this);
+        this.onChangeFirstName = this.onChangeFirstName.bind(this);
+        this.onChangeLastName = this.onChangeLastName.bind(this);
+        this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
 
         this.state = {
             username: "",
             password: "",
             roleValue: "",
             roles: [],
+            first_name: "",
+            last_name: "",
+            confirm_password: "",
             successful: false,
             loading: false,
             message: ""
@@ -63,6 +70,24 @@ export default class Register extends Component {
     onChangePassword(e) {
         this.setState({
             password: e.target.value
+        });
+    }
+
+    onChangeFirstName(e) {
+        this.setState({
+            first_name: e.target.value
+        });
+    }
+
+    onChangeLastName(e) {
+        this.setState({
+            last_name: e.target.value
+        });
+    }
+
+    onChangeConfirmPassword(e) {
+        this.setState({
+            confirm_password: e.target.value
         });
     }
 
@@ -106,11 +131,13 @@ export default class Register extends Component {
             loading: true
         });
 
-        if (this.checkBtn.context._errors.length === 0) {
+        if (this.checkBtn.context._errors.length === 0 && this.state.password === this.state.confirm_password) {
             AuthService.register(
                 this.state.username,
                 this.state.password,
-                this.state.roles
+                this.state.roles,
+                this.state.first_name,
+                this.state.last_name
             ).then(
                 response => {
                     this.setState({
@@ -135,6 +162,13 @@ export default class Register extends Component {
                 }
             );
         } else {
+            if (this.state.password !== this.state.confirm_password) {
+                this.setState({
+                    successful: false,
+                    loading: false,
+                    message: "Passwords do not match!"
+                });
+            }
             this.setState({
                 loading: false
             });
@@ -177,6 +211,7 @@ export default class Register extends Component {
                                     <div className="form-group">
                                         <label htmlFor="password">Password</label>
                                         <Input
+                                            id='password'
                                             type="password"
                                             className="form-control"
                                             name="password"
@@ -184,6 +219,20 @@ export default class Register extends Component {
                                             value={this.state.password}
                                             onChange={this.onChangePassword}
                                             validations={[required, validatePassword]}
+                                        />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label htmlFor="confirm">Confirm Password</label>
+                                        <Input
+                                            id="confirm"
+                                            type="password"
+                                            className="form-control"
+                                            name="confirm"
+                                            placeholder="Confirm Password"
+                                            value={this.state.confirm_password}
+                                            onChange={this.onChangeConfirmPassword}
+                                            validations={[required]}
                                         />
                                     </div>
 
@@ -250,17 +299,31 @@ export default class Register extends Component {
                                         </div>
                                     </div>
 
-                                    {/* <div className="form-group">
-                                        <label htmlFor="roleValue">Role</label>
+                                    <div className="form-group">
+                                        <label htmlFor="first_name">First Name</label>
                                         <Input
                                             type="text"
                                             className="form-control"
-                                            name="roleValue"
-                                            placeholder="Role"
-                                            value={this.state.roleValue}
-                                            onChange={this.onChangeRoleValue}
+                                            name="first_name"
+                                            placeholder="First Name"
+                                            value={this.state.first_name}
+                                            onChange={this.onChangeFirstName}
+                                            validations={[required]}
                                         />
-                                    </div> */}
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label htmlFor="last_name">Last Name</label>
+                                        <Input
+                                            type="text"
+                                            className="form-control"
+                                            name="last_name"
+                                            placeholder="Last Name"
+                                            value={this.state.last_name}
+                                            onChange={this.onChangeLastName}
+                                            validations={[required]}
+                                        />
+                                    </div>
 
                                     <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                         <button

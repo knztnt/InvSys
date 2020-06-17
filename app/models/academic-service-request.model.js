@@ -3,24 +3,23 @@ module.exports = (sequelize, Sequelize) => {
     const Academic_Service_Request = sequelize.define(
         "academic_service_requests",
         {
+            requestId: {
+                type: Sequelize.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
+            },
             academicId: {
                 type: Sequelize.STRING
             },
             service_no: {
                 type: Sequelize.STRING
             },
-            service_name: {
-                type: Sequelize.STRING
-            },
-            description: {
-                type: Sequelize.STRING(1000)
-            },
             reason: {
                 type: Sequelize.STRING(1000)
-            },
-            proceededTime: {
-                type: Sequelize.DATE
             }
+            // proceededTime: {
+            //     type: Sequelize.DATE
+            // }
         },
         {
             timestamps: true,
