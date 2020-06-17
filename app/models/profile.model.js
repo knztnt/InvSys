@@ -14,12 +14,12 @@ module.exports = (sequelize, Sequelize) => {
             last_name: {
                 type: Sequelize.STRING(50)
             },
-            email: {
-                type: Sequelize.STRING,
-                validate: {
-                    isEmail: true
-                }
-            },
+            // email: {
+            //     type: Sequelize.STRING,
+            //     validate: {
+            //         isEmail: true
+            //     }
+            // },
             phone_no: {
                 type: Sequelize.INTEGER,
                 validate: {
