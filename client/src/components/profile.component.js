@@ -16,7 +16,7 @@ export default class Profile extends Component {
                 username: "",
                 first_name: "",
                 last_name: "",
-                // email: "",
+                email: "",
                 phone_no: "",
                 address: "",
                 department: "",
