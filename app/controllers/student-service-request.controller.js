@@ -36,10 +36,8 @@ exports.create = (req, res) => {
 
 // Retrieve all Requests from the database
 exports.findAll = (req, res) => {
-    const requestId = req.query.requestId;
-    var condition = requestId ? { requestId: { [Op.like]: `%${requestId}%` } } : null;
 
-    StudServiceReq.findAll({ where: condition })
+    StudServiceReq.findAll()
         .then(data => {
             res.send(data);
         })
@@ -101,6 +99,40 @@ exports.update = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message: "Error updating Request with requestId=" + requestId
+            });
+        });
+};
+
+// Retrieve all Requests belongs to a given studentId from the database
+exports.findByStudId = (req, res) => {
+    const studentId = req.query.studentId;
+    var condition = studentId ? { studentId: studentId } : null;
+
+    StudServiceReq.findAll({ where: condition })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving items."
+            });
+        });
+};
+
+// Retrieve all Requests belongs to a given staffId from the database
+exports.findByAcId = (req, res) => {
+    const staffId = req.query.staffId;
+    var condition = staffId ? { staffId: staffId } : null;
+
+    StudServiceReq.findAll({ where: condition })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving items."
             });
         });
 };
