@@ -14,7 +14,7 @@ class Sidebar extends Component {
             showNonacBoard: false,
             showAdminBoard: false,
             currentUser: undefined,
-            currentIndex: 14,
+            currentIndex: 99,
         };
     }
 
@@ -48,13 +48,21 @@ class Sidebar extends Component {
                 <div className="sidebar-sticky pt-3">
                     <ul className="nav flex-column">
                         <li className="nav-item">
+                            {/* Main Dashboard */}
+                            {currentUser && (
+                                <Link to={"/dashboard"} className={"nav-link " +
+                                    (99 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(99)}>
+                                    <i className="fas fa-home fa-fw"></i> Dashboard
+                                </Link>
+                            )}
+
                             {/* student boards */}
-                            {showStudentBoard && (
+                            {/* {showStudentBoard && (
                                 <Link to={"/student"} className={"nav-link " +
                                     (1 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(1)}>
                                     <i className="fas fa-home fa-fw"></i> Dashboard
                                 </Link>
-                            )}
+                            )} */}
 
                             {showStudentBoard && (
                                 <Link to={"/view-items"} className={"nav-link " +
@@ -71,12 +79,12 @@ class Sidebar extends Component {
                             )}
 
                             {/* academic boards */}
-                            {showAcademicBoard && (
+                            {/* {showAcademicBoard && (
                                 <Link to={"/academic"} className={"nav-link " +
                                     (4 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(4)}>
                                     <i className="fas fa-home fa-fw"></i> Dashboard
                                 </Link>
-                            )}
+                            )} */}
 
                             {showAcademicBoard && (
                                 <Link to={"/view-items"} className={"nav-link " +
@@ -94,12 +102,12 @@ class Sidebar extends Component {
 
 
                             {/* non-academic boards */}
-                            {showNonacBoard && (
+                            {/* {showNonacBoard && (
                                 <Link to={"/non-academic"} className={"nav-link " +
                                     (7 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(7)}>
                                     <i className="fas fa-home fa-fw"></i> Dashboard
                                 </Link>
-                            )}
+                            )} */}
 
                             {showNonacBoard && (
                                 <Link to={"/add-item"} className={"nav-link " +
@@ -130,12 +138,12 @@ class Sidebar extends Component {
                             )}
 
                             {/* admin boards */}
-                            {showAdminBoard && (
+                            {/* {showAdminBoard && (
                                 <Link to={"/admin"} className={"nav-link " +
                                     (12 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(12)}>
                                     <i className="fas fa-home fa-fw"></i> Admin Dashboard
                                 </Link>
-                            )}
+                            )} */}
 
                             {showAdminBoard && (
                                 <Link to={"/register"} className={"nav-link " +
