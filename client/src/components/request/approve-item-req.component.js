@@ -1,42 +1,70 @@
 import React, { Component } from "react";
+import AuthService from "../../services/auth.service";
+import ItemReqService from "../../services/student-item-req.service";
 
 export default class ApproveItemReq extends Component {
+    constructor(props) {
+        super(props);
+        this.getRequests = this.getRequests.bind(this);
+        this.renderTableData = this.renderTableData.bind(this);
 
+        this.state = {
+            studentReq: [],
+            staffId: ""
+        };
+    }
+
+    componentDidMount() {
+        this.setState({
+            staffId: AuthService.getCurrentUser().username
+        });
+        this.getRequests(AuthService.getCurrentUser().username);
+    }
+
+    getRequests(staffId) {
+        ItemReqService.findByAcId(staffId)
+            .then((response) => {
+                this.setState({
+                    studentReq: response.data,
+                });
+                console.log(this.state.studentReq);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    }
+
+    renderTableData() {
+        return this.state.studentReq.map((request, index) => {
+            const { requestId, studentId, item_no, quantity, reason } = request //destructuring
+            return (
+                <tr key={requestId}>
+                    <td>{studentId}</td>
+                    <td>{item_no}</td>
+                    <td>{quantity}</td>
+                    <td>{reason}</td>
+                </tr>
+            )
+        })
+    }
 
     render() {
 
         return (
             <div className="container">
-                <h4>Item Requests</h4>
+                <h4>Component Requests</h4>
                 <hr />
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Student</th>
+                            <th scope="col">Item</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Reason</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                        {this.renderTableData()}
                     </tbody>
                 </table>
             </div>
