@@ -1,7 +1,51 @@
 import React, { Component } from "react";
+import AuthService from "../../services/auth.service";
+import ServiceReqService from "../../services/student-service-req.service";
 
 export default class ApproveServiceReq extends Component {
+    constructor(props) {
+        super(props);
+        this.getRequests = this.getRequests.bind(this);
+        this.renderTableData = this.renderTableData.bind(this);
 
+        this.state = {
+            studentReq: [],
+            staffId: ""
+        };
+    }
+
+    componentDidMount() {
+        this.setState({
+            staffId: AuthService.getCurrentUser().username
+        });
+        this.getRequests(AuthService.getCurrentUser().username);
+    }
+
+    getRequests(staffId) {
+        ServiceReqService.findByAcId(staffId)
+            .then((response) => {
+                this.setState({
+                    studentReq: response.data,
+                });
+                console.log(this.state.studentReq);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    }
+
+    renderTableData() {
+        return this.state.studentReq.map((request, index) => {
+            const { requestId, studentId, service_no, reason } = request //destructuring
+            return (
+                <tr key={requestId}>
+                    <td>{studentId}</td>
+                    <td>{service_no}</td>
+                    <td>{reason}</td>
+                </tr>
+            )
+        })
+    }
 
     render() {
 
@@ -12,31 +56,13 @@ export default class ApproveServiceReq extends Component {
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Student</th>
+                            <th scope="col">Service</th>
+                            <th scope="col">Reason</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                        {this.renderTableData()}
                     </tbody>
                 </table>
             </div>
