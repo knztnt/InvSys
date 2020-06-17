@@ -189,7 +189,7 @@ export default class RequestService extends Component {
                     type="text"
                     className="form-control"
                     id="service_name"
-                    value={currentService.service_name | ""}
+                    value={currentService.service_name}
                     disabled
                   />
                 </div>
