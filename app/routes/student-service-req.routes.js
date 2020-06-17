@@ -15,4 +15,10 @@ module.exports = function (app) {
 
     // Update a Item with requestId
     app.put("/api/service/req/update/:requestId", controller.update);
+
+    // Retrieve all requests by sudentId
+    app.get("/api/service/req/getall/student", controller.findByStudId);
+
+    // Retrieve all requests by StaffId
+    app.get("/api/service/req/getall/academic", controller.findByAcId);
 };
