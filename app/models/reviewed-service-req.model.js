@@ -13,13 +13,12 @@ module.exports = (sequelize, Sequelize) => {
             },
             isApproved: {
                 type: Sequelize.BOOLEAN,
-            },
-            reviewedTime: {
-                type: Sequelize.DATE
             }
         },
         {
-            timestamps: false
+            timestamps: true,
+            createdAt: 'reviewedTime',
+            updatedAt: false
         }
     );
 
