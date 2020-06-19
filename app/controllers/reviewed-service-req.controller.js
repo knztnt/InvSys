@@ -32,3 +32,42 @@ exports.create = (req, res) => {
             });
         });
 };
+
+// find all approved requests
+exports.findAllApproved = (req, res) => {
+    ReviewedServiceReq.findAll({ where: { isApproved: true } })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving items."
+            });
+        });
+};
+
+// Update a Request by the requestId in the request
+exports.update = (req, res) => {
+    const requestId = req.params.requestId;
+
+    ReviewedServiceReq.update(req.body.data, {
+        where: { requestId: requestId }
+    })
+        .then(num => {
+            if (num == 1) {
+                res.send({
+                    message: "Request was updated successfully."
+                });
+            } else {
+                res.send({
+                    message: `Cannot update Request with requestId=${requestId}. Maybe Request was not found or req.body is empty!`
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error updating Request with requestId=" + requestId
+            });
+        });
+};
