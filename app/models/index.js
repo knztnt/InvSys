@@ -50,6 +50,10 @@ db.academic_item_request = require("../models/academic-item-request.model.js")(s
 db.academic_service_request = require("../models/academic-service-request.model.js")(sequelize, Sequelize);
 db.reviewed_item_request = require("../models/reviewed-item-req.model.js")(sequelize, Sequelize);
 db.reviewed_service_request = require("../models/reviewed-service-req.model.js")(sequelize, Sequelize);
+db.issued_aca_item_request = require("./issued-aca-item.model.js")(sequelize, Sequelize);
+db.proceeded_aca_service = require("./proceeded-aca-service.model.js")(sequelize, Sequelize);
+db.issued_stud_item_request = require("./issued-stud-item.model.js")(sequelize, Sequelize);
+db.proceeded_stud_service = require("./proceeded-stud-service.model.js")(sequelize, Sequelize);
 
 // One User can have several Roles
 db.role.belongsToMany(db.user, {
@@ -172,6 +176,45 @@ db.reviewed_service_request.belongsTo(db.student_service_request, {
     targetKey: 'requestId'
 });
 
+// one request is issued by one non-ac
+db.user.hasOne(db.issued_aca_item_request, {
+    foreignKey: 'nonacademicId',
+    targetKey: 'nonacademicId'
+});
+db.issued_aca_item_request.belongsTo(db.user, {
+    foreignKey: 'nonacademicId',
+    targetKey: 'username'
+});
+
+// one request is proceeded by one non-ac
+db.user.hasOne(db.proceeded_aca_service, {
+    foreignKey: 'nonacademicId',
+    targetKey: 'nonacademicId'
+});
+db.proceeded_aca_service.belongsTo(db.user, {
+    foreignKey: 'nonacademicId',
+    targetKey: 'username'
+});
+
+// one request is issued by one non-ac
+db.user.hasOne(db.issued_stud_item_request, {
+    foreignKey: 'nonacademicId',
+    targetKey: 'nonacademicId'
+});
+db.issued_stud_item_request.belongsTo(db.user, {
+    foreignKey: 'nonacademicId',
+    targetKey: 'username'
+});
+
+// one request is proceeded by one non-ac
+db.user.hasOne(db.proceeded_stud_service, {
+    foreignKey: 'nonacademicId',
+    targetKey: 'nonacademicId'
+});
+db.proceeded_stud_service.belongsTo(db.user, {
+    foreignKey: 'nonacademicId',
+    targetKey: 'username'
+});
 
 db.ROLES = ["admin", "non-academic", "academic", "student"];
 
