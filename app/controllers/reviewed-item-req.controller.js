@@ -20,8 +20,6 @@ exports.create = (req, res) => {
         isApproved: req.body.isApproved
     };
 
-    console.log(request);
-
     // Save Request in the database
     ReviewedItemReq.create(request)
         .then(data => {
