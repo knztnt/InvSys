@@ -17,9 +17,10 @@ exports.create = (req, res) => {
     const request = {
         requestId: req.body.requestId,
         remarks: req.body.remarks,
-        isApproved: req.body.isApproved,
-        reviewedTime: req.body.reviewedTime
+        isApproved: req.body.isApproved
     };
+
+    console.log(request);
 
     // Save Request in the database
     ReviewedItemReq.create(request)
