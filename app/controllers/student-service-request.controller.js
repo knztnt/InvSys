@@ -81,8 +81,7 @@ exports.findAllReviewed = (req, res) => {
 // Update a Request by the requestId in the request
 exports.update = (req, res) => {
     const requestId = req.params.requestId;
-
-    StudServiceReq.update(req.body, {
+    StudServiceReq.update(req.body.data, {
         where: { requestId: requestId }
     })
         .then(num => {
