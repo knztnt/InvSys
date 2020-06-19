@@ -29,9 +29,9 @@ module.exports = (sequelize, Sequelize) => {
             address: {
                 type: Sequelize.STRING
             },
-            batch: {
-                type: Sequelize.STRING(10)
-            },
+            // batch: {
+            //     type: Sequelize.STRING(10)
+            // },
             department: {
                 type: Sequelize.STRING(50)
             }
