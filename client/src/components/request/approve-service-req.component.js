@@ -44,7 +44,7 @@ export default class ApproveServiceReq extends Component {
                     <td>{studentId}</td>
                     <td>{service_no}</td>
                     <td>{reason}</td>
-                    <td>{<Link to={"/approve/service-requests/" + requestId}>Review Request</Link>}</td>
+                    <td>{<Link to={"/approve-service-requests/" + requestId}>Review Request</Link>}</td>
                 </tr>
             )
         })
