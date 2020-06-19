@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import AuthService from "../../services/auth.service";
 import ServiceReqService from "../../services/student-service-req.service";
 
+import { Link } from "react-router-dom";
+
 export default class ApproveServiceReq extends Component {
     constructor(props) {
         super(props);
@@ -42,6 +44,7 @@ export default class ApproveServiceReq extends Component {
                     <td>{studentId}</td>
                     <td>{service_no}</td>
                     <td>{reason}</td>
+                    <td>{<Link to={"/approve/service-requests/" + requestId}>Review Request</Link>}</td>
                 </tr>
             )
         })
@@ -59,6 +62,7 @@ export default class ApproveServiceReq extends Component {
                             <th scope="col">Student</th>
                             <th scope="col">Service</th>
                             <th scope="col">Reason</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
