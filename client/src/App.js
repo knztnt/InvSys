@@ -27,6 +27,7 @@ import RequestService from "./components/item/request-service.component";
 import StudItemReq from "./components/request/approve-item-req.component";
 import StudServiceReq from "./components/request/approve-service-req.component";
 import ReviewItemReq from "./components/request/review-item-req.component";
+import ReviewServiceReq from "./components/request/review-service-req.component";
 
 class App extends Component {
   constructor(props) {
@@ -82,6 +83,7 @@ class App extends Component {
                       <Route path="/approve/item-requests" component={StudItemReq} />
                       <Route path="/approve/service-requests" component={StudServiceReq} />
                       <Route path="/approve-item-requests/:requestId" component={ReviewItemReq} />
+                      <Route path="/approve-service-requests/:requestId" component={ReviewServiceReq} />
                     </Switch>
                   </div>
                 </main>
