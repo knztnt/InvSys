@@ -13,6 +13,9 @@ module.exports = (sequelize, Sequelize) => {
             },
             isApproved: {
                 type: Sequelize.BOOLEAN,
+            },
+            isIssued: {
+                type: Sequelize.BOOLEAN,
             }
         },
         {
