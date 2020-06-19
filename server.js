@@ -49,6 +49,10 @@ require("./app/routes/academic-service-req.routes")(app);
 require("./app/routes/profile.routes")(app);
 require("./app/routes/reviewed-item-req.routes")(app);
 require("./app/routes/reviewed-service-req.routes")(app);
+require("./app/routes/issued-aca-item.routes")(app);
+require("./app/routes/issued-stud-item.routes")(app);
+require("./app/routes/proceeded-aca-service.routes")(app);
+require("./app/routes/proceeded-stud-service.routes")(app);
 
 // port 5000 for the server
 const PORT = process.env.PORT || 5000;
