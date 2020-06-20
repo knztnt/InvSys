@@ -157,6 +157,26 @@ class Sidebar extends Component {
                 </Link>
               )}
 
+              {showNonacBoard && (
+                <div>
+                  <Link to={""} className={"nav-link " +
+                    (12 === this.state.currentIndex || 121 === this.state.currentIndex || 122 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(12)}
+                    data-toggle="collapse" data-target="#collapseReq" aria-expanded="false" aria-controls="collapseReq">
+                    <i className="fas fa-file-alt fa-fw"></i> Academic Requests
+                </Link>
+                  <div className="collapse sub-menu" id="collapseReq">
+                    <Link to={"/issue/item/ac"} className={"nav-link " +
+                      (121 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(121)}>
+                      <i className="fas fa-angle-right fa-fw"></i> Component Requests
+                    </Link>
+                    <Link to={"/proceed/service/ac"} className={"nav-link " +
+                      (122 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(122)}>
+                      <i className="fas fa-angle-right fa-fw"></i> Service Requests
+                    </Link>
+                  </div>
+                </div>
+              )}
+
               {/* admin boards */}
               {/* {showAdminBoard && (
                                 <Link to={"/admin"} className={"nav-link " +
