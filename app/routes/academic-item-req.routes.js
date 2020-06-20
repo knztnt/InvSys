@@ -4,6 +4,9 @@ module.exports = function (app) {
     // Create a new request
     app.post("/api/item/ac/req/create", controller.create);
 
+    // Retrieve a single Item with requestId
+    app.get("/api/item/ac/req/get/:requestId", controller.findOne);
+
     // Retrieve all Items
     app.get("/api/item/ac/req/getall", controller.findAll);
 
