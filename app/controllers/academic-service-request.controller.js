@@ -72,3 +72,18 @@ exports.update = (req, res) => {
             });
         });
 };
+
+// Find a single Request with an requestId
+exports.findOne = (req, res) => {
+    const requestId = req.params.requestId;
+
+    AcaServiceReq.findByPk(requestId)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error retrieving Request with item number = " + requestId
+            });
+        });
+};
