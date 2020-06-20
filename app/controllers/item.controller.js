@@ -66,7 +66,7 @@ exports.findOne = (req, res) => {
         });
 };
 
-const t = db.sequelize.transaction();
+// const t = db.sequelize.transaction();
 
 // Update a Item by the item_no in the request
 exports.update = (req, res) => {
@@ -75,7 +75,9 @@ exports.update = (req, res) => {
     try {
         Item.update(req.body.data, {
             where: { item_no: item_no }
-        }, { transaction: t })
+        }
+            // ,{ transaction: t }
+        )
             .then(num => {
                 if (num == 1) {
                     res.send({
@@ -87,7 +89,7 @@ exports.update = (req, res) => {
                     });
                 }
                 // commit the transaction.
-                t.commit();
+                // t.commit();
             })
             .catch(err => {
                 res.status(500).send({
@@ -97,7 +99,7 @@ exports.update = (req, res) => {
     } catch (error) {
         // If the execution reaches this line, an error was thrown.
         // rollback the transaction.
-        t.rollback();
+        // t.rollback();
 
     }
 };
