@@ -12,6 +12,10 @@ class AcaItemReqService {
         });
     }
 
+    get(requestId) {
+        return axios.get(API_URL + "get/" + requestId);
+    }
+
     getall() {
         return axios.get(API_URL + "getall");
     }
