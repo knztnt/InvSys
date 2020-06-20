@@ -28,6 +28,10 @@ import StudItemReq from "./components/request/approve-item-req.component";
 import StudServiceReq from "./components/request/approve-service-req.component";
 import ReviewItemReq from "./components/request/review-item-req.component";
 import ReviewServiceReq from "./components/request/review-service-req.component";
+import ViewAcReq from "./components/issue/view-ac-req.component";
+import IssueAcReq from "./components/issue/issue-ac-req.component";
+import ViewServAcReq from "./components/proceed/view-ac-req.component";
+import ProceedAcReq from "./components/proceed/proceed-ac-req.component";
 
 class App extends Component {
   constructor(props) {
@@ -84,6 +88,10 @@ class App extends Component {
                       <Route path="/approve/service-requests" component={StudServiceReq} />
                       <Route path="/approve-item-requests/:requestId" component={ReviewItemReq} />
                       <Route path="/approve-service-requests/:requestId" component={ReviewServiceReq} />
+                      <Route exact path="/issue/item/ac" component={ViewAcReq} />
+                      <Route path="/issue/item/ac/:requestId" component={IssueAcReq} />
+                      <Route exact path="/proceed/service/ac" component={ViewServAcReq} />
+                      <Route path="/proceed/service/ac/:requestId" component={ProceedAcReq} />
                     </Switch>
                   </div>
                 </main>
