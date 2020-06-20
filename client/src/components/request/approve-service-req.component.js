@@ -79,7 +79,7 @@ export default class ApproveServiceReq extends Component {
                 <ul className="nav nav-pills mb-3" id="myTab" role="tablist">
                     <li className="nav-item">
                         <a className="nav-link active" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true">
-                            Pending Requests <span className="badge badge-light">{this.state.pending}</span>
+                            Pending Requests
                         </a>
                     </li>
                     <li className="nav-item">
