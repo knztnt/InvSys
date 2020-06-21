@@ -68,7 +68,7 @@ exports.findOne = (req, res) => {
     });
 };
 
-const t = db.sequelize.transaction();
+const t = db.sequelize.transaction(); // intialize transaction
 
 // Update a service by the service_no in the request
 exports.update = (req, res) => {

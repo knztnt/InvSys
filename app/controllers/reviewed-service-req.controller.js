@@ -71,3 +71,36 @@ exports.update = (req, res) => {
             });
         });
 };
+
+// find all issued requests
+exports.findAllIssued = (req, res) => {
+    ReviewedServiceReq.findAll(
+        {
+            attributes: ['requestId'],
+            where: { isProceeded: true }
+        })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving items."
+            });
+        });
+};
+
+// Find a single Request with an requestId
+exports.findOne = (req, res) => {
+    const requestId = req.params.requestId;
+
+    ReviewedServiceReq.findByPk(requestId)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error retrieving Request with item number = " + requestId
+            });
+        });
+};
