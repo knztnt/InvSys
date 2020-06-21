@@ -52,7 +52,7 @@ module.exports = {
   },
 };
 ```
-# For the First Time running the Server 
+#### ! For the First Time running the Server 
 In InvSys/app/server.js file, uncomment (29-32) lines and comment 26th line. This will initialize the database and sync all the tables.
 Or simply replace exixting server.js file with following script.
 Following script contains the server.js file when it is run initially.
