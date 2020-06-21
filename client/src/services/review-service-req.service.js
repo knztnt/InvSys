@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_URL = 'http://localhost:5000/api/review-service/';
 
-class ItemReviewService {
+class ServiceReviewService {
     create(requestId, remarks, isApproved) {
         console.log(remarks);
         return axios.post(API_URL + "create", {
@@ -13,6 +13,14 @@ class ItemReviewService {
     // getall() {
     //     return axios.get(API_URL + "getall");
     // }
+
+    getProceeded() {
+        return axios.get(API_URL + "issued");
+    }
+
+    get(requestId) {
+        return axios.get(API_URL + "get/" + requestId);
+    }
 
     getApproved() {
         return axios.get(API_URL + "approved");
@@ -36,4 +44,4 @@ class ItemReviewService {
     // }
 }
 
-export default new ItemReviewService();
+export default new ServiceReviewService();
