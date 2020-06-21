@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const API_URL = 'http://localhost:5000/api/review-item/';
+const API_URL = 'http://localhost:5000/api/service/proceed/';
 
-class ItemReviewService {
-    create(requestId, remarks, isApproved) {
-        console.log(remarks);
+class ProceedStudService {
+    create(requestId, nonacademicId) {
+        console.log(nonacademicId);
         return axios.post(API_URL + "create", {
-            requestId, remarks, isApproved
+            requestId, nonacademicId
         });
     }
 
@@ -14,17 +14,9 @@ class ItemReviewService {
     //     return axios.get(API_URL + "getall");
     // }
 
-    getApproved() {
-        return axios.get(API_URL + "approved");
-    }
-
-    getIssued() {
-        return axios.get(API_URL + "issued");
-    }
-
-    get(requestId) {
-        return axios.get(API_URL + "get/" + requestId);
-    }
+    // get(item_no) {
+    //     return axios.get(API_URL + item_no);
+    // }
 
     update(requestId, data) {
         console.log(data);
@@ -40,4 +32,4 @@ class ItemReviewService {
     // }
 }
 
-export default new ItemReviewService();
+export default new ProceedStudService();

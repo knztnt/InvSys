@@ -32,3 +32,58 @@ exports.create = (req, res) => {
             });
         });
 };
+
+// Retrieve all Requests from the database
+exports.findAll = (req, res) => {
+
+    AcaServiceReq.findAll()
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving items."
+            });
+        });
+};
+
+// Update a Request by the requestId in the request
+exports.update = (req, res) => {
+    const requestId = req.params.requestId;
+
+    AcaServiceReq.update(req.body.data, {
+        where: { requestId: requestId }
+    })
+        .then(num => {
+            if (num == 1) {
+                res.send({
+                    message: "Request was updated successfully."
+                });
+            } else {
+                res.send({
+                    message: `Cannot update Request with requestId=${requestId}. Maybe Request was not found or req.body is empty!`
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error updating Request with requestId=" + requestId
+            });
+        });
+};
+
+// Find a single Request with an requestId
+exports.findOne = (req, res) => {
+    const requestId = req.params.requestId;
+
+    AcaServiceReq.findByPk(requestId)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error retrieving Request with item number = " + requestId
+            });
+        });
+};

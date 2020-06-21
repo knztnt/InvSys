@@ -28,6 +28,14 @@ import StudItemReq from "./components/request/approve-item-req.component";
 import StudServiceReq from "./components/request/approve-service-req.component";
 import ReviewItemReq from "./components/request/review-item-req.component";
 import ReviewServiceReq from "./components/request/review-service-req.component";
+import ViewAcReq from "./components/issue/view-ac-req.component";
+import IssueAcReq from "./components/issue/issue-ac-req.component";
+import ViewServAcReq from "./components/proceed/view-ac-req.component";
+import ProceedAcReq from "./components/proceed/proceed-ac-req.component";
+import ViewStudReq from "./components/issue/view-stud-req.component";
+import IssueStudReq from "./components/issue/issue-stud-req.component";
+import ViewServStudReq from "./components/proceed/view-stud-req.component";
+import ProceedStudReq from "./components/proceed/proceed-stud-req.component";
 
 class App extends Component {
   constructor(props) {
@@ -84,6 +92,14 @@ class App extends Component {
                       <Route path="/approve/service-requests" component={StudServiceReq} />
                       <Route path="/approve-item-requests/:requestId" component={ReviewItemReq} />
                       <Route path="/approve-service-requests/:requestId" component={ReviewServiceReq} />
+                      <Route exact path="/issue/item/ac" component={ViewAcReq} />
+                      <Route path="/issue/item/ac/:requestId" component={IssueAcReq} />
+                      <Route exact path="/proceed/service/ac" component={ViewServAcReq} />
+                      <Route path="/proceed/service/ac/:requestId" component={ProceedAcReq} />
+                      <Route exact path="/issue/item/" component={ViewStudReq} />
+                      <Route path="/issue/item/:requestId" component={IssueStudReq} />
+                      <Route exact path="/proceed/service/" component={ViewServStudReq} />
+                      <Route path="/proceed/service/:requestId" component={ProceedStudReq} />
                     </Switch>
                   </div>
                 </main>

@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import AuthService from "../../services/auth.service";
-import ServiceReqService from "../../services/student-service-req.service";
+import ServiceReqService from "../../services/academic-service-req.service";
 
 import { Link } from "react-router-dom";
 
-export default class ApproveServiceReq extends Component {
+export default class ViewAcReq extends Component {
     constructor(props) {
         super(props);
         this.getRequests = this.getRequests.bind(this);
         this.renderTablePending = this.renderTablePending.bind(this);
-        this.renderTableReviewed = this.renderTableReviewed.bind(this);
+        this.renderTableIssued = this.renderTableIssued.bind(this);
 
         this.state = {
-            studentReq: [],
+            staffReq: [],
             staffId: ""
         };
     }
@@ -25,12 +25,12 @@ export default class ApproveServiceReq extends Component {
     }
 
     getRequests(staffId) {
-        ServiceReqService.findByAcId(staffId)
+        ServiceReqService.getall(staffId)
             .then((response) => {
                 this.setState({
-                    studentReq: response.data,
+                    staffReq: response.data,
                 });
-                console.log(this.state.studentReq);
+                console.log(this.state.staffReq);
             })
             .catch((e) => {
                 console.log(e);
@@ -38,15 +38,15 @@ export default class ApproveServiceReq extends Component {
     }
 
     renderTablePending() {
-        return this.state.studentReq.map((request, index) => {
-            if (!request.isReviewed) {
-                const { requestId, studentId, service_no, reason } = request //destructuring
+        return this.state.staffReq.map((request, index) => {
+            if (!request.isProceeded) {
+                const { requestId, academicId, service_no, reason } = request //destructuring
                 return (
                     <tr key={requestId}>
-                        <td>{studentId}</td>
+                        <td>{academicId}</td>
                         <td>{service_no}</td>
                         <td>{reason}</td>
-                        <td>{<Link to={"/approve-service-requests/" + requestId}>Review Request</Link>}</td>
+                        <td>{<Link to={"/proceed/service/ac/" + requestId}>Proceed Request</Link>}</td>
                     </tr>
                 )
             }
@@ -54,13 +54,13 @@ export default class ApproveServiceReq extends Component {
         })
     }
 
-    renderTableReviewed() {
-        return this.state.studentReq.map((request, index) => {
-            if (request.isReviewed) {
-                const { requestId, studentId, service_no, reason } = request //destructuring
+    renderTableIssued() {
+        return this.state.staffReq.map((request, index) => {
+            if (request.isProceeded) {
+                const { requestId, academicId, service_no, reason } = request //destructuring
                 return (
                     <tr key={requestId}>
-                        <td>{studentId}</td>
+                        <td>{academicId}</td>
                         <td>{service_no}</td>
                         <td>{reason}</td>
                     </tr >
@@ -83,7 +83,7 @@ export default class ApproveServiceReq extends Component {
                         </a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" id="reviewed-tab" data-toggle="tab" href="#reviewed" role="tab" aria-controls="reviewed" aria-selected="false">Reviewed Requests</a>
+                        <a className="nav-link" id="reviewed-tab" data-toggle="tab" href="#reviewed" role="tab" aria-controls="reviewed" aria-selected="false">Issued Requests</a>
                     </li>
                 </ul>
                 <div className="tab-content" id="myTabContent">
@@ -112,7 +112,7 @@ export default class ApproveServiceReq extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.renderTableReviewed()}
+                                {this.renderTableIssued()}
                             </tbody>
                         </table>
                     </div>

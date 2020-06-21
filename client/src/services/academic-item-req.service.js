@@ -11,6 +11,19 @@ class AcaItemReqService {
             reason
         });
     }
+
+    get(requestId) {
+        return axios.get(API_URL + "get/" + requestId);
+    }
+
+    getall() {
+        return axios.get(API_URL + "getall");
+    }
+
+    update(requestId, data) {
+        console.log(data);
+        return axios.put(API_URL + "update/" + requestId, { data });
+    }
 }
 
 export default new AcaItemReqService();

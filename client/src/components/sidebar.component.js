@@ -65,10 +65,16 @@ class Sidebar extends Component {
                             )} */}
 
               {showStudentBoard && (
-                <Link to={"/view-items"} className={"nav-link " +
-                  (2 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(2)}>
-                  <i className="fas fa-microchip fa-fw"></i> View Items
+                <div>
+                  <div className="mt-4 mb-0 text-primary">
+                    <h6><i className="fas fa-caret-right fa-fw"></i>Items & Services</h6>
+                    <hr />
+                  </div>
+                  <Link to={"/view-items"} className={"nav-link " +
+                    (2 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(2)}>
+                    <i className="fas fa-microchip fa-fw"></i> View Items
                 </Link>
+                </div>
               )}
 
               {showStudentBoard && (
@@ -87,10 +93,16 @@ class Sidebar extends Component {
                             )} */}
 
               {showAcademicBoard && (
-                <Link to={"/view-items"} className={"nav-link " +
-                  (5 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(5)}>
-                  <i className="fas fa-microchip fa-fw"></i> View Items
+                <div>
+                  <div className="mt-4 mb-0 text-primary">
+                    <h6><i className="fas fa-caret-right fa-fw"></i>Items & Services</h6>
+                    <hr />
+                  </div>
+                  <Link to={"/view-items"} className={"nav-link " +
+                    (5 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(5)}>
+                    <i className="fas fa-microchip fa-fw"></i> View Items
                 </Link>
+                </div>
               )}
 
               {showAcademicBoard && (
@@ -102,11 +114,15 @@ class Sidebar extends Component {
 
               {showAcademicBoard && (
                 <div>
+                  <div className="mt-4 mb-0 text-primary">
+                    <h6><i className="fas fa-caret-right fa-fw"></i>Requests</h6>
+                    <hr />
+                  </div>
                   <Link to={""} className={"nav-link " +
                     (7 === this.state.currentIndex || 71 === this.state.currentIndex || 72 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(7)}
                     data-toggle="collapse" data-target="#collapseReq" aria-expanded="false" aria-controls="collapseReq">
                     <i className="fas fa-file-alt fa-fw"></i> Approve Requests
-                </Link>
+                  </Link>
                   <div className="collapse sub-menu" id="collapseReq">
                     <Link to={"/approve/item-requests"} className={"nav-link " +
                       (71 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(71)}>
@@ -130,10 +146,16 @@ class Sidebar extends Component {
                             )} */}
 
               {showNonacBoard && (
-                <Link to={"/add-item"} className={"nav-link " +
-                  (8 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(8)}>
-                  <i className="fas fa-plus-square fa-fw"></i> Add Items
+                <div>
+                  <div className="mt-4 mb-0 text-primary">
+                    <h6><i className="fas fa-caret-right fa-fw"></i>Items & Services</h6>
+                    <hr />
+                  </div>
+                  <Link to={"/add-item"} className={"nav-link " +
+                    (8 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(8)}>
+                    <i className="fas fa-plus-square fa-fw"></i> Add Items
                 </Link>
+                </div>
               )}
 
               {showNonacBoard && (
@@ -157,6 +179,50 @@ class Sidebar extends Component {
                 </Link>
               )}
 
+              {showNonacBoard && (
+                <div>
+                  <div className="mt-4 mb-0 text-primary">
+                    <h6><i className="fas fa-caret-right fa-fw"></i>Requests</h6>
+                    <hr />
+                  </div>
+                  <Link to={""} className={"nav-link " +
+                    (12 === this.state.currentIndex || 121 === this.state.currentIndex || 122 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(12)}
+                    data-toggle="collapse" data-target="#collapseReq" aria-expanded="false" aria-controls="collapseReq">
+                    <i className="fas fa-chalkboard-teacher fa-fw"></i> Academic Requests
+                  </Link>
+                  <div className="collapse sub-menu" id="collapseReq">
+                    <Link to={"/issue/item/ac"} className={"nav-link " +
+                      (121 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(121)}>
+                      <i className="fas fa-angle-right fa-fw"></i> Component Requests
+                    </Link>
+                    <Link to={"/proceed/service/ac"} className={"nav-link " +
+                      (122 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(122)}>
+                      <i className="fas fa-angle-right fa-fw"></i> Service Requests
+                    </Link>
+                  </div>
+                </div>
+              )}
+
+              {showNonacBoard && (
+                <div>
+                  <Link to={""} className={"nav-link " +
+                    (80 === this.state.currentIndex || 801 === this.state.currentIndex || 802 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(80)}
+                    data-toggle="collapse" data-target="#collapseReq2" aria-expanded="false" aria-controls="collapseReq2">
+                    <i className="fas fa-book-reader fa-fw"></i> Student Requests
+                </Link>
+                  <div className="collapse sub-menu" id="collapseReq2">
+                    <Link to={"/issue/item"} className={"nav-link " +
+                      (801 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(801)}>
+                      <i className="fas fa-angle-right fa-fw"></i> Component Requests
+                    </Link>
+                    <Link to={"/proceed/service"} className={"nav-link " +
+                      (802 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(802)}>
+                      <i className="fas fa-angle-right fa-fw"></i> Service Requests
+                    </Link>
+                  </div>
+                </div>
+              )}
+
               {/* admin boards */}
               {/* {showAdminBoard && (
                                 <Link to={"/admin"} className={"nav-link " +
@@ -174,10 +240,16 @@ class Sidebar extends Component {
 
               {/* profile board */}
               {currentUser && (
-                <Link to={"/profile"} className={"nav-link " +
-                  (14 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(14)}>
-                  <i className="fas fa-user-alt fa-fw"></i> {currentUser.username}
-                </Link>
+                <div>
+                  <div className="mt-4 mb-0 text-primary">
+                    <h6><i className="fas fa-caret-right fa-fw"></i>Profile</h6>
+                    <hr />
+                  </div>
+                  <Link to={"/profile"} className={"nav-link " +
+                    (14 === this.state.currentIndex ? "active" : "")} onClick={() => this.setActiveItem(14)}>
+                    <i className="fas fa-user-alt fa-fw"></i> {currentUser.username}
+                  </Link>
+                </div>
               )}
 
             </li>

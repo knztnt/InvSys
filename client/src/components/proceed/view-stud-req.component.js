@@ -1,36 +1,74 @@
 import React, { Component } from "react";
 import AuthService from "../../services/auth.service";
 import ServiceReqService from "../../services/student-service-req.service";
+import ReqReviewService from "../../services/review-service-req.service";
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-export default class ApproveServiceReq extends Component {
+export default class ViewStudReq extends Component {
     constructor(props) {
         super(props);
+        this.getApprovedRequests = this.getApprovedRequests.bind(this);
         this.getRequests = this.getRequests.bind(this);
         this.renderTablePending = this.renderTablePending.bind(this);
-        this.renderTableReviewed = this.renderTableReviewed.bind(this);
+        this.renderTableIssued = this.renderTableIssued.bind(this);
+        this.getReviewedReq = this.getReviewedReq.bind(this);
 
         this.state = {
+            approvedReq: [],
             studentReq: [],
-            staffId: ""
+            proceededReqs: [],
+            currentUser: "",
+            pending: 0
         };
     }
 
     componentDidMount() {
         this.setState({
-            staffId: AuthService.getCurrentUser().username
+            currentUser: AuthService.getCurrentUser().username
         });
-        this.getRequests(AuthService.getCurrentUser().username);
+        this.getApprovedRequests();
+        this.getReviewedReq();
     }
 
-    getRequests(staffId) {
-        ServiceReqService.findByAcId(staffId)
+    getApprovedRequests() {
+        ReqReviewService.getApproved()
             .then((response) => {
                 this.setState({
-                    studentReq: response.data,
+                    approvedReq: response.data,
                 });
-                console.log(this.state.studentReq);
+                console.log(this.state.approvedReq);
+                this.getRequests(this.state.approvedReq);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    }
+
+    getRequests(reqList) {
+        reqList.map((request) => {
+            var requestId = request.requestId;
+            ServiceReqService.get(requestId)
+                .then((response) => {
+                    request = response.data;
+                    this.setState({
+                        studentReq: this.state.studentReq.concat(request)
+                    });
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+
+            return null;
+        })
+    }
+
+    getReviewedReq() {
+        ReqReviewService.getProceeded()
+            .then((response) => {
+                this.setState({
+                    proceededReqs: response.data
+                });
             })
             .catch((e) => {
                 console.log(e);
@@ -38,25 +76,30 @@ export default class ApproveServiceReq extends Component {
     }
 
     renderTablePending() {
-        return this.state.studentReq.map((request, index) => {
-            if (!request.isReviewed) {
+        return this.state.studentReq.map((request) => {
+            const condition = this.state.proceededReqs.map((id) => { return (id.requestId === request.requestId) });
+            console.log(this.state.studentReq);
+            // console.log(condition);
+            if (condition) {
                 const { requestId, studentId, service_no, reason } = request //destructuring
                 return (
                     <tr key={requestId}>
                         <td>{studentId}</td>
                         <td>{service_no}</td>
                         <td>{reason}</td>
-                        <td>{<Link to={"/approve-service-requests/" + requestId}>Review Request</Link>}</td>
-                    </tr>
+                        <td>{<Link to={"/proceed/service/" + requestId}>Proceed Request</Link>}</td>
+                    </tr >
                 )
             }
             else { return null; }
         })
     }
 
-    renderTableReviewed() {
-        return this.state.studentReq.map((request, index) => {
-            if (request.isReviewed) {
+    renderTableIssued() {
+        return this.state.studentReq.map((request) => {
+            const condition = this.state.proceededReqs.map((id) => { return (id.requestId === request.requestId) })
+            // console.log(condition)
+            if (condition) {
                 const { requestId, studentId, service_no, reason } = request //destructuring
                 return (
                     <tr key={requestId}>
@@ -71,19 +114,16 @@ export default class ApproveServiceReq extends Component {
     }
 
     render() {
-
         return (
             <div className="container">
                 <h4>Service Requests</h4>
                 <hr />
                 <ul className="nav nav-pills mb-3" id="myTab" role="tablist">
                     <li className="nav-item">
-                        <a className="nav-link active" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true">
-                            Pending Requests
-                        </a>
+                        <a className="nav-link active" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true">Pending Requests</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" id="reviewed-tab" data-toggle="tab" href="#reviewed" role="tab" aria-controls="reviewed" aria-selected="false">Reviewed Requests</a>
+                        <a className="nav-link" id="reviewed-tab" data-toggle="tab" href="#reviewed" role="tab" aria-controls="reviewed" aria-selected="false">Issued Requests</a>
                     </li>
                 </ul>
                 <div className="tab-content" id="myTabContent">
@@ -91,7 +131,7 @@ export default class ApproveServiceReq extends Component {
                         <table className="table">
                             <thead className="thead-light">
                                 <tr>
-                                    <th scope="col">Student</th>
+                                    <th scope="col">Student Id</th>
                                     <th scope="col">Service</th>
                                     <th scope="col">Reason</th>
                                     <th scope="col">Action</th>
@@ -106,13 +146,13 @@ export default class ApproveServiceReq extends Component {
                         <table className="table">
                             <thead className="thead-light">
                                 <tr>
-                                    <th scope="col">Student</th>
+                                    <th scope="col">Student Id</th>
                                     <th scope="col">Service</th>
                                     <th scope="col">Reason</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.renderTableReviewed()}
+                                {this.renderTableIssued()}
                             </tbody>
                         </table>
                     </div>

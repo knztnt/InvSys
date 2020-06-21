@@ -28,7 +28,7 @@ db.sequelize.sync();
 /* Reset database - Delete all records */
 // db.sequelize.sync({ force: true }).then(() => {
 //   console.log("Drop and Resync Db");
-//   initial();
+//   initial(db.sequelize);
 // });
 
 // test route
@@ -49,13 +49,17 @@ require("./app/routes/academic-service-req.routes")(app);
 require("./app/routes/profile.routes")(app);
 require("./app/routes/reviewed-item-req.routes")(app);
 require("./app/routes/reviewed-service-req.routes")(app);
+require("./app/routes/issued-aca-item.routes")(app);
+require("./app/routes/issued-stud-item.routes")(app);
+require("./app/routes/proceeded-aca-service.routes")(app);
+require("./app/routes/proceeded-stud-service.routes")(app);
 
 // port 5000 for the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}.`));
 
 // create roles in database
-function initial() {
+function initial(sequelize) {
   Role.create({
     id: 1,
     name: "admin",
@@ -85,4 +89,10 @@ function initial() {
     roleId: 1,
     username: "admin",
   });
+
+  sequelize.query("ALTER TABLE issued_aca_item_requests ADD FOREIGN KEY (requestId) REFERENCES academic_item_requests (requestId);");
+  sequelize.query("ALTER TABLE proceeded_aca_service_requests ADD FOREIGN KEY (requestId) REFERENCES academic_service_requests (requestId);");
+
+  sequelize.query("ALTER TABLE issued_stud_item_requests ADD FOREIGN KEY (requestId) REFERENCES reviewed_item_requests (requestId);");
+  sequelize.query("ALTER TABLE proceeded_stud_service_requests ADD FOREIGN KEY (requestId) REFERENCES reviewed_service_requests (requestId);");
 }

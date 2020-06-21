@@ -19,8 +19,7 @@ export default class Profile extends Component {
                 email: "",
                 phone_no: "",
                 address: "",
-                department: "",
-                batch: ""
+                department: ""
             }
         };
     }

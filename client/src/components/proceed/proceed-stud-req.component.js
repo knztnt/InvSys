@@ -1,29 +1,28 @@
 import React, { Component } from "react";
 import AuthService from "../../services/auth.service";
-import ItemReqService from "../../services/student-item-req.service";
+import ServiceReqService from "../../services/student-service-req.service";
 import ProfileService from "../../services/profile.service";
-import ItemDataService from "../../services/item.service";
-import ReviewDataService from "../../services/review-item-req.service";
+import ServiceDataService from "../../services/service.service";
+import ProceedDataService from "../../services/proceed-stud-req.service";
+import ReqReviewService from "../../services/review-service-req.service";
 
-export default class ReviewItemReq extends Component {
+export default class IssueItemReq extends Component {
     constructor(props) {
         super(props);
         this.getRequest = this.getRequest.bind(this);
+        this.getRequestReview = this.getRequestReview.bind(this);
         this.getStudentProfile = this.getStudentProfile.bind(this);
-        this.getItem = this.getItem.bind(this);
-        this.onApproveRequest = this.onApproveRequest.bind(this);
-        this.onDeclineRequest = this.onDeclineRequest.bind(this);
-        this.onChangeRemarks = this.onChangeRemarks.bind(this);
-        this.updateRequest = this.updateRequest.bind(this);
+        this.getService = this.getService.bind(this);
+        this.updateRequestReview = this.updateRequestReview.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.pushBack = this.pushBack.bind(this);
 
         this.state = {
             studentReq: [],
             studentProfile: [],
-            item: [],
-            staffId: "",
-            remarks: "",
+            service: [],
+            nonacademicId: "",
+            reqReview: [],
             submitted: false
         };
     }
@@ -32,27 +31,42 @@ export default class ReviewItemReq extends Component {
     componentDidMount() {
         this.getRequest(this.props.match.params.requestId);
         this.setState({
-            staffId: AuthService.getCurrentUser().username
+            nonacademicId: AuthService.getCurrentUser().username,
+            returnBefore: new Date()
         });
+        this.getRequestReview(this.props.match.params.requestId);
     }
 
     getRequest(requestId) {
-        ItemReqService.get(requestId)
+        ServiceReqService.get(requestId)
             .then((response) => {
                 this.setState({
                     studentReq: response.data,
                 });
                 console.log(this.state.studentReq);
-                this.getStudentProfile(this.state.studentReq.studentId);
-                this.getItem(this.state.studentReq.item_no);
+                this.getStudentProfile();
+                this.getService(this.state.studentReq.service_no);
             })
             .catch((e) => {
                 console.log(e);
             });
     }
 
-    getStudentProfile(username) {
-        ProfileService.get(username)
+    getRequestReview(requestId) {
+        ReqReviewService.get(requestId)
+            .then((response) => {
+                this.setState({
+                    reqReview: response.data,
+                });
+                console.log(this.state.reqReview);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    }
+
+    getStudentProfile() {
+        ProfileService.get(this.state.studentReq.studentId)
             .then(response => {
                 this.setState({
                     studentProfile: response.data
@@ -64,31 +78,20 @@ export default class ReviewItemReq extends Component {
             });
     }
 
-    onApproveRequest() {
-        const isApproved = true;
-        this.onSubmit(isApproved);
-    }
 
-    onDeclineRequest() {
-        const isApproved = false;
-        this.onSubmit(isApproved);
-    }
-
-    onSubmit(param) {
+    onSubmit() {
         const requestId = this.state.studentReq.requestId;
-        const isApproved = param;
 
         const data = {
             requestId: requestId,
-            isApproved: isApproved,
-            remarks: this.state.remarks
+            nonacademicId: this.state.nonacademicId
         }
-
-        ReviewDataService.create(data.requestId, data.remarks, data.isApproved)
+        console.log(data)
+        ProceedDataService.create(data.requestId, data.nonacademicId, data.returnBefore)
             .then(
                 response => {
                     console.log(response.data);
-                    this.updateRequest(requestId);
+                    this.updateRequestReview(requestId);
                     this.setState({
                         submitted: true
                     });
@@ -101,17 +104,10 @@ export default class ReviewItemReq extends Component {
             );
     }
 
-    onChangeRemarks(e) {
-        this.setState({
-            remarks: e.target.value
-        });
-        console.log(this.state.remarks);
-    }
+    updateRequestReview(requestId) {
+        const data = { isIssued: true };
 
-    updateRequest(requestId) {
-        const data = { isReviewed: true };
-
-        ItemReqService.update(requestId, data)
+        ReqReviewService.update(requestId, data)
             .then(
                 response => {
                     console.log(response.data);
@@ -122,11 +118,11 @@ export default class ReviewItemReq extends Component {
             });
     }
 
-    getItem(item_no) {
-        ItemDataService.get(item_no)
+    getService(service_no) {
+        ServiceDataService.get(service_no)
             .then((response) => {
                 this.setState({
-                    item: response.data,
+                    service: response.data,
                 });
                 console.log(response.data);
             })
@@ -136,31 +132,27 @@ export default class ReviewItemReq extends Component {
     }
 
     pushBack() {
-        this.props.history.push('/approve/item-requests');
+        this.props.history.push('/proceed/service/');
     }
 
     render() {
-        const { studentReq, studentProfile, item } = this.state;
+        const { studentReq, studentProfile, service } = this.state;
 
         return (
             <div className="container">
                 <div className="row">
                     <div className="col-lg-8">
                         <h4>
-                            <strong>Request for Component #{studentReq.item_no} | {item.item_name}</strong>
+                            <strong><i className="fas fa-file-export fa-fw"></i> Request for Service #{studentReq.service_no} | {service.service_name}</strong>
                         </h4>
                         <hr />
                         <div className="row">
-                            <label className="col-sm-3 font-weight-bolder">Item no:</label>
-                            <p className="col-sm-9">{studentReq.item_no}</p>
-                            <label className="col-sm-3 font-weight-bolder">Component:</label>
-                            <p className="col-sm-9">{item.item_name}</p>
-                            <label className="col-sm-3 font-weight-bolder">Component Decription:</label>
-                            <p className="col-sm-9">{item.description}</p>
-                            <label className="col-sm-3 font-weight-bolder">Requested Quantity:</label>
-                            <p className="col-sm-9">{studentReq.quantity}</p>
-                            <label className="col-sm-3 font-weight-bolder">Available Quantity:</label>
-                            <p className="col-sm-9">{item.quantity}</p>
+                            <label className="col-sm-3 font-weight-bolder">Service no:</label>
+                            <p className="col-sm-9">{studentReq.service_no}</p>
+                            <label className="col-sm-3 font-weight-bolder">Service:</label>
+                            <p className="col-sm-9">{service.service_name}</p>
+                            <label className="col-sm-3 font-weight-bolder">Service Decription:</label>
+                            <p className="col-sm-9">{service.description}</p>
                             <label className="col-sm-3 font-weight-bolder">Reason:</label>
                             <p className="col-sm-9">{studentReq.reason}</p>
                             <label className="col-sm-3 font-weight-bolder">Requested Time:</label>
@@ -171,7 +163,7 @@ export default class ReviewItemReq extends Component {
                         <div className="card">
                             <div className="card-body">
                                 <h5 className="card-title">
-                                    Student Profile
+                                    <i className="far fa-user-circle fa-fw"></i> Student Profile
                                 </h5>
                                 <hr />
                                 <i className="fas fa-id-badge fa-fw"></i> <p className="card-text">{studentProfile.username}</p>
@@ -188,34 +180,18 @@ export default class ReviewItemReq extends Component {
                     <div className="submit-form col-lg-8">
                         {this.state.submitted ? (
                             <div>
-                                <h4>Request reviewed successfully!</h4>
+                                <h4>Service proceeded successfully!</h4>
                                 <button className="btn btn-success" onClick={this.pushBack}>
                                     Done
                                 </button>
                             </div>
                         ) : (
                                 <div>
-                                    <div className="row form-group">
-                                        <label htmlFor="remarks" className="col-sm-3 font-weight-bolder">Remarks</label>
-                                        <textarea
-                                            type="text"
-                                            className="form-control col-sm-9"
-                                            id="remarks"
-                                            rows="5"
-                                            required
-                                            value={this.state.remarks}
-                                            onChange={this.onChangeRemarks}
-                                            name="remarks"
-                                        />
-                                    </div>
                                     <div className="row">
                                         <div className="col-sm-3"></div>
                                         <div className="col-sm-9 d-flex justify-content-center">
-                                            <button onClick={this.onDeclineRequest} className="btn btn-secondary mr-3">
-                                                Decline Request
-                                            </button>
-                                            <button onClick={this.onApproveRequest} className="btn btn-success">
-                                                Approve Request
+                                            <button onClick={this.onSubmit} className="btn btn-success">
+                                                Proceed
                                             </button>
                                         </div>
                                     </div>

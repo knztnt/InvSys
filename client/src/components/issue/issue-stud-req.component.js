@@ -3,18 +3,22 @@ import AuthService from "../../services/auth.service";
 import ItemReqService from "../../services/student-item-req.service";
 import ProfileService from "../../services/profile.service";
 import ItemDataService from "../../services/item.service";
-import ReviewDataService from "../../services/review-item-req.service";
+import IssueDataService from "../../services/issue-student-req.service";
+import ReqReviewService from "../../services/review-item-req.service";
 
-export default class ReviewItemReq extends Component {
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+export default class IssueItemReq extends Component {
     constructor(props) {
         super(props);
         this.getRequest = this.getRequest.bind(this);
+        this.getRequestReview = this.getRequestReview.bind(this);
         this.getStudentProfile = this.getStudentProfile.bind(this);
         this.getItem = this.getItem.bind(this);
-        this.onApproveRequest = this.onApproveRequest.bind(this);
-        this.onDeclineRequest = this.onDeclineRequest.bind(this);
-        this.onChangeRemarks = this.onChangeRemarks.bind(this);
-        this.updateRequest = this.updateRequest.bind(this);
+        this.onChangeDate = this.onChangeDate.bind(this);
+        this.updateRequestReview = this.updateRequestReview.bind(this);
+        this.updateItem = this.updateItem.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.pushBack = this.pushBack.bind(this);
 
@@ -22,8 +26,9 @@ export default class ReviewItemReq extends Component {
             studentReq: [],
             studentProfile: [],
             item: [],
-            staffId: "",
-            remarks: "",
+            nonacademicId: "",
+            reqReview: [],
+            returnBefore: undefined,
             submitted: false
         };
     }
@@ -32,8 +37,10 @@ export default class ReviewItemReq extends Component {
     componentDidMount() {
         this.getRequest(this.props.match.params.requestId);
         this.setState({
-            staffId: AuthService.getCurrentUser().username
+            nonacademicId: AuthService.getCurrentUser().username,
+            returnBefore: new Date()
         });
+        this.getRequestReview(this.props.match.params.requestId);
     }
 
     getRequest(requestId) {
@@ -43,7 +50,7 @@ export default class ReviewItemReq extends Component {
                     studentReq: response.data,
                 });
                 console.log(this.state.studentReq);
-                this.getStudentProfile(this.state.studentReq.studentId);
+                this.getStudentProfile();
                 this.getItem(this.state.studentReq.item_no);
             })
             .catch((e) => {
@@ -51,8 +58,21 @@ export default class ReviewItemReq extends Component {
             });
     }
 
-    getStudentProfile(username) {
-        ProfileService.get(username)
+    getRequestReview(requestId) {
+        ReqReviewService.get(requestId)
+            .then((response) => {
+                this.setState({
+                    reqReview: response.data,
+                });
+                console.log(this.state.reqReview);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    }
+
+    getStudentProfile() {
+        ProfileService.get(this.state.studentReq.studentId)
             .then(response => {
                 this.setState({
                     studentProfile: response.data
@@ -64,31 +84,28 @@ export default class ReviewItemReq extends Component {
             });
     }
 
-    onApproveRequest() {
-        const isApproved = true;
-        this.onSubmit(isApproved);
+    onChangeDate(date) {
+        this.setState({
+            returnBefore: date
+        });
     }
 
-    onDeclineRequest() {
-        const isApproved = false;
-        this.onSubmit(isApproved);
-    }
-
-    onSubmit(param) {
+    onSubmit() {
         const requestId = this.state.studentReq.requestId;
-        const isApproved = param;
+        const item_no = this.state.studentReq.item_no;
 
         const data = {
             requestId: requestId,
-            isApproved: isApproved,
-            remarks: this.state.remarks
+            nonacademicId: this.state.nonacademicId,
+            returnBefore: this.state.returnBefore
         }
-
-        ReviewDataService.create(data.requestId, data.remarks, data.isApproved)
+        console.log(data)
+        IssueDataService.create(data.requestId, data.nonacademicId, data.returnBefore)
             .then(
                 response => {
                     console.log(response.data);
-                    this.updateRequest(requestId);
+                    this.updateRequestReview(requestId);
+                    this.updateItem(item_no);
                     this.setState({
                         submitted: true
                     });
@@ -101,17 +118,25 @@ export default class ReviewItemReq extends Component {
             );
     }
 
-    onChangeRemarks(e) {
-        this.setState({
-            remarks: e.target.value
-        });
-        console.log(this.state.remarks);
+    updateRequestReview(requestId) {
+        const data = { isIssued: true };
+
+        ReqReviewService.update(requestId, data)
+            .then(
+                response => {
+                    console.log(response.data);
+                }
+            )
+            .catch(e => {
+                console.log(e);
+            });
     }
 
-    updateRequest(requestId) {
-        const data = { isReviewed: true };
+    updateItem(item_no) {
+        const quantiy = this.state.item.quantity - this.state.studentReq.quantity;
+        const data = { quantity: quantiy };
 
-        ItemReqService.update(requestId, data)
+        ItemDataService.update(item_no, data)
             .then(
                 response => {
                     console.log(response.data);
@@ -136,7 +161,7 @@ export default class ReviewItemReq extends Component {
     }
 
     pushBack() {
-        this.props.history.push('/approve/item-requests');
+        this.props.history.push('/issue/item/');
     }
 
     render() {
@@ -147,7 +172,7 @@ export default class ReviewItemReq extends Component {
                 <div className="row">
                     <div className="col-lg-8">
                         <h4>
-                            <strong>Request for Component #{studentReq.item_no} | {item.item_name}</strong>
+                            <strong><i className="fas fa-file-export fa-fw"></i> Request for Component #{studentReq.item_no} | {item.item_name}</strong>
                         </h4>
                         <hr />
                         <div className="row">
@@ -188,7 +213,7 @@ export default class ReviewItemReq extends Component {
                     <div className="submit-form col-lg-8">
                         {this.state.submitted ? (
                             <div>
-                                <h4>Request reviewed successfully!</h4>
+                                <h4>Component issued successfully!</h4>
                                 <button className="btn btn-success" onClick={this.pushBack}>
                                     Done
                                 </button>
@@ -196,26 +221,21 @@ export default class ReviewItemReq extends Component {
                         ) : (
                                 <div>
                                     <div className="row form-group">
-                                        <label htmlFor="remarks" className="col-sm-3 font-weight-bolder">Remarks</label>
-                                        <textarea
-                                            type="text"
-                                            className="form-control col-sm-9"
-                                            id="remarks"
-                                            rows="5"
-                                            required
-                                            value={this.state.remarks}
-                                            onChange={this.onChangeRemarks}
-                                            name="remarks"
-                                        />
+                                        <label htmlFor="remarks" className="col-sm-3 font-weight-bolder">Return Date</label>
+                                        <div>
+                                            <DatePicker
+                                                selected={this.state.returnBefore}
+                                                onChange={this.onChangeDate}
+                                                minDate={new Date()}
+                                                dateFormat={"dd-MM-yyyy"}
+                                            />
+                                        </div>
                                     </div>
                                     <div className="row">
                                         <div className="col-sm-3"></div>
                                         <div className="col-sm-9 d-flex justify-content-center">
-                                            <button onClick={this.onDeclineRequest} className="btn btn-secondary mr-3">
-                                                Decline Request
-                                            </button>
-                                            <button onClick={this.onApproveRequest} className="btn btn-success">
-                                                Approve Request
+                                            <button onClick={this.onSubmit} className="btn btn-success">
+                                                Proceed
                                             </button>
                                         </div>
                                     </div>
