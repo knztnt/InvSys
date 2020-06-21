@@ -52,6 +52,12 @@ module.exports = {
   },
 };
 ```
+# For the First Time running the Server 
+In InvSys/app/server.js file, uncomment (29-32) lines and comment 26th line. This will initialize the database and sync all the tables.
+Or simply replace exixting server.js file with following script.
+Following script contains the server.js file when it is run initially.
+
+[InvSys server file | Resets database to initial state](https://gist.github.com/chamin96/320548e02818752a8c545de2b4db4926)
 
 ## Powered by
 
@@ -77,10 +83,15 @@ module.exports = {
 > - bootstrap
 > - fontawesome
 > - jwt-decode
+> - prop-types
 > - react
+> - react-avatar
+> - react-datepicker
 > - react-dom
 > - react-router-dom
 > - react-scripts
+> - react-validation
+> - validator
 >
 > ### Developer dependencies
 >
@@ -88,6 +99,8 @@ module.exports = {
 > - concurrently
 
 ## Documentation
+
+> - [Database Project Report](https://drive.google.com/file/d/1icETHglfJ0oSD3KXyziNj3D2A1N39fwc/view)
 
 ## Deployment
 
