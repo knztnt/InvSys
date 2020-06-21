@@ -170,12 +170,11 @@ export default class ReviewServiceReq extends Component {
                                     Student Profile
                                 </h5>
                                 <hr />
-                                <p className="card-text">{studentProfile.username}</p>
-                                <p className="card-text">{studentProfile.first_name} {studentProfile.last_name}</p>
-                                <p className="card-text">{studentProfile.batch}</p>
-                                <p className="card-text">{studentProfile.department}</p>
-                                <p className="card-text">{studentProfile.email}</p>
-                                <p className="card-text">{studentProfile.phone_no}</p>
+                                <i className="fas fa-id-badge fa-fw"></i> <p className="card-text">{studentProfile.username}</p>
+                                <i className="fas fa-pen-alt fa-fw"></i> <p className="card-text">{studentProfile.first_name} {studentProfile.last_name}</p>
+                                <i className="far fa-building fa-fw"></i> <p className="card-text">{studentProfile.department}</p>
+                                <i className="far fa-envelope-open fa-fw"></i> <p className="card-text">{studentProfile.email}</p>
+                                <i className="fas fa-phone fa-fw"></i> <p className="card-text">{studentProfile.phone_no}</p>
                             </div>
                         </div>
                     </div>
