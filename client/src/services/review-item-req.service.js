@@ -18,9 +18,13 @@ class ItemReviewService {
         return axios.get(API_URL + "approved");
     }
 
-    // get(item_no) {
-    //     return axios.get(API_URL + item_no);
-    // }
+    getIssued() {
+        return axios.get(API_URL + "issued");
+    }
+
+    get(requestId) {
+        return axios.get(API_URL + "get/" + requestId);
+    }
 
     update(requestId, data) {
         console.log(data);
