@@ -6,7 +6,7 @@ const Op = db.Sequelize.Op;
 // Create and Save a new request
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.academicId) {
+    if (!req.body.requestId) {
         res.status(400).send({
             message: "Content can not be empty!"
         });

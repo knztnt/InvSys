@@ -35,7 +35,11 @@ exports.create = (req, res) => {
 
 // find all approved requests
 exports.findAllApproved = (req, res) => {
-    ReviewedItemReq.findAll({ where: { isApproved: true } })
+    ReviewedItemReq.findAll(
+        {
+            attributes: ['requestId'],
+            where: { isApproved: true }
+        })
         .then(data => {
             res.send(data);
         })
@@ -43,6 +47,39 @@ exports.findAllApproved = (req, res) => {
             res.status(500).send({
                 message:
                     err.message || "Some error occurred while retrieving items."
+            });
+        });
+};
+
+// find all issued requests
+exports.findAllIssued = (req, res) => {
+    ReviewedItemReq.findAll(
+        {
+            attributes: ['requestId'],
+            where: { isIssued: true }
+        })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving items."
+            });
+        });
+};
+
+// Find a single Request with an requestId
+exports.findOne = (req, res) => {
+    const requestId = req.params.requestId;
+
+    ReviewedItemReq.findByPk(requestId)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error retrieving Request with item number = " + requestId
             });
         });
 };
