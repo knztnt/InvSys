@@ -124,7 +124,7 @@ export default class ProceedServReq extends Component {
                 <div className="row">
                     <div className="col-lg-8">
                         <h4>
-                            <strong>Request for Service #{staffReq.service_no} | {service.service_name}</strong>
+                            <strong><i className="fas fa-file-export fa-fw"></i> Request for Service #{staffReq.service_no} | {service.service_name}</strong>
                         </h4>
                         <hr />
                         <div className="row">
@@ -147,12 +147,11 @@ export default class ProceedServReq extends Component {
                                     Academic Profile
                                 </h5>
                                 <hr />
-                                <p className="card-text">{academicProfile.username}</p>
-                                <p className="card-text">{academicProfile.first_name} {academicProfile.last_name}</p>
-                                <p className="card-text">{academicProfile.batch}</p>
-                                <p className="card-text">{academicProfile.department}</p>
-                                <p className="card-text">{academicProfile.email}</p>
-                                <p className="card-text">{academicProfile.phone_no}</p>
+                                <i className="fas fa-id-badge fa-fw"></i> <p className="card-text">{academicProfile.username}</p>
+                                <i className="fas fa-pen-alt fa-fw"></i> <p className="card-text">{academicProfile.first_name} {academicProfile.last_name}</p>
+                                <i className="far fa-building fa-fw"></i> <p className="card-text">{academicProfile.department}</p>
+                                <i className="far fa-envelope-open fa-fw"></i> <p className="card-text">{academicProfile.email}</p>
+                                <i className="fas fa-phone fa-fw"></i> <p className="card-text">{academicProfile.phone_no}</p>
                             </div>
                         </div>
                     </div>
