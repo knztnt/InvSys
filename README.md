@@ -4,6 +4,9 @@
 > Department Inventory where students borrow components for their
 > projects.
 
+![Image](https://github.com/knztnt/InvSys/blob/master/client/src/navbar-new-logo.png)
+
+
 ## Quick Start
 
 - Clone the repo: `$ git clone https://github.com/knztnt/InvSys.git`
