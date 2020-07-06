@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import logo from "../navbar-brand-light.png";
+import logo from "../navbar-new-logo.png";
 
 import AuthService from "../services/auth.service";
 import { Link } from "react-router-dom";
@@ -45,8 +45,8 @@ class Navbar extends Component {
                 <Link className="navbar-brand col-md-3 col-lg-2 mr-0 px-3" to="/">
                     <img
                         src={logo}
-                        height="30"
-                        width="120"
+                        height="50"
+                        width="200"
                         alt="Logo"
                     />
                 </Link>
