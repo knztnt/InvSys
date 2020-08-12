@@ -9641,6 +9641,10 @@ html {
   }
 }
 
+.navbar {
+  background-color: #261d74;
+  background-image: linear-gradient(90deg, #261d74 0%, #180d5b 100%);
+}
 .sidebar {
   position: fixed;
   top: 0;

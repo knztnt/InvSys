@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import UserService from "../services/user.service";
 
-import backImage from './images/bkgrnd.jpg';
+import backImage from './images/landing-img.png';
 import image1 from './images/component.jpg';
 import image2 from './images/services.jpg';
 import image3 from './images/track.jpg';
