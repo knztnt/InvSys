@@ -3,11 +3,6 @@ import React, { Component } from "react";
 import UserService from "../services/user.service";
 
 import backImage from './images/landing-img.png';
-import image1 from './images/component.jpg';
-import image2 from './images/services.jpg';
-import image3 from './images/track.jpg';
-import image4 from './images/updates.jpg';
-
 
 export default class Home extends Component {
     constructor(props) {
@@ -41,59 +36,141 @@ export default class Home extends Component {
 
         return (
             <div className="container-fluid">
-                <div className="row"
-                    style={{
-                        backgroundImage: `url(${backImage})`,
-                        backgroundRepeat: 'no-repeat',
-                        height: '60vh',
-                        width: 'auto',
-                        backgroundSize: 'cover'
-                    }}>
-                    <div className="ml-5" style={{ height: '100%', width: '100%' }}>
-                        <div className="row align-items-center text-primary" style={{ height: '100%', width: '50%' }}>
+                <div className="row landing-backdrop">
+                    <div className="col-12 col-sm-4">
+                        <div className="d-flex align-content-center flex-wrap text-light vh-100 ml-4">
                             <span>
                                 <h3 className="display-4">
-                                    Inventory Management <br />
-                                    System
+                                    Inventory Management System
                                 </h3>
-                                <p>
-                                    Department of Computer Engineering <br />
-                                    Faculty of Engineering, University of Peradeniya
-                                </p>
+                                <blockquote className="blockquote">
+                                    <p>
+                                        Department of Computer Engineering
+                                        Faculty of Engineering, University of Peradeniya
+                                    </p>
+                                </blockquote>
+                                <hr className="bg-secondary mb-4 mt-0 d-inline-block mx-auto" style={{ 'width': '150px', 'height': '3px' }}></hr>
+                                <div className="row ml-1">
+                                    <a href={"/login"}>
+                                        <button
+                                            type="button"
+                                            className="btn btn-light btn-lg">
+                                            Login
+                                     <i className="fas fa-sign-in-alt fa-fw"></i>
+                                        </button>
+                                    </a>
+                                </div>
                             </span>
                         </div>
                     </div>
+                    <div className="col-8 d-none d-sm-block"
+                        style={{
+                            backgroundImage: `url(${backImage})`,
+                            backgroundRepeat: 'no-repeat',
+                            height: '100vh',
+                            width: 'auto',
+                            backgroundSize: 'cover'
+                        }}>
+                    </div>
                 </div>
+
 
                 <div className="row align-items-center">
-                    <div className="col-sm-3 p-3 text-center text-primary">
-                        <img src={image1} height="120" width="120" alt="home-icon"></img>
-                        <h5><br />Borrow Components</h5>
+                    <div className="col-sm-3 p-3 text-center text-info">
+                        <div className="" style={{ 'fontSize': '0.6rem' }}>
+                            <i className="fas fa-microchip fa-10x m-3"></i>
+                        </div>
+                        <h4 className="text-center">Request Components</h4>
                     </div>
-                    <div className="col-sm-3 p-3 text-center text-primary">
-                        <img src={image2} height="120" width="120" alt="home-icon"></img>
-                        <h5><br />Request Services</h5>
+                    <div className="col-sm-3 p-3 text-center text-info">
+                        <div className="" style={{ 'fontSize': '0.6rem' }}>
+                            <i className="fas fa-cogs fa-10x m-3"></i>
+                        </div>
+                        <h4 className="text-center">Request Services</h4>
                     </div>
-                    <div className="col-sm-3 p-3 text-center text-primary">
-                        <img src={image3} height="120" width="120" alt="home-icon"></img>
-                        <h5><br />Track Deadlines</h5>
+                    <div className="col-sm-3 p-3 text-center text-info">
+                        <div className="" style={{ 'fontSize': '0.6rem' }}>
+                            <i className="fas fa-calendar-day fa-10x m-3"></i>
+                        </div>
+                        <h4 className="text-center">Track Deadlines</h4>
                     </div>
-                    <div className="col-sm-3 p-3 text-center text-primary">
-                        <img src={image4} height="120" width="120" alt="home-icon"></img>
-                        <h5><br />Get Latest Inventory Updates</h5>
+                    <div className="col-sm-3 p-3 text-center text-info">
+                        <div className="" style={{ 'fontSize': '0.6rem' }}>
+                            <i className="fas fa-info-circle fa-10x m-3"></i>
+                        </div>
+                        <h4 className="text-center">Get Latest Updates</h4>
                     </div>
                 </div>
 
-                <div className="row home-footer" style={{ height: '20vh', width: 'auto', backgroundColor: '#094b62' }}>
-                    <div className="ml-5" style={{ height: '100%', width: '100%' }}>
-                        <div className="row align-items-center" style={{ height: '100%', width: '100%' }}>
+                {/* <div className="row home-footer">
+                    <div className="ml-5">
+                        <div className="row align-items-center">
                             <span style={{ color: 'white' }}>
                                 <b>Contact us:</b><br />
                                 1234567890<br />
                                 abc@abc.com</span>
                         </div>
                     </div>
-                </div>
+                </div> */}
+
+                <footer className="pt-4 row home-footer">
+                    <div className="row container-fluid text-center text-light text-md-left mx-5">
+                        <div className="col-12 col-md-4 mb-md-0 mb-3">
+                            <h5>Contact Us</h5>
+                            <hr className="bg-secondary mb-4 mt-0 d-inline-block mx-auto" style={{ 'width': '60px' }}></hr>
+                            <ul className="list-unstyled">
+                                <a href="tel:+94812393240" className="text-light text-decoration-none">
+                                    <p><i className="fas fa-phone fa-fw"></i> Tel. 0812345678</p>
+                                </a>
+                                <a href="mailto:cfeng@eng.pdn.ac.lk" className="text-light text-decoration-none">
+                                    <p><i className="fas fa-envelope fa-fw"></i> invsys@eng.pdn.ac.lk</p>
+                                </a>
+                                <p><i className="fas fa-map-marker-alt fa-fw"></i> Faculty of Engineering,<br />
+                                    <span className="ml-4">University of Peradeniya,</span><br />
+                                    <span className="ml-4">Peradeniya 20400, Sri Lanka.</span></p>
+                            </ul>
+                        </div>
+                        <div className="col-12 col-md-4 mb-md-0 mb-3">
+                            <h5>Useful Links</h5>
+                            <hr className="bg-secondary mb-4 mt-0 d-inline-block mx-auto" style={{ 'width': '60px' }}></hr>
+                            <ul className="list-unstyled">
+                                <blockquote className="blockquote">
+                                    <li className="pb-2">
+                                        <a href="http://www.ce.pdn.ac.lk/" target="blank" className="text-secondary">
+                                            <h6>
+                                                <i className="far fa-building fa-fw mr-1"></i>
+                                                    Department Website
+                                                </h6>
+                                        </a>
+                                    </li>
+                                    <li className="pb-2">
+                                        <a href="http://eng.pdn.ac.lk/" target="blank" className="text-secondary">
+                                            <h6>
+                                                <i className="fas fa-globe fa-fw mr-1"></i>
+                                                    Faculty Website
+                                            </h6>
+                                        </a>
+                                    </li>
+                                    <li className="pb-2">
+                                        <a href="https://aces.ce.pdn.ac.lk/" target="blank" className="text-secondary">
+                                            <h6>
+                                                <i className="fas fa-users fa-fw mr-1"></i>
+                                                     ACES
+                                            </h6>
+                                        </a>
+                                    </li>
+                                </blockquote>
+                            </ul>
+                        </div>
+                        <div className="col-12 col-md-4 mb-md-0">
+                            <h5>Visit Us</h5>
+                            <hr className="bg-secondary mb-4 mt-0 d-inline-block mx-auto" style={{ 'width': '60px' }}></hr>
+                            <div className="m-2">
+                                <iframe title="location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d494.73483926590507!2d80.59112873164031!3d7.254642164071207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae368d4d8ff2d7b%3A0xc4bb2a3c76b588ac!2sDepartment%20of%20Computer%20Engineering!5e0!3m2!1sen!2slk!4v1597256835883!5m2!1sen!2slk" width="300" height="200" frameBorder="0" style={{ 'border': '0' }} allowFullScreen="" aria-hidden="false" tabIndex="0"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
             </div>
 
 
