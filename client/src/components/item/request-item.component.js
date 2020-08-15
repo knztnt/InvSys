@@ -4,6 +4,7 @@ import UserService from "../../services/user-role.service";
 import ItemReqService from "../../services/student-item-req.service";
 import AcaItemReqService from "../../services/academic-item-req.service";
 import AuthService from "../../services/auth.service";
+import ProfileService from "../../services/profile.service";
 import { Link } from "react-router-dom";
 
 export default class RequestItem extends Component {
@@ -18,6 +19,7 @@ export default class RequestItem extends Component {
     this.saveRequest = this.saveRequest.bind(this);
     this.saveAcademicRequest = this.saveAcademicRequest.bind(this);
     this.pushBack = this.pushBack.bind(this);
+    this.getUserProfile = this.getUserProfile.bind(this);
 
     this.state = {
       currentItem: {
@@ -30,21 +32,36 @@ export default class RequestItem extends Component {
       },
       userId: "",
       academicStaff: [],
+      academicProfile: [],
       staffMember: null,
       currentIndex: -1,
       message: "",
       isStudent: false
     };
-  }
 
-  componentDidMount() {
     this.getItem(this.props.match.params.item_no);
     this.getAcademicUsers();
     console.log(this.props.match.params.item_no);
+  }
+
+  componentDidMount() {
     this.setState({
       userId: AuthService.getCurrentUser().username,
       isStudent: AuthService.getCurrentUser().roles.includes("ROLE_STUDENT")
     });
+  }
+
+  getUserProfile(username) {
+    ProfileService.get(username)
+      .then(response => {
+        this.setState({
+          academicProfile: [...this.state.academicProfile, ...[response.data]]
+        });
+        console.log(this.state.academicProfile);
+      })
+      .catch(e => {
+        console.log(e);
+      });
   }
 
   getItem(item_no) {
@@ -106,7 +123,11 @@ export default class RequestItem extends Component {
         this.setState({
           academicStaff: response.data,
         });
-        console.log(response.data);
+        console.log(this.state.academicStaff)
+        for (let index = 0; index < response.data.length; index++) {
+          const e = response.data[index].username;
+          this.getUserProfile(e);
+        };
       })
       .catch((e) => {
         console.log(e);
@@ -178,7 +199,7 @@ export default class RequestItem extends Component {
   }
 
   render() {
-    const { currentItem, academicStaff } = this.state;
+    const { currentItem, academicProfile } = this.state;
 
     return (
       <div className="container">
@@ -209,12 +230,12 @@ export default class RequestItem extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="quantity">Quantity</label>
+                  <label htmlFor="quantity">Quantity <small className="text-muted">({currentItem.quantity} pcs available)</small></label>
                   <input
                     type="number"
                     className="form-control"
                     id="quantity"
-                    value={currentItem.quantity}
+                    value="1"
                     onChange={this.onChangeQuantity}
                   />
                 </div>
@@ -239,14 +260,14 @@ export default class RequestItem extends Component {
                         id="inputGroupSelect02"
                         onChange={this.onChangeStaffMember}>
                         <option defaultValue>Choose...</option>
-                        {academicStaff &&
-                          academicStaff.map((member, index) => (
+                        {academicProfile &&
+                          academicProfile.map((member, index) => (
                             <option
                               onClick={() => { this.setSelectedMember(member, index); }}
                               key={index}
                               value={member.username}
                             >
-                              {member.username}
+                              {member.first_name + " " + member.last_name}
                             </option>
                           ))}
                       </select>
@@ -266,7 +287,7 @@ export default class RequestItem extends Component {
                 </div>
               </form>
               <Link to={"/view-items"}>
-                <button className="btn btn-secondary mr-2">Back</button>
+                <button className="btn btn-light mr-2">Back</button>
               </Link>
               <button
                 type="submit"
