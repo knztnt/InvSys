@@ -31,7 +31,7 @@
   --teal: #20c997;
   --cyan: #261d74;
   --white: #fff;
-  --gray: #6c757d;
+  --gray: #dddddd;
   --gray-dark: #343a40;
   --primary: #0b0629;
   --secondary: #44d8cc;
@@ -246,7 +246,7 @@ table {
 caption {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  color: #6c757d;
+  color: #dddddd;
   text-align: left;
   caption-side: bottom;
 }
@@ -519,7 +519,7 @@ mark,
 .blockquote-footer {
   display: block;
   font-size: 80%;
-  color: #6c757d;
+  color: #dddddd;
 }
 
 .blockquote-footer::before {
@@ -551,7 +551,7 @@ mark,
 
 .figure-caption {
   font-size: 90%;
-  color: #6c757d;
+  color: #dddddd;
 }
 
 code {
@@ -978,7 +978,7 @@ pre code {
 }
 
 .form-control::placeholder {
-  color: #6c757d;
+  color: #dddddd;
   opacity: 1;
 }
 
@@ -1100,7 +1100,7 @@ textarea.form-control {
 }
 
 .form-check-input:disabled ~ .form-check-label {
-  color: #6c757d;
+  color: #dddddd;
 }
 
 .form-check-label {
@@ -1587,7 +1587,7 @@ fieldset:disabled a.btn {
 .btn-secondary:hover {
   color: #fff;
   background-color: #727b84;
-  border-color: #6c757d;
+  border-color: #dddddd;
 }
 
 .btn-secondary:focus,
@@ -1606,7 +1606,7 @@ fieldset:disabled a.btn {
 .btn-secondary:not(:disabled):not(.disabled).active,
 .show > .btn-secondary.dropdown-toggle {
   color: #fff;
-  background-color: #6c757d;
+  background-color: #dddddd;
   border-color: #666e76;
 }
 
@@ -2151,7 +2151,7 @@ fieldset:disabled a.btn {
 
 .btn-link:disabled,
 .btn-link.disabled {
-  color: #6c757d;
+  color: #dddddd;
   pointer-events: none;
 }
 
@@ -2451,7 +2451,7 @@ input[type="button"].btn-block {
 
 .dropdown-item.disabled,
 .dropdown-item:disabled {
-  color: #6c757d;
+  color: #dddddd;
   pointer-events: none;
   background-color: transparent;
 }
@@ -2465,7 +2465,7 @@ input[type="button"].btn-block {
   padding: 0.5rem 1.5rem;
   margin-bottom: 0;
   font-size: 0.875rem;
-  color: #6c757d;
+  color: #dddddd;
   white-space: nowrap;
 }
 
@@ -2829,7 +2829,7 @@ input[type="button"].btn-block {
 }
 
 .custom-control-input:disabled ~ .custom-control-label {
-  color: #6c757d;
+  color: #dddddd;
 }
 
 .custom-control-input:disabled ~ .custom-control-label::before {
@@ -2989,7 +2989,7 @@ input[type="button"].btn-block {
 }
 
 .custom-select:disabled {
-  color: #6c757d;
+  color: #dddddd;
   background-color: #e9ecef;
 }
 
@@ -3270,7 +3270,7 @@ input[type="button"].btn-block {
 }
 
 .nav-link.disabled {
-  color: #6c757d;
+  color: #dddddd;
   pointer-events: none;
   cursor: default;
 }
@@ -3295,7 +3295,7 @@ input[type="button"].btn-block {
 }
 
 .nav-tabs .nav-link.disabled {
-  color: #6c757d;
+  color: #dddddd;
   background-color: transparent;
   border-color: transparent;
 }
@@ -3996,7 +3996,7 @@ input[type="button"].btn-block {
 .breadcrumb-item + .breadcrumb-item::before {
   display: inline-block;
   padding-right: 0.5rem;
-  color: #6c757d;
+  color: #dddddd;
   content: "/";
 }
 
@@ -4009,7 +4009,7 @@ input[type="button"].btn-block {
 }
 
 .breadcrumb-item.active {
-  color: #6c757d;
+  color: #dddddd;
 }
 
 .pagination {
@@ -4063,7 +4063,7 @@ input[type="button"].btn-block {
 }
 
 .page-item.disabled .page-link {
-  color: #6c757d;
+  color: #dddddd;
   pointer-events: none;
   cursor: auto;
   background-color: #fff;
@@ -4167,7 +4167,7 @@ a.badge-primary.focus {
 a.badge-secondary:hover,
 a.badge-secondary:focus {
   color: #fff;
-  background-color: #6c757d;
+  background-color: #dddddd;
 }
 
 a.badge-secondary:focus,
@@ -4554,7 +4554,7 @@ a.badge-dark.focus {
 
 .list-group-item.disabled,
 .list-group-item:disabled {
-  color: #6c757d;
+  color: #dddddd;
   pointer-events: none;
   background-color: #fff;
 }
@@ -4904,7 +4904,7 @@ a.close.disabled {
   display: flex;
   align-items: center;
   padding: 0.25rem 0.75rem;
-  color: #6c757d;
+  color: #dddddd;
   background-color: rgba(255, 255, 255, 0.85);
   background-clip: padding-box;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -5712,7 +5712,7 @@ a.bg-secondary:hover,
 a.bg-secondary:focus,
 button.bg-secondary:hover,
 button.bg-secondary:focus {
-  background-color: #6c757d !important;
+  background-color: #dddddd !important;
 }
 
 .bg-success {
@@ -9481,7 +9481,7 @@ a.text-dark:focus {
 }
 
 .text-muted {
-  color: #6c757d !important;
+  color: #dddddd !important;
 }
 
 .text-black-50 {
@@ -9759,8 +9759,6 @@ html {
 }
 
 /* .login-card {
-  background-color: #ffffff;
-  background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
 } */
 
 /* home footer */
