@@ -83,7 +83,7 @@ export default class Login extends Component {
         return (
             <div className="container-fluid">
                 <div className="row login-background d-flex align-content-center justify-content-center flex-wrap">
-                    <div className="col-12 col-sm-8 col-md-4">
+                    <div className="col-12 col-sm-5 col-xl-3">
                         <div className="card shadow-lg border-0 rounded-lg login-card">
                             <h3 className="text-center font-weight-normal my-4">
                                 Login
@@ -133,6 +133,11 @@ export default class Login extends Component {
 
                                             Login
                                         </button>
+                                    </div>
+                                    <div className="form-group d-flex align-items-center justify-content-between mt-2 mb-0">
+                                        <a href="mailto:invsys@eng.pdn.ac.lk" className="text-primary text-decoration-none">
+                                            <p><small>Don't have an account? Contact Us</small></p>
+                                        </a>
                                     </div>
 
                                     {this.state.message && (
