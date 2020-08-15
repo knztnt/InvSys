@@ -36,7 +36,8 @@ export default class RequestItem extends Component {
       staffMember: null,
       currentIndex: -1,
       message: "",
-      isStudent: false
+      isStudent: false,
+      availableQuantity: 0
     };
 
     this.getItem(this.props.match.params.item_no);
@@ -69,6 +70,7 @@ export default class RequestItem extends Component {
       .then((response) => {
         this.setState({
           currentItem: response.data,
+          availableQuantity: response.data.quantity
         });
         console.log(response.data);
       })
@@ -230,12 +232,12 @@ export default class RequestItem extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="quantity">Quantity <small className="text-muted">({currentItem.quantity} pcs available)</small></label>
+                  <label htmlFor="quantity">Quantity <small className="text-muted">({this.state.availableQuantity} pcs available)</small></label>
                   <input
                     type="number"
                     className="form-control"
                     id="quantity"
-                    value="1"
+                    defaultValue="1"
                     onChange={this.onChangeQuantity}
                   />
                 </div>
