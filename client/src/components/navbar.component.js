@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import logo from "../navbar-new-logo.png";
+import logo from "../navbar-logo-blue.png";
 
 import AuthService from "../services/auth.service";
 import { Link } from "react-router-dom";
@@ -15,12 +15,14 @@ class Navbar extends Component {
             showAcademicBoard: false,
             showNonacBoard: false,
             showAdminBoard: false,
-            currentUser: undefined
+            currentUser: undefined,
+            loginPage: false
         };
     }
 
     componentDidMount() {
         const user = AuthService.getCurrentUser();
+        const currentLocation = window.location.pathname;
 
         if (user) {
             this.setState({
@@ -31,6 +33,12 @@ class Navbar extends Component {
                 showAdminBoard: user.roles.includes("ROLE_ADMIN")
             });
         }
+
+        if (currentLocation === "/login") {
+            this.setState({
+                loginPage: true
+            });
+        }
     }
 
     logOut() {
@@ -38,15 +46,15 @@ class Navbar extends Component {
     }
 
     render() {
-        const { currentUser } = this.state;
+        const { currentUser, loginPage } = this.state;
 
         return (
-            <nav className="navbar navbar-light bg-light sticky-top flex-md-nowrap p-0 shadow">
+            <nav className="navbar navbar-light bg-light sticky-top flex-md-nowrap p-0">
                 <Link className="navbar-brand col-md-3 col-lg-2 mr-0 px-3" to="/">
                     <img
                         src={logo}
                         height="50"
-                        width="200"
+                        width="160"
                         alt="Logo"
                     />
                 </Link>
@@ -61,43 +69,39 @@ class Navbar extends Component {
                 >
                     <span className="navbar-toggler-icon" />
                 </button>
-                {currentUser ? (
-                    <div className="navbar-nav px-3">
-                        <li className="nav-item text-nowrap">
-                            <a href="/login" className="nav-link" onClick={this.logOut}>
-                                <button
-                                    type="button"
-                                    className="btn btn-primary btn-sm">
-                                    <i className="fas fa-sign-out-alt fa-fw"></i>
+                {loginPage ?
+                    (<div></div>)
+                    : (<div>
+                        {currentUser ? (
+                            <div className="navbar-nav px-3">
+                                <li className="nav-item text-nowrap">
+                                    <a href="/login" className="nav-link" onClick={this.logOut}>
+                                        <button
+                                            type="button"
+                                            className="btn btn-secondary btn-sm">
+                                            <i className="fas fa-sign-out-alt fa-fw"></i>
                                      LogOut
                                 </button>
-                            </a>
-                        </li>
-                    </div>
-                ) : (
-                        <div className="navbar-nav px-3">
-                            <li className="nav-item text-nowrap">
-                                <a href={"/login"} className="nav-link">
-                                    <button
-                                        type="button"
-                                        className="btn btn-primary btn-sm">
-                                        Login
+                                    </a>
+                                </li>
+                            </div>
+                        ) : (
+                                <div className="navbar-nav px-3 d-none d-sm-block">
+                                    <li className="nav-item text-nowrap">
+                                        <a href={"/login"} className="nav-link">
+                                            <button
+                                                type="button"
+                                                className="btn btn-secondary btn-sm">
+                                                Login
                                         <i className="fas fa-sign-in-alt fa-fw"></i>
-                                    </button>
-                                </a>
-                            </li>
-                        </div>
+                                            </button>
+                                        </a>
+                                    </li>
+                                </div>
+                            )
+                        }
+                    </div>)}
 
-                        /* <div className="navbar-nav px-3">
-                            <li className="nav-item text-nowrap">
-                                <Link to={"/register"} className="nav-link">
-                                    Sign Up
-                                </Link>
-                            </li>
-                        </div> */
-
-                    )
-                }
             </nav>
         );
     }

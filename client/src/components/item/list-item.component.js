@@ -185,7 +185,7 @@ export default class ItemsList extends Component {
                       className="btn btn-warning"
                     >
                       Update Item
-                                    </button>
+                    </button>
                   </Link>
                 ) : (
                     <Link to={"/item/request/" + currentItem.item_no}>

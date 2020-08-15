@@ -81,15 +81,14 @@ export default class Login extends Component {
 
     render() {
         return (
-            <div className="login-background">
-                <div className="row w-100 item-center justify-content-center">
-                    <div className="col col-lg-3 col-md-4 col-sm-6">
+            <div className="container-fluid">
+                <div className="row login-background d-flex align-content-center justify-content-center flex-wrap">
+                    <div className="col-12 col-sm-5 col-xl-3">
                         <div className="card shadow-lg border-0 rounded-lg login-card">
-                            <div className="card-header">
-                                <h3 className="text-center font-weight-normal my-4">
-                                    Login
-                                </h3>
-                            </div>
+                            <h3 className="text-center font-weight-normal my-4">
+                                Login
+                            </h3>
+
                             <div className="card-body">
                                 <Form
                                     onSubmit={this.handleLogin}
@@ -134,6 +133,11 @@ export default class Login extends Component {
 
                                             Login
                                         </button>
+                                    </div>
+                                    <div className="form-group d-flex align-items-center justify-content-between mt-2 mb-0">
+                                        <a href="mailto:invsys@eng.pdn.ac.lk" className="text-primary text-decoration-none">
+                                            <p><small>Don't have an account? Contact Us</small></p>
+                                        </a>
                                     </div>
 
                                     {this.state.message && (
