@@ -76,42 +76,40 @@ export default class Home extends Component {
 
 
                 <div className="row align-items-center">
-                    <div className="col-sm-3 p-3 text-center text-info">
-                        <div className="" style={{ 'fontSize': '0.6rem' }}>
-                            <i className="fas fa-microchip fa-10x m-3"></i>
+                    <div className="col-12">
+                        <div className="col-12 p-3 text-center text-info">
+                            <h2 className="text-center display-4">The Online Inventory Management System</h2>
                         </div>
-                        <h4 className="text-center">Request Components</h4>
                     </div>
-                    <div className="col-sm-3 p-3 text-center text-info">
-                        <div className="" style={{ 'fontSize': '0.6rem' }}>
-                            <i className="fas fa-cogs fa-10x m-3"></i>
+                    <div className="col-12">
+                        <div className="row">
+                            <div className="col-sm-3 p-3 text-center text-info">
+                                <div className="" style={{ 'fontSize': '0.6rem' }}>
+                                    <i className="fas fa-microchip fa-10x m-3"></i>
+                                </div>
+                                <h4 className="text-center">Request Components</h4>
+                            </div>
+                            <div className="col-sm-3 p-3 text-center text-info">
+                                <div className="" style={{ 'fontSize': '0.6rem' }}>
+                                    <i className="fas fa-cogs fa-10x m-3"></i>
+                                </div>
+                                <h4 className="text-center">Request Services</h4>
+                            </div>
+                            <div className="col-sm-3 p-3 text-center text-info">
+                                <div className="" style={{ 'fontSize': '0.6rem' }}>
+                                    <i className="fas fa-calendar-day fa-10x m-3"></i>
+                                </div>
+                                <h4 className="text-center">Track Deadlines</h4>
+                            </div>
+                            <div className="col-sm-3 p-3 text-center text-info">
+                                <div className="" style={{ 'fontSize': '0.6rem' }}>
+                                    <i className="fas fa-info-circle fa-10x m-3"></i>
+                                </div>
+                                <h4 className="text-center">Get Latest Updates</h4>
+                            </div>
                         </div>
-                        <h4 className="text-center">Request Services</h4>
-                    </div>
-                    <div className="col-sm-3 p-3 text-center text-info">
-                        <div className="" style={{ 'fontSize': '0.6rem' }}>
-                            <i className="fas fa-calendar-day fa-10x m-3"></i>
-                        </div>
-                        <h4 className="text-center">Track Deadlines</h4>
-                    </div>
-                    <div className="col-sm-3 p-3 text-center text-info">
-                        <div className="" style={{ 'fontSize': '0.6rem' }}>
-                            <i className="fas fa-info-circle fa-10x m-3"></i>
-                        </div>
-                        <h4 className="text-center">Get Latest Updates</h4>
                     </div>
                 </div>
-
-                {/* <div className="row home-footer">
-                    <div className="ml-5">
-                        <div className="row align-items-center">
-                            <span style={{ color: 'white' }}>
-                                <b>Contact us:</b><br />
-                                1234567890<br />
-                                abc@abc.com</span>
-                        </div>
-                    </div>
-                </div> */}
 
                 <footer className="pt-4 row home-footer">
                     <div className="row container-fluid text-center text-light text-md-left mx-5">
@@ -122,7 +120,7 @@ export default class Home extends Component {
                                 <a href="tel:+94812393240" className="text-light text-decoration-none">
                                     <p><i className="fas fa-phone fa-fw"></i> Tel. 0812345678</p>
                                 </a>
-                                <a href="mailto:cfeng@eng.pdn.ac.lk" className="text-light text-decoration-none">
+                                <a href="mailto:invsys@eng.pdn.ac.lk" className="text-light text-decoration-none">
                                     <p><i className="fas fa-envelope fa-fw"></i> invsys@eng.pdn.ac.lk</p>
                                 </a>
                                 <p><i className="fas fa-map-marker-alt fa-fw"></i> Faculty of Engineering,<br />
