@@ -4,7 +4,7 @@
 > Department Inventory where students borrow components for their
 > projects.
 
-![Image](https://github.com/knztnt/InvSys/blob/master/client/src/navbar-new-logo.png)
+![Image](https://github.com/knztnt/InvSys/blob/master/client/src/navbar-logo-blue.png)
 
 
 ## Quick Start
