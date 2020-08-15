@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import logo from "../navbar-logo.png";
+import logo from "../navbar-logo-blue.png";
 
 import AuthService from "../services/auth.service";
 import { Link } from "react-router-dom";
@@ -54,7 +54,7 @@ class Navbar extends Component {
                     <img
                         src={logo}
                         height="50"
-                        width="200"
+                        width="160"
                         alt="Logo"
                     />
                 </Link>
