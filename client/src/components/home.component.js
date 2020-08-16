@@ -76,13 +76,23 @@ export default class Home extends Component {
 
 
                 <div className="row align-items-center">
-                    <div className="col-12">
+                    <div className="col-12 mt-5">
                         <div className="col-12 p-3 text-center text-info">
                             <h2 className="text-center display-4">The Online Inventory Management System</h2>
                         </div>
                     </div>
                     <div className="col-12">
-                        <div className="row">
+                        <div className="container mb-5">
+                            <div className="col-12">
+                                <p className="text-center" style={{ fontSize: "18px" }}>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br />
+                                    Vivamus arcu felis bibendum ut tristique et egestas. Aliquet porttitor lacus luctus accumsan tortor. Dolor sed viverra ipsum nunc aliquet.
+                                    Felis imperdiet proin fermentum leo vel orci. Hendrerit gravida rutrum quisque non tellus. Ac tortor vitae purus faucibus. Viverra accumsan in nisl nisi scelerisque eu ultrices.
+                                    Laoreet sit amet cursus sit amet dictum sit amet justo. Morbi tristique senectus et netus et malesuada fames ac. Ligula ullamcorper malesuada proin libero nunc consequat interdum varius.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="row mb-5">
                             <div className="col-sm-3 p-3 text-center text-info">
                                 <div className="" style={{ 'fontSize': '0.6rem' }}>
                                     <i className="fas fa-microchip fa-10x m-3"></i>
