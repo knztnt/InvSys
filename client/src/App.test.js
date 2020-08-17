@@ -109,4 +109,4 @@ describe("Valid Input Testing", () => {
       'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')).toStrictEqual(
       <div className="alert alert-warning" role="alert">The username must be between 3 and 20 characters.</div>);
   })
-})
+});
