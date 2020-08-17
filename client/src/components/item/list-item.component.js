@@ -114,7 +114,7 @@ export default class ItemsList extends Component {
               />
               <div className="input-group-append">
                 <button
-                  className="btn btn-outline-success"
+                  className="btn btn-outline-info"
                   type="button"
                   onClick={this.searchName}
                 >
@@ -191,7 +191,7 @@ export default class ItemsList extends Component {
                     <Link to={"/item/request/" + currentItem.item_no}>
                       <button
                         type="button"
-                        className="btn btn-success"
+                        className="btn btn-info"
                         disabled={(currentItem.quantity === 0 ? true : false)}
                       >
                         Request Item

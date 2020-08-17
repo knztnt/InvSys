@@ -94,7 +94,7 @@ class Sidebar extends Component {
 
               {showAcademicBoard && (
                 <div>
-                  <div className="mt-4 mb-0 text-primary">
+                  <div className="mt-4 mb-0 text-info">
                     <h6><i className="fas fa-caret-right fa-fw"></i>Items & Services</h6>
                     <hr />
                   </div>
@@ -114,7 +114,7 @@ class Sidebar extends Component {
 
               {showAcademicBoard && (
                 <div>
-                  <div className="mt-4 mb-0 text-primary">
+                  <div className="mt-4 mb-0 text-info">
                     <h6><i className="fas fa-caret-right fa-fw"></i>Requests</h6>
                     <hr />
                   </div>
@@ -147,7 +147,7 @@ class Sidebar extends Component {
 
               {showNonacBoard && (
                 <div>
-                  <div className="mt-4 mb-0 text-primary">
+                  <div className="mt-4 mb-0 text-info">
                     <h6><i className="fas fa-caret-right fa-fw"></i>Items & Services</h6>
                     <hr />
                   </div>
@@ -181,7 +181,7 @@ class Sidebar extends Component {
 
               {showNonacBoard && (
                 <div>
-                  <div className="mt-4 mb-0 text-primary">
+                  <div className="mt-4 mb-0 text-info">
                     <h6><i className="fas fa-caret-right fa-fw"></i>Requests</h6>
                     <hr />
                   </div>
@@ -241,7 +241,7 @@ class Sidebar extends Component {
               {/* profile board */}
               {currentUser && (
                 <div>
-                  <div className="mt-4 mb-0 text-primary">
+                  <div className="mt-4 mb-0 text-info">
                     <h6><i className="fas fa-caret-right fa-fw"></i>Profile</h6>
                     <hr />
                   </div>
