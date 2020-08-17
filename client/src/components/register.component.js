@@ -5,7 +5,7 @@ import CheckButton from "react-validation/build/button";
 
 import AuthService from "../services/auth.service";
 
-const required = value => {
+export const required = value => {
     if (!value) {
         return (
             <div className="alert alert-danger" role="alert">
@@ -15,7 +15,7 @@ const required = value => {
     }
 };
 
-const validateUsername = value => {
+export const validateUsername = value => {
     if (value.length < 3 || value.length > 20) {
         return (
             <div className="alert alert-warning" role="alert">
@@ -25,7 +25,7 @@ const validateUsername = value => {
     }
 };
 
-const validatePassword = (value, components) => {
+export const validatePassword = (value) => {
     if (value.length < 4 || value.length > 40) {
         return (
             <div className="alert alert-warning" role="alert">
@@ -367,3 +367,4 @@ export default class Register extends Component {
         );
     }
 }
+
