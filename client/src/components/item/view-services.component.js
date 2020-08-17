@@ -120,7 +120,7 @@ export default class ServicesList extends Component {
               />
               <div className="input-group-append">
                 <button
-                  className="btn btn-outline-success"
+                  className="btn btn-outline-info"
                   type="button"
                   onClick={this.searchName}
                 >
@@ -190,7 +190,7 @@ export default class ServicesList extends Component {
                     <Link to={"/service/request/" + currentService.service_no}>
                       <button
                         type="button"
-                        className="btn btn-success"
+                        className="btn btn-info"
                         disabled={(currentService.availability === false ? true : false)}
                       >
                         Request Service
