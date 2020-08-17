@@ -49,7 +49,7 @@ class Navbar extends Component {
         const { currentUser, loginPage } = this.state;
 
         return (
-            <nav className="navbar navbar-light bg-light sticky-top flex-md-nowrap p-0">
+            <nav className="navbar navbar-dark bg-dark sticky-top flex-md-nowrap p-0">
                 <Link className="navbar-brand col-md-3 col-lg-2 mr-0 px-3" to="/">
                     <img
                         src={logo}
@@ -67,7 +67,7 @@ class Navbar extends Component {
                     aria-expanded="false"
                     aria-label="Toggle navigation"
                 >
-                    <span className="navbar-toggler-icon" />
+                    <span className="navbar-toggler-icon" id="#toggler-icon" />
                 </button>
                 {loginPage ?
                     (<div></div>)
