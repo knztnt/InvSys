@@ -13,6 +13,8 @@
 
 ![Image](https://raw.githubusercontent.com/knztnt/InvSys/master/client/src/navbar-logo-blue.png)
 
+## Preview
+[![Preview of InvSys](https://github.com/knztnt/InvSys/blob/gh-pages/Demo-InvSys.gif?raw=true)](http://www.youtube.com/watch?v=v=tKSnByDig_E "Preview of InvSys")
 
 ## Quick Start
 
@@ -37,7 +39,7 @@ Navigate to root directory of the project.
 ### Database Connection Configuration
 
 Run following script.
-[InvSys.sql](https://gist.github.com/chamin96/4b507153b0ebee2f1b4d0a8d8f8a58de)
+- [InvSys.sql](https://gist.github.com/chamin96/4b507153b0ebee2f1b4d0a8d8f8a58de)
 
 ```sql
 CREATE DATABASE invsys;
