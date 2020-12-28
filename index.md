@@ -14,7 +14,7 @@
 ![Image](https://raw.githubusercontent.com/knztnt/InvSys/master/client/src/navbar-logo-blue.png)
 
 ## Preview
-[![Preview of InvSys](https://github.com/knztnt/InvSys/blob/gh-pages/Demo-InvSys.gif?raw=true)](http://www.youtube.com/watch?v=v=tKSnByDig_E "Preview of InvSys")
+[![Preview of InvSys](https://github.com/knztnt/InvSys/blob/gh-pages/Demo-InvSys.gif?raw=true)](https://www.youtube.com/watch?v=tKSnByDig_E)
 
 ## Quick Start
 
@@ -69,7 +69,7 @@ In InvSys/app/server.js file, uncomment (29-32) lines and comment 26th line. Thi
 Or simply replace exixting server.js file with following script.
 Following script contains the server.js file when it is run initially.
 
-[InvSys server file : Resets database to initial state](https://gist.github.com/chamin96/320548e02818752a8c545de2b4db4926)
+- [InvSys server file : Resets database to initial state](https://gist.github.com/chamin96/320548e02818752a8c545de2b4db4926)
 
 ## Powered by
 
