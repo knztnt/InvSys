@@ -3,8 +3,15 @@
 > InvSys is the web application for inventory management system
 > Department Inventory where students borrow components for their
 > projects.
+> In this project, we have created an Inventory System Management
+> System for the Department of Computer Engineering of the Faculty
+> of Engineering of the University of Peradeniya. The objective was to
+> digitize the current manual data storage procedure of the inventory
+> system. The designed system runs as a user-friendly website which is
+> connected to a database via a web server, implemented using
+> MySQL, nodejs, React.
 
-![Image](https://github.com/knztnt/InvSys/blob/master/client/src/navbar-logo-blue.png)
+![Image](https://raw.githubusercontent.com/knztnt/InvSys/master/client/src/navbar-logo-blue.png)
 
 
 ## Quick Start
