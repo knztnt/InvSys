@@ -1,37 +1,118 @@
-## Welcome to GitHub Pages
+# Inventory Management System
 
-You can use the [editor on GitHub](https://github.com/knztnt/InvSys/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+> InvSys is the web application for inventory management system
+> Department Inventory where students borrow components for their
+> projects.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+![Image](https://github.com/knztnt/InvSys/blob/master/client/src/navbar-logo-blue.png)
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Quick Start
 
-```markdown
-Syntax highlighted code block
+- Clone the repo: `$ git clone https://github.com/knztnt/InvSys.git`
 
-# Header 1
-## Header 2
-### Header 3
+     **or**
 
-- Bulleted
-- List
+- [Download from Github](https://github.com/knztnt/InvSys/archive/master.zip)
 
-1. Numbered
-2. List
+### Running Locally
 
-**Bold** and _Italic_ and `Code` text
+Navigate to root directory of the project.
 
-[Link](url) and ![Image](src)
+```
+   $ npm install
+   $ cd client
+   $ npm install
+   $ cd ..
+   $ npm run dev
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### Database Connection Configuration
 
-### Jekyll Themes
+Run following script.
+[InvSys.sql](https://gist.github.com/chamin96/4b507153b0ebee2f1b4d0a8d8f8a58de)
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/knztnt/InvSys/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+```sql
+CREATE DATABASE invsys;
+```
 
-### Support or Contact
+In InvSys/app/config/db.config.js (Line 3 and 4),
+set your MySQL database username and password as follows.
+Default values are, username: 'root' and password: ''.
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+```js
+module.exports = {
+  HOST: "localhost",
+  USER: "root",
+  PASSWORD: "",
+  DB: "invsys",
+  dialect: "mysql",
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000,
+  },
+};
+```
+#### ! For the First Time running the Server 
+In InvSys/app/server.js file, uncomment (29-32) lines and comment 26th line. This will initialize the database and sync all the tables.
+Or simply replace exixting server.js file with following script.
+Following script contains the server.js file when it is run initially.
+
+[InvSys server file | Resets database to initial state](https://gist.github.com/chamin96/320548e02818752a8c545de2b4db4926)
+
+## Powered by
+
+- nodejs
+- React
+- MySQL
+
+## Dependencies
+
+> ### Server side
+>
+> - bcryptjs
+> - body-parser
+> - cors
+> - express
+> - jsonwebtoken
+> - mysql2
+> - sequelize
+>
+> ### Client side
+>
+> - axios
+> - bootstrap
+> - fontawesome
+> - jwt-decode
+> - prop-types
+> - react
+> - react-avatar
+> - react-datepicker
+> - react-dom
+> - react-router-dom
+> - react-scripts
+> - react-validation
+> - validator
+>
+> ### Developer dependencies
+>
+> - nodemon
+> - concurrently
+
+## Documentation
+
+> - [Database Project Report](https://drive.google.com/file/d/1icETHglfJ0oSD3KXyziNj3D2A1N39fwc/view)
+
+## Deployment
+
+## Author
+
+- knztnt Solutions - [http://knztnt.github.io](http://knztnt.github.io)
+
+## Contributors
+
+- [Chamin Jayasooriya](https://github.com/chamin96)
+- [Anandi Karunaratne](https://github.com/AnandiKarunaratne)
+- [Devin Gallage](https://github.com/Kulanjith)
